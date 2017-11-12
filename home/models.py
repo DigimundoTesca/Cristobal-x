@@ -30,6 +30,9 @@ class Question(models.Model):
     def get_absolute_url(self):
         return reverse("home:pregunta", kwargs={'id':self.id})
 
+    def get_chat_url(self):
+        return reverse("chat:chat_room", kwargs={'id':self.id})
+
 
 class ImageQuestion(models.Model):
     image = models.ImageField(upload_to='questions')

@@ -34,7 +34,7 @@
                 <h3 class=" mb-3">Mís chats:</h3>
                 <div id="userChats" class="col questContainer">
                   {% for mine in mineposts_act %}
-                    <p><a href="{{ mine.get_absolute_url }}">Chat : {{ mine.title }}</a></p>
+                    <p><a href="{{ mine.get_chat_url }}">Chat : {{ mine.title }}</a></p>
                   {% endfor %}
                 </div>
               </div>

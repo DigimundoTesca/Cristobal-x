@@ -1,7 +1,5 @@
 
 {% load staticfiles %}
-{% block title %}MultiChat Example{% endblock %}
-{% block header_text %}MultiChat Example{% endblock %}
 
 {% block head %}
     <link rel="stylesheet" href="{% static "css/style.css" %}" type="text/css" media="screen" />
@@ -12,11 +10,12 @@
 {% block content %}
 
     <ul class="rooms">
-        {% for room in rooms %}
-            <li class="room-link" data-room-id="{{ room.id }}">{{ room }}</li>
-        {% empty %}
-            <p class="empty">No chat rooms defined. Maybe make some in the <a href="{% url 'admin:index' %}">admin</a>?</p>
-        {% endfor %}
+        <div>
+            
+        </div>
+        <div>
+        <input type="text" name=""><button type="submit">Send</button>
+        </div>
     </ul>
 
     <div id="chats">
@@ -29,7 +28,8 @@
     <script>
         $(function () {            
             // Correctly decide between ws:// and wss://
-            var ws_path = "/chat_room/";
+            var id_room = '{{id}}';
+            var ws_path = "/chat/"+id_room;
             console.log("Connecting to " + ws_path);
 
             var webSocketBridge = new channels.WebSocketBridge();
