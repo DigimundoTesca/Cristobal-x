@@ -82,6 +82,7 @@ def user(request):
     if request.user.rol == 'ST':
         template = 'user.html'
         Mineposts = Question.objects.filter(user_question=request.user.pk)
+        Mineposts_act = Question.objects.filter(user_question=request.user.pk,status='OP')
         articles = Question.objects.all()
 
         base_form = BaseForm(request.POST or None)
@@ -111,6 +112,7 @@ def user(request):
         context = {
             'title': "Bienvenido "+request.user.username,
             'mineposts': Mineposts,
+            'mineposts_act': Mineposts_act,
             'articles':articles,
             'baseForm': base_form,
             'cow_form': cow_form,
