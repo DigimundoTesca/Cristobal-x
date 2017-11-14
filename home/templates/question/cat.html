@@ -1,103 +1,140 @@
-<div class="modal-dialog modal-lg" role="document">
-  <div class="modal-content">
-    <div class="modal-header">
-      <h5 class="modal-title" id="exampleModalLabel">Nueva pregunta (Espécimen Felino)</h5>
-      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
+{{ form.non_field_errors }}
+<hr>
+<h4>Reseña</h4>
+<div class="form-group">
+  {{ form.specie.errors }}
+  <label for="{{ form.specie.id_for_label }}">{{ form.specie.label }}</label>
+  {{ form.specie }}
+</div>
+<div class="form-group">
+  {{ form.race.errors }}
+  <label for="{{ form.race.id_for_label }}">{{ form.race.label }}</label>
+  <div class="input-group">
+    {{ form.race }}
+    <span class="input-group-addon">
+      <input id="catracec" type="checkbox" aria-label="Checkbox for following text input" onclick="changecatrace()">
+    </span>
+    <span class="input-group-addon">Sin datos</span>
+  </div>
+</div>
+<div class="form-group">
+  {{ form.age.errors }}
+  <label for="{{ form.age.id_for_label }}">{{ form.age.label }}</label>
+  <div class="input-group">
+    {{ form.age }}
+    <span class="input-group-addon">
+      <input id="catagec" type="checkbox" aria-label="Checkbox for following text input" onclick="changecatage()">
+    </span>
+    <span class="input-group-addon">Sin datos</span>
+  </div>
+</div>
+<div class="form-group">
+  {{ form.weight.errors }}
+  <label for="{{ form.weight.id_for_label }}">{{ form.weight.label }}</label>
+  <div class="input-group">
+    {{ form.weight }}
+    <span class="input-group-addon">
+      <input id="catweightc" type="checkbox" aria-label="Checkbox for following text input" onclick="changecatweight()">
+    </span>
+    <span class="input-group-addon">Sin datos</span>
+  </div>
+</div>
+<div class="form-group">
+  {{ form.gender.errors }}
+  <label for="{{ form.gender.id_for_label }}">{{ form.gender.label }}</label>
+  {{ form.gender }}
+</div>
+<hr>
+<div class="form-group">
+  <h4>Exámen físico general</h4>
+  <div class="form-row">
+    <div class="form-group col-md-4">
+      {{ form.heart_rate.errors }}
+      <label for="{{ form.heart_rate.id_for_label }}">{{ form.heart_rate.label }}</label>
+      <div class="input-group">
+        {{ form.heart_rate }}
+        <span class="input-group-addon">
+          <input id="catheartc" type="checkbox" aria-label="Checkbox for following text input" onclick="changecatheart()">
+        </span>
+        <span class="input-group-addon">S/D</span>
+      </div>
     </div>
-    <div class="modal-body">
-      <form method="post" name="gatoquest" action="contact.php" class="container" id="needs-validation" novalidate>
-        <h3>Realiza tu pregunta</h3>
-        <div class="form-group">
-          <label for="pregunta">Pregunta (De forma corta y precisa)</label>
-          <input type="text" class="form-control" id="pregunta" name="pregunta">
-        </div>
-        <div class="form-group">
-          <label for="pregLarga">Anexa más información sobre tu pregunta</label>
-          <textarea class="form-control" id="pregLarga" name="pregLarga" rows="5"></textarea>
-        </div>
-        <hr>
-        <h4>Reseña</h4>
-        <div class="form-group d-none">
-          <input type="text" class="form-control" name="animal" value="Felino">
-        </div>
-        <div class="form-group">
-          <label for="Edad" class="col-form-label">Edad</label>
-          <input type="text" class="form-control" id="Edad" name="Edad" placeholder="2 años">
-        </div>
-        <div class="form-group">
-          <label for="Peso" class="col-form-label">Peso</label>
-          <input type="text" class="form-control" id="Peso" name="Peso" placeholder="3kg">
-        </div>
-        <fieldset class="form-group">
-          <div class="form-group">
-            <p class="col-form-legend">Sexo</p>
-            <div class="col-sm-10">
-              <div class="form-check">
-                <label class="form-check-label">
-                  <input class="form-check-input" type="radio" name="Sexo" id="Sexo1" value="macho" checked>
-                  Macho
-                </label>
-              </div>
-              <div class="form-check">
-                <label class="form-check-label">
-                  <input class="form-check-input" type="radio" name="Sexo" id="Sexo2" value="hembra">
-                  Hembra
-                </label>
-              </div>
-            </div>
-          </div>
-        </fieldset>
-        <div class="form-group">
-          <label for="Estado_fisiologico" class="col-form-label">Estado Fisiológico</label>
-          <input type="text" class="form-control" id="Estado_fisiologico" name="Estado_fisiologico" placeholder="Lactante / Gestante / Crecimiento">
-        </div>
-        <hr>
-        <div class="form-group">
-          <h4>Motivo de consulta</h4>
-          <label for="Consulta" class="col-form-label">Escriba el motivo:</label>
-          <input type="text" class="form-control" id="Consulta" name="Consulta" placeholder="Descripción de la consulta">
-        </div>
-        <hr>
-        <div class="form-group">
-          <h4>Exámen físico general</h4>
-          <div class="form-row">
-            <div class="form-group col-md-4">
-              <label for="FC" class="col-form-label">Frecuencia Cardiaca (lpm)</label>
-              <input type="text" class="form-control" id="FC" name="FC">
-            </div>
-            <div class="form-group col-md-4">
-              <label for="FR" class="col-form-label">Frecuencia Respiratoria (rpm)</label>
-              <input type="text" class="form-control" id="FR" name="FR">
-            </div>
-            <div class="form-group col-md-4">
-              <label for="Temp" class="col-form-label">Temperatura (°C)</label>
-              <input type="text" class="form-control" id="Temp" name="Temp">
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="Capilar" class="col-form-label">Tiempo de llenado capilar:</label>
-            <input type="text" class="form-control" id="Capilar" name="Capilar" placeholder="">
-            <label for="Mucosas" class="col-form-label">Coloración de Mucosas:</label>
-            <input type="text" class="form-control" id="Mucosas" name="Mucosas" placeholder="">
-            <label for="Linfonodo" class="col-form-label">Linfonodos:</label>
-            <input type="text" class="form-control" id="Linfonodo" name="Linfonodo" placeholder="">
-          </div>
-          <div class="form-group">
-            <label for="Clinica">Historia Clínica</label>
-            <textarea class="form-control" id="Clinica" name="Clinica" rows="3"></textarea>
-          </div>
-          <div class="form-group">
-            <label for="images">Imagenes</label>
-            <input type="file" name="imgages[]" multiple>
-          </div>
-        </div>
-        <div class="buttonSection d-flex flex-wrap justify-content-around">
-          <input type="submit" class="gatomailitbtn btn btn-success" value="Crear Pregunta" />
-          <input type="reset" class="btn btn-danger" data-dismiss="modal" aria-label="Close" value="Salir" />
-        </div>
-      </form>
+    <div class="form-group col-md-4">
+      {{ form.respiratory_rate.errors }}
+      <label for="{{ form.respiratory_rate.id_for_label }}">{{ form.respiratory_rate.label }}</label>
+      <div class="input-group">
+        {{ form.respiratory_rate }}
+        <span class="input-group-addon">
+          <input id="catrespc" type="checkbox" aria-label="Checkbox for following text input" onclick="changecatresp()">
+        </span>
+        <span class="input-group-addon">S/D</span>
+      </div>
+    </div>
+    <div class="form-group col-md-4">
+      {{ form.temperature.errors }}
+      <label for="{{ form.temperature.id_for_label }}">{{ form.temperature.label }}</label>
+      <div class="input-group">
+        {{ form.temperature }}
+        <span class="input-group-addon">
+          <input id="cattempc" type="checkbox" aria-label="Checkbox for following text input" onclick="changecattemp()">
+        </span>
+        <span class="input-group-addon">S/D</span>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    {{ form.capilar.errors }}
+    <label for="{{ form.capilar.id_for_label }}">{{ form.capilar.label }}</label>
+    <div class="input-group">
+      {{ form.capilar }}
+      <span class="input-group-addon">
+        <input id="catcapc" type="checkbox" aria-label="Checkbox for following text input" onclick="changecatcap()">
+      </span>
+      <span class="input-group-addon">Sin datos</span>
+    </div>
+  </div>
+  <div class="form-group">
+    {{ form.mucosal_color.errors }}
+    <label for="{{ form.mucosal_color.id_for_label }}">{{ form.mucosal_color.label }}</label>
+    <div class="input-group">
+      {{ form.mucosal_color }}
+      <span class="input-group-addon">
+        <input id="catmucoc" type="checkbox" aria-label="Checkbox for following text input" onclick="changecatmucos()">
+      </span>
+      <span class="input-group-addon">Sin datos</span>
+    </div>
+  </div>
+  <div class="form-group">
+    {{ form.cough.errors }}
+    <label for="{{ form.cough.id_for_label }}">{{ form.cough.label }}</label>
+    <div class="input-group">
+      {{ form.cough }}
+      <span class="input-group-addon">
+        <input id="catcoughc" type="checkbox" aria-label="Checkbox for following text input" onclick="changecatcough()">
+      </span>
+      <span class="input-group-addon">Sin datos</span>
+    </div>
+  </div>
+  <div class="form-group">
+    {{ form.pulse.errors }}
+    <label for="{{ form.pulse.id_for_label }}">{{ form.pulse.label }}</label>
+    <div class="input-group">
+      {{ form.pulse }}
+      <span class="input-group-addon">
+        <input id="catpulsec" type="checkbox" aria-label="Checkbox for following text input" onclick="changecatpulse()">
+      </span>
+      <span class="input-group-addon">Sin datos</span>
+    </div>
+  </div>
+  <div class="form-group">
+    {{ form.skin.errors }}
+    <label for="{{ form.skin.id_for_label }}">{{ form.skin.label }}</label>
+    <div class="input-group">
+      {{ form.skin }}
+      <span class="input-group-addon">
+        <input id="catskinc" type="checkbox" aria-label="Checkbox for following text input" onclick="changecatskin()">
+      </span>
+      <span class="input-group-addon">Sin datos</span>
     </div>
   </div>
 </div>

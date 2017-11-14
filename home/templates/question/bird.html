@@ -1,103 +1,203 @@
-<div class="modal-dialog modal-lg" role="document">
-  <div class="modal-content">
-    <div class="modal-header">
-      <h5 class="modal-title" id="exampleModalLabel">Nueva pregunta (Espécimen Ave)</h5>
-      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
+{{ form.non_field_errors }}
+<hr>
+<h4>Reseña</h4>
+<div class="form-group">
+  {{ form.type_animal.errors }}
+  <label for="{{ form.type_animal.id_for_label }}">{{ form.type_animal.label }}</label>
+  <div class="input-group">
+    {{ form.type_animal }}
+    <span class="input-group-addon">
+      <input id="birdtypec" type="checkbox" aria-label="Checkbox for following text input" onclick="birdchangetype()">
+    </span>
+    <span class="input-group-addon">Sin datos</span>
+  </div>
+</div>
+<div class="form-group">
+  {{ form.zootechnical_purpose.errors }}
+  <label for="{{ form.zootechnical_purpose.id_for_label }}">{{ form.zootechnical_purpose.label }}</label>
+  <div class="input-group">
+    {{ form.zootechnical_purpose }}
+    <span class="input-group-addon">
+      <input id="birdzooc" type="checkbox" aria-label="Checkbox for following text input" onclick="birdchangezoo()">
+    </span>
+    <span class="input-group-addon">Sin datos</span>
+  </div>
+</div>
+<div class="form-group">
+  {{ form.age.errors }}
+  <label for="{{ form.age.id_for_label }}">{{ form.age.label }}</label>
+  {{ form.age }}
+</div>
+<div class="form-group">
+  {{ form.age_week.errors }}
+  <label for="{{ form.age_week.id_for_label }}">{{ form.age_week.label }}</label>
+  <div class="input-group">
+    {{ form.age_week }}
+    <span class="input-group-addon">
+      <input id="birdagewc" type="checkbox" aria-label="Checkbox for following text input" onclick="birdchangeagew()">
+    </span>
+    <span class="input-group-addon">Sin datos</span>
+  </div>
+</div>
+<div class="form-group">
+  {{ form.age_month.errors }}
+  <label for="{{ form.age_month.id_for_label }}">{{ form.age_month.label }}</label>
+  <div class="input-group">
+    {{ form.age_month }}
+    <span class="input-group-addon">
+      <input id="birdagemc" type="checkbox" aria-label="Checkbox for following text input" onclick="birdchangeagem()">
+    </span>
+    <span class="input-group-addon">Sin datos</span>
+  </div>
+</div>
+<div class="form-group">
+  {{ form.place.errors }}
+  <label for="{{ form.place.id_for_label }}">{{ form.place.label }}</label>
+  {{ form.place }}
+</div>
+<div class="form-group">
+  {{ form.quantity.errors }}
+  <label for="{{ form.quantity.id_for_label }}">{{ form.quantity.label }}</label>
+  <div class="input-group">
+    {{ form.quantity }}
+    <span class="input-group-addon">
+      <input id="birdquantc" type="checkbox" aria-label="Checkbox for following text input" onclick="birdchangequant()">
+    </span>
+    <span class="input-group-addon">Sin datos</span>
+  </div>
+</div>
+<div class="form-group">
+  {{ form.coexistence.errors }}
+  <label for="{{ form.coexistence.id_for_label }}">{{ form.coexistence.label }}</label>
+  {{ form.coexistence }}
+</div>
+<div class="form-group">
+  {{ form.origin_water.errors }}
+  <label for="{{ form.origin_water.id_for_label }}">{{ form.origin_water.label }}</label>
+  <div class="input-group">
+    {{ form.origin_water }}
+    <span class="input-group-addon">
+      <input id="birdoriginc" type="checkbox" aria-label="Checkbox for following text input" onclick="birdchangeorigin()">
+    </span>
+    <span class="input-group-addon">Sin datos</span>
+  </div>
+</div>
+<div class="form-group">
+  {{ form.morbidity.errors }}
+  <label for="{{ form.morbidity.id_for_label }}">{{ form.morbidity.label }}</label>
+  <div class="input-group">
+    {{ form.morbidity }}
+    <span class="input-group-addon">
+      <input id="birdmorbc" type="checkbox" aria-label="Checkbox for following text input" onclick="birdchangemorb()">
+    </span>
+    <span class="input-group-addon">Sin datos</span>
+  </div>
+</div>
+<div class="form-group">
+  {{ form.mortality.errors }}
+  <label for="{{ form.mortality.id_for_label }}">{{ form.mortality.label }}</label>
+  <div class="input-group">
+    {{ form.mortality }}
+    <span class="input-group-addon">
+      <input id="birdmortc" type="checkbox" aria-label="Checkbox for following text input" onclick="birdchangemort()">
+    </span>
+    <span class="input-group-addon">Sin datos</span>
+  </div>
+</div>
+<div class="form-group">
+  {{ form.date_signs.errors }}
+  <label for="{{ form.date_signs.id_for_label }}">{{ form.date_signs.label }}</label>
+  <div class="input-group">
+    {{ form.date_signs }}
+    <span class="input-group-addon">
+      <input id="birddatec" type="checkbox" aria-label="Checkbox for following text input" onclick="birdchangedate()">
+    </span>
+    <span class="input-group-addon">Sin datos</span>
+  </div>
+</div>
+<div class="form-group">
+  {{ form.water.errors }}
+  <label for="{{ form.water.id_for_label }}">{{ form.water.label }}</label>
+  {{ form.water }}
+</div>
+<div class="form-group">
+  {{ form.eat.errors }}
+  <label for="{{ form.eat.id_for_label }}">{{ form.eat.label }}</label>
+  {{ form.eat }}
+</div>
+<div class="form-group">
+  {{ form.vaccine.errors }}
+  <label for="{{ form.vaccine.id_for_label }}">{{ form.vaccine.label }}</label>
+  <div class="input-group">
+    {{ form.vaccine }}
+    <span class="input-group-addon">
+      <input id="birdvaccinec" type="checkbox" aria-label="Checkbox for following text input" onclick="birdchangevaccine()">
+    </span>
+    <span class="input-group-addon">Sin datos</span>
+  </div>
+</div>
+<div class="form-group">
+  {{ form.defecation.errors }}
+  <label for="{{ form.defecation.id_for_label }}">{{ form.defecation.label }}</label>
+  {{ form.defecation }}
+</div>
+<hr>
+<div class="form-group">
+  <h4>Exámen físico general</h4>
+  <div class="form-row">
+    <div class="form-group col-md-4">
+      {{ form.condition_corporal.errors }}
+      <label for="{{ form.condition_corporal.id_for_label }}">{{ form.condition_corporal.label }}</label>
+      <div class="input-group">
+        {{ form.condition_corporal }}
+        <span class="input-group-addon">
+          <input id="birdconditionc" type="checkbox" aria-label="Checkbox for following text input" onclick="birdchangecondition()">
+        </span>
+        <span class="input-group-addon">S/D</span>
+      </div>
     </div>
-    <div class="modal-body">
-      <form method="post" name="avequest" action="contact.php" class="container" id="needs-validation" novalidate>
-        <h3>Realiza tu pregunta</h3>
-        <div class="form-group">
-          <label for="pregunta">Pregunta (De forma corta y precisa)</label>
-          <input type="text" class="form-control" id="pregunta" name="pregunta">
-        </div>
-        <div class="form-group">
-          <label for="pregLarga">Anexa más información sobre tu pregunta</label>
-          <textarea class="form-control" id="pregLarga" name="pregLarga" rows="5"></textarea>
-        </div>
-        <hr>
-        <h4>Reseña</h4>
-        <div class="form-group d-none">
-          <input type="text" class="form-control" name="animal" value="Ave">
-        </div>
-        <div class="form-group">
-          <label for="Edad" class="col-form-label">Edad</label>
-          <input type="text" class="form-control" id="Edad" name="Edad" placeholder="2 años">
-        </div>
-        <div class="form-group">
-          <label for="Peso" class="col-form-label">Peso</label>
-          <input type="text" class="form-control" id="Peso" name="Peso" placeholder="0.5kg">
-        </div>
-        <fieldset class="form-group">
-          <div class="form-group">
-            <p class="col-form-legend">Sexo</p>
-            <div class="col-sm-10">
-              <div class="form-check">
-                <label class="form-check-label">
-                  <input class="form-check-input" type="radio" name="Sexo" id="Sexo1" value="macho" checked>
-                  Macho
-                </label>
-              </div>
-              <div class="form-check">
-                <label class="form-check-label">
-                  <input class="form-check-input" type="radio" name="Sexo" id="Sexo2" value="hembra">
-                  Hembra
-                </label>
-              </div>
-            </div>
-          </div>
-        </fieldset>
-        <div class="form-group">
-          <label for="Estado_fisiologico" class="col-form-label">Estado Fisiológico</label>
-          <input type="text" class="form-control" id="Estado_fisiologico" name="Estado_fisiologico" placeholder="Lactante / Gestante / Crecimiento">
-        </div>
-        <hr>
-        <div class="form-group">
-          <h4>Motivo de consulta</h4>
-          <label for="Consulta" class="col-form-label">Escriba el motivo:</label>
-          <input type="text" class="form-control" id="Consulta" name="Consulta" placeholder="Descripción de la consulta">
-        </div>
-        <hr>
-        <div class="form-group">
-          <h4>Exámen físico general</h4>
-          <div class="form-row">
-            <div class="form-group col-md-4">
-              <label for="FC" class="col-form-label">Frecuencia Cardiaca (lpm)</label>
-              <input type="text" class="form-control" id="FC" name="FC">
-            </div>
-            <div class="form-group col-md-4">
-              <label for="FR" class="col-form-label">Frecuencia Respiratoria (rpm)</label>
-              <input type="text" class="form-control" id="FR" name="FR">
-            </div>
-            <div class="form-group col-md-4">
-              <label for="Temp" class="col-form-label">Temperatura (°C)</label>
-              <input type="text" class="form-control" id="Temp" name="Temp">
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="Capilar" class="col-form-label">Tiempo de llenado capilar:</label>
-            <input type="text" class="form-control" id="Capilar" name="Capilar" placeholder="">
-            <label for="Mucosas" class="col-form-label">Coloración de Mucosas:</label>
-            <input type="text" class="form-control" id="Mucosas" name="Mucosas" placeholder="">
-            <label for="Linfonodo" class="col-form-label">Linfonodos:</label>
-            <input type="text" class="form-control" id="Linfonodo" name="Linfonodo" placeholder="">
-          </div>
-          <div class="form-group">
-            <label for="Clinica">Historia Clínica</label>
-            <textarea class="form-control" id="Clinica" name="Clinica" rows="3"></textarea>
-          </div>
-          <div class="form-group">
-            <label for="images">Imagenes</label>
-            <input type="file" name="imgages[]" multiple>
-          </div>
-        </div>
-        <div class="buttonSection d-flex flex-wrap justify-content-around">
-          <input type="submit" class="avemailitbtn btn btn-success" value="Crear Pregunta" />
-          <input type="reset" class="btn btn-danger" data-dismiss="modal" aria-label="Close" value="Salir" />
-        </div>
-      </form>
+    <div class="form-group col-md-4">
+      {{ form.plumage.errors }}
+      <label for="{{ form.plumage.id_for_label }}">{{ form.plumage.label }}</label>
+      <div class="input-group">
+        {{ form.plumage }}
+        <span class="input-group-addon">
+          <input id="birdplumagec" type="checkbox" aria-label="Checkbox for following text input" onclick="birdchangeplumage()">
+        </span>
+        <span class="input-group-addon">S/D</span>
+      </div>
+    </div>
+    <div class="form-group col-md-4">
+      {{ form.condition_legs.errors }}
+      <label for="{{ form.condition_legs.id_for_label }}">{{ form.condition_legs.label }}</label>
+      {{ form.condition_legs }}
+    </div>
+    <div class="form-group col-md-4">
+      {{ form.breathing_frequency.errors }}
+      <label for="{{ form.breathing_frequency.id_for_label }}">{{ form.breathing_frequency.label }}</label>
+      <div class="input-group">
+        {{ form.breathing_frequency }}
+        <span class="input-group-addon">
+          <input id="birdbreathc" type="checkbox" aria-label="Checkbox for following text input" onclick="birdchangebreath()">
+        </span>
+        <span class="input-group-addon">S/D</span>
+      </div>
+    </div>
+    <div class="form-group col-md-4">
+      {{ form.dehydration.errors }}
+      <label for="{{ form.dehydration.id_for_label }}">{{ form.dehydration.label }}</label>
+      {{ form.dehydration }}
+    </div>
+    <div class="form-group col-md-4">
+      {{ form.attitude.errors }}
+      <label for="{{ form.attitude.id_for_label }}">{{ form.attitude.label }}</label>
+      <div class="input-group">
+        {{ form.attitude }}
+        <span class="input-group-addon">
+          <input id="birdattc" type="checkbox" aria-label="Checkbox for following text input" onclick="birdchangeatt()">
+        </span>
+        <span class="input-group-addon">S/D</span>
+      </div>
     </div>
   </div>
 </div>

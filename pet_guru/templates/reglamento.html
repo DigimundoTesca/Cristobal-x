@@ -1,0 +1,44 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block content %}
+<div class="pageContainer">
+  <header class="unam-primary sticky-top">
+    <div class="container-fluid mainMenu">
+      {% block navigation %}
+        {% include 'base/nav.html' %}
+      {% endblock %}
+    </div>
+  </header>
+  <main>
+    <div class="jumbotron mb-0">
+      <div class="container-fluid">
+        <h1 class="h1">Reglamento e instrucciones</h1>
+        <p class="lead">Lee atentamente cada sección, para tener la mejor experiencia en la plataforma.</p>
+        <hr class="my-4">
+        <h3>Reglamento</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo assumenda, quaerat. Voluptas repudiandae nostrum officia iure voluptatum, harum minima error beatae, optio alias magni, dolor illo consequuntur fugit est quo.30</p>
+        <ol>
+          <li>Lorem ipsum dolor sit amet.</li>
+          <li>Lorem ipsum dolor sit amet.</li>
+          <li>Lorem ipsum dolor sit amet.</li>
+          <li>Lorem ipsum dolor sit amet.</li>
+        </ol>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo assumenda, quaerat. Voluptas repudiandae nostrum officia iure voluptatum, harum minima error beatae, optio alias magni, dolor illo consequuntur fugit est quo.30</p>
+        <ul>
+          <li>Lorem ipsum dolor sit amet.</li>
+          <li>Lorem ipsum dolor sit amet.</li>
+          <li>Lorem ipsum dolor sit amet.</li>
+          <li>Lorem ipsum dolor sit amet.</li>
+        </ul>
+        <hr class="my-4 pt-4">
+        <h3>Instrucciones</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo assumenda, quaerat. Voluptas repudiandae nostrum officia iure voluptatum, harum minima error beatae, optio alias magni, dolor illo consequuntur fugit est quo.30</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo assumenda, quaerat. Voluptas repudiandae nostrum officia iure voluptatum, harum minima error beatae, optio alias magni, dolor illo consequuntur fugit est quo.30</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo assumenda, quaerat. Voluptas repudiandae nostrum officia iure voluptatum, harum minima error beatae, optio alias magni, dolor illo consequuntur fugit est quo.30</p>
+        <p class="lead pt-4">
+          <a class="btn unam-primary btn-lg" href="../../home" role="button">Consultas</a>
+        </p>
+      </div>
+    </div>
+  </main>
+  {% endblock %}

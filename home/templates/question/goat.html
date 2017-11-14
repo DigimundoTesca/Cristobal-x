@@ -1,0 +1,184 @@
+{{ form.non_field_errors }}
+<hr>
+<h4>Reseña</h4>
+<div class="form-group">
+  {{ form.specie.errors }}
+  <label for="{{ form.specie.id_for_label }}">{{ form.specie.label }}</label>
+  {{ form.specie }}
+</div>
+<div class="form-group">
+  {{ form.race.errors }}
+  <label for="{{ form.race.id_for_label }}">{{ form.race.label }}</label>
+  <div class="input-group">
+    {{ form.race }}
+    <span class="input-group-addon">
+      <input id="goatracec" type="checkbox" aria-label="Checkbox for following text input" onclick="goatchangerace()">
+    </span>
+    <span class="input-group-addon">Sin datos</span>
+  </div>
+</div>
+<div class="form-group">
+  {{ form.age.errors }}
+  <label for="{{ form.age.id_for_label }}">{{ form.age.label }}</label>
+  <div class="input-group">
+    {{ form.age }}
+    <span class="input-group-addon">
+      <input id="goatagec" type="checkbox" aria-label="Checkbox for following text input" onclick="goatchangeage()">
+    </span>
+    <span class="input-group-addon">Sin datos</span>
+  </div>
+</div>
+<div class="form-group">
+  {{ form.weight.errors }}
+  <label for="{{ form.weight.id_for_label }}">{{ form.weight.label }}</label>
+  <div class="input-group">
+    {{ form.weight }}
+    <span class="input-group-addon">
+      <input id="goatweightc" type="checkbox" aria-label="Checkbox for following text input" onclick="goatchangeweight()">
+    </span>
+    <span class="input-group-addon">Sin datos</span>
+  </div>
+</div>
+<div class="form-group">
+  {{ form.gender.errors }}
+  <label for="{{ form.gender.id_for_label }}">{{ form.gender.label }}</label>
+  {{ form.gender }}
+</div>
+<div class="form-group">
+  {{ form.physiological_stage.errors }}
+  <label for="{{ form.physiological_stage.id_for_label }}">{{ form.physiological_stage.label }}</label>
+  <div class="input-group">
+    {{ form.physiological_stage }}
+    <span class="input-group-addon">
+      <input id="goatphysioc" type="checkbox" aria-label="Checkbox for following text input" onclick="goatchangephysio()">
+    </span>
+    <span class="input-group-addon">Sin datos</span>
+  </div>
+</div>
+<div class="form-group">
+  {{ form.production_system.errors }}
+  <label for="{{ form.production_system.id_for_label }}">{{ form.production_system.label }}</label>
+  <div class="input-group">
+    {{ form.production_system }}
+    <span class="input-group-addon">
+      <input id="goatprodc" type="checkbox" aria-label="Checkbox for following text input" onclick="goatchangeprod()">
+    </span>
+    <span class="input-group-addon">Sin datos</span>
+  </div>
+</div>
+<div class="form-group">
+  {{ form.zootechnical.errors }}
+  <label for="{{ form.zootechnical.id_for_label }}">{{ form.zootechnical.label }}</label>
+  <div class="input-group">
+    {{ form.zootechnical }}
+    <span class="input-group-addon">
+      <input id="goatzooc" type="checkbox" aria-label="Checkbox for following text input" onclick="goatchangezoo()">
+    </span>
+    <span class="input-group-addon">Sin datos</span>
+  </div>
+</div>
+<hr>
+<div class="form-group">
+  <h4>Exámen físico general</h4>
+  <div class="form-row">
+    <div class="form-group col-md-4">
+      {{ form.heart_rate.errors }}
+      <label for="{{ form.heart_rate.id_for_label }}">{{ form.heart_rate.label }}</label>
+      <div class="input-group">
+        {{ form.heart_rate }}
+        <span class="input-group-addon">
+          <input id="goatheartc" type="checkbox" aria-label="Checkbox for following text input" onclick="goatchangeheart()">
+        </span>
+        <span class="input-group-addon">S/D</span>
+      </div>
+    </div>
+    <div class="form-group col-md-4">
+      {{ form.respiratory_rate.errors }}
+      <label for="{{ form.respiratory_rate.id_for_label }}">{{ form.respiratory_rate.label }}</label>
+      <div class="input-group">
+        {{ form.respiratory_rate }}
+        <span class="input-group-addon">
+          <input id="goatrespc" type="checkbox" aria-label="Checkbox for following text input" onclick="goatchangeresp()">
+        </span>
+        <span class="input-group-addon">S/D</span>
+      </div>
+    </div>
+    <div class="form-group col-md-4">
+      {{ form.temperature.errors }}
+      <label for="{{ form.temperature.id_for_label }}">{{ form.temperature.label }}</label>
+      <div class="input-group">
+        {{ form.temperature }}
+        <span class="input-group-addon">
+          <input id="goattempc" type="checkbox" aria-label="Checkbox for following text input" onclick="goatchangetemp()">
+        </span>
+        <span class="input-group-addon">S/D</span>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    {{ form.capilar.errors }}
+    <label for="{{ form.capilar.id_for_label }}">{{ form.capilar.label }}</label>
+    <div class="input-group">
+      {{ form.capilar }}
+      <span class="input-group-addon">
+        <input id="goatcapilarc" type="checkbox" aria-label="Checkbox for following text input" onclick="goatchangecapilar()">
+      </span>
+      <span class="input-group-addon">Sin datos</span>
+    </div>
+  </div>
+  <div class="form-group">
+    {{ form.mucosal_color.errors }}
+    <label for="{{ form.mucosal_color.id_for_label }}">{{ form.mucosal_color.label }}</label>
+    <div class="input-group">
+      {{ form.mucosal_color }}
+      <span class="input-group-addon">
+        <input id="goatmucosc" type="checkbox" aria-label="Checkbox for following text input" onclick="goatchangemucos()">
+      </span>
+      <span class="input-group-addon">Sin datos</span>
+    </div>
+  </div>
+  <div class="form-group">
+    {{ form.lymph_nodes.errors }}
+    <label for="{{ form.lymph_nodes.id_for_label }}">{{ form.lymph_nodes.label }}</label>
+    <div class="input-group">
+      {{ form.lymph_nodes }}
+      <span class="input-group-addon">
+        <input id="goatlymphc" type="checkbox" aria-label="Checkbox for following text input" onclick="goatchangelymph()">
+      </span>
+      <span class="input-group-addon">Sin datos</span>
+    </div>
+  </div>
+  <div class="form-group">
+    {{ form.ruminal.errors }}
+    <label for="{{ form.ruminal.id_for_label }}">{{ form.ruminal.label }}</label>
+    <div class="input-group">
+      {{ form.ruminal }}
+      <span class="input-group-addon">
+        <input id="goatruminalc" type="checkbox" aria-label="Checkbox for following text input" onclick="goatchangeruminal()">
+      </span>
+      <span class="input-group-addon">Sin datos</span>
+    </div>
+  </div>
+  <div class="form-group">
+    {{ form.cough.errors }}
+    <label for="{{ form.cough.id_for_label }}">{{ form.cough.label }}</label>
+    <div class="input-group">
+      {{ form.cough }}
+      <span class="input-group-addon">
+        <input id="goatcoughc" type="checkbox" aria-label="Checkbox for following text input" onclick="goatchangecough()">
+      </span>
+      <span class="input-group-addon">Sin datos</span>
+    </div>
+  </div>
+  <div class="form-group">
+    {{ form.body_condition.errors }}
+    <label for="{{ form.body_condition.id_for_label }}">{{ form.body_condition.label }}</label>
+    <div class="input-group">
+      {{ form.body_condition }}
+      <span class="input-group-addon">
+        <input id="goatcondc" type="checkbox" aria-label="Checkbox for following text input" onclick="goatchangecond()">
+      </span>
+      <span class="input-group-addon">Sin datos</span>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+{{ form.non_field_errors }}
+<div class="form-group">
+  {{ form.title.errors }}
+  <label for="{{ form.title.id_for_label }}">{{ form.title.label }}</label>
+  {{ form.title }}
+</div>
+<div class="form-group">
+  {{ form.description.errors }}
+  <label for="{{ form.description.id_for_label }}">{{ form.description.label }}</label>
+  {{ form.description }}
+</div>
+<div class="form-group d-none">
+  {{ form.user_question.errors }}
+  <label for="{{ form.user_question.id_for_label }}">{{ form.user_question.label }}</label>
+  {{ form.user_question }}
+</div>

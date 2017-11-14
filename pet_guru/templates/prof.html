@@ -1,0 +1,107 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block content %}
+<div class="pageContainer">
+  <header class="unam-primary sticky-top">
+    <div class="container-fluid mainMenu">
+      {% block navigation %}
+      {% include 'base/nav.html' %}
+      {% endblock %}
+    </div>
+  </header>
+  <div class="container-fuid">
+    <div id="mainBanner" class="d-flex justify-content-around align-items-center">
+      <img src="{% static 'images/logo.png' %}" alt="Pet Gurú">
+      <p class="bannerText lead mx-2 text-center">Sistéma de apoyo para los alumnos de la Facultad de Medicina Veterinaria y Zootecnia.</p>
+    </div>
+    <div class="row foroContainer">
+      <main id="foroMain" class="col-12 pt-3">
+        <div class="jumbotron">
+          <h3 class="text-center text-uppercase pb-4">Bienvenido {{ request.user.username }}</h3>
+          <div class="row container-fluid m-auto p-0">
+            <div class="Dashboard col d-flex flex-wrap">
+              <div class="col-sm-12 col-md-4 d-flex p-0 text-center flex-column justify-content-around">
+                <img src="{% static 'images/user.png' %}" alt="User image" class="mb-2 img-thumbnail rounded-circle mx-auto d-block userimg">
+                <p>Usuario: {{ user }}</p>
+                {% if request.user.rol == 'TC' %}
+                <p>Tipo de usuario: profesor</p>
+                <p>Especialidad: {{ user.speciality }}</p>
+                {% endif %}
+                {% if request.user.rol == 'AD' %}
+                <p>Tipo de usuario: request.user.get_rol_display</p>
+                {% endif %}
+                <p>Calificacion: {{ avg }}</p>
+                <div class="row text-center d-flex justify-content-center profStar">
+                  <i class="fa fa-star" aria-hidden="true"></i>
+                  <i class="fa fa-star" aria-hidden="true"></i>
+                  <i class="fa fa-star" aria-hidden="true"></i>
+                  <i class="fa fa-star" aria-hidden="true"></i>
+                  <i class="fa fa-star" aria-hidden="true"></i>
+                </div>
+              </div>
+              <div class="col-sm-12 col-md-8 d-flex p-0 text-center flex-column justify-content-around">
+                <h3 class=" mb-3">Mís preguntas:</h3>
+                <div id="userQuestions" class="col questContainer">
+                  {% for solved in solveds %}
+                  <div class="row d-flex justify-content-around align-items-center py-1">
+                    <a href="{{ solved.get_absolute_url }}">{{ solved.title }}</a>
+                    {% if solved.status == 'OP' %}
+                    <a href="{{ solved.get_absolute_url }}"> <button class="btn btn-success">abierto</button> </a>
+                    {% else %}
+                    <button class="btn btn-danger" style="cursor: default" disabled>contestando</button>
+                    {% endif %}
+                  </div>
+                  {% endfor %}
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="jumbotron infoText">
+          <div class="card-container d-flex flex-row flex-wrap justify-content-around align-items-center">
+            {% for article in solveds %}
+            <div class="card">
+              <div class="card-body">
+                <div class="card-title card-banner">
+                  <img src="{% static 'images/questions/thumb3.jpg' %}" class="img-fluid" alt="Question image">
+                </div>
+                <h5 class="card-subtitle mb-2 mt-4 text-dark">{{ article.title }}</h5>
+                <p class="card-text">{{ article.specie.race }}</p>
+                <p class="card-text">{{ article.description }}</p>
+                <a href="{{ article.get_absolute_url }}" class="card-link">Leer más</a>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+          <div class="row d-flex justify-content-center pt-5">
+            {% if solveds.has_other_pages %}
+            <nav aria-label="Page navigation example">
+              <ul class="pagination">
+                {% if solveds.has_previous %}
+                <li class="page-item"><a class="page-link" href="?page={{ solveds.previous_page_number }}">&laquo;</a></li>
+                {% else %}
+                <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
+                {% endif %}
+                {% for i in solveds.paginator.page_range %}
+                {% if solveds.number == i %}
+                <li class="active"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span></li>
+                {% else %}
+                <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                {% endif %}
+                {% endfor %}
+                {% if solveds.has_next %}
+                <li class="page-item"><a class="page-link" href="?page={{ solveds.next_page_number }}">&raquo;</a></li>
+                {% else %}
+                <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
+                {% endif %}
+              </ul>
+            </nav>
+            {% endif %}
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+</div>
+{% endblock %}
