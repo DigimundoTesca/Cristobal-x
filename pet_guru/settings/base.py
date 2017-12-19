@@ -3,7 +3,6 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
@@ -15,7 +14,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 DJANGO_APPS = [
@@ -24,7 +22,7 @@ DJANGO_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',        
+    'django.contrib.staticfiles',
 ]
 
 THIRD_APPS = []
@@ -33,6 +31,7 @@ USER_APPS = [
     'users.apps.UsersConfig',
     'home.apps.HomeConfig',
     'analytics.apps.AnalyticsConfig',
+    'background_task',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_APPS + USER_APPS
@@ -46,7 +45,7 @@ MIDDLEWARE = [
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',    
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
 ROOT_URLCONF = 'pet_guru.urls'
@@ -127,4 +126,3 @@ MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'media')
 LOGIN_URL = '/index/'
 
 LOGIN_REDIRECT_URL = '/'
-
