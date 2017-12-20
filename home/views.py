@@ -109,11 +109,14 @@ def question(request, id=None):
 
         if 'type' in request.POST:
             if request.POST['type'] == 'changestate':
-                pk = request.POST['pk']
-                change = Question.objects.get(pk=pk)
-                change.status = 'RP'
-                change.user_response = request.user
-                change.save()
+                if instance.status == 'OP':
+                    pk = request.POST['pk']
+                    change = Question.objects.get(pk=pk)
+                    change.status = 'RP'
+                    change.user_response = request.user
+                    change.save()
+                else:
+                    return redirect('home:usuario')
 
         form = MessageForm(request.POST, request.FILES)
         if form.is_valid():
@@ -662,6 +665,7 @@ def register(request):
             if f.is_valid():
                 if f.cleaned_data['rol'] == 'AD':
                     f.is_staff = True
+                    f.is_superuser = True
                     f.save()
                     messages='Usuario creado correctamente'
                     return redirect('home:register')

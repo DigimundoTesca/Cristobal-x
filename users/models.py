@@ -26,20 +26,22 @@ class User(AbstractUser):
     FELINO = 'FL'
     SILVESTRE = 'SL'
     ABEJA = 'BJ'
+    AQUATICO = 'AQ'
 
 
     SPECIES = (
-        (BOVINO, 'Bovino'),
-        (PORCINO, 'Porcino'),
-        (EQUINO, 'Equino'),
-        (OVINO, 'Ovino'),
-        (CAPRINO, 'Caprino'),
-        (LEPORIDO, 'Lepórido'),
+        (BOVINO, 'Vaca'),
+        (PORCINO, 'Cerdo'),
+        (EQUINO, 'Caballo'),
+        (OVINO, 'Oveja'),
+        (CAPRINO, 'Cabra'),
+        (LEPORIDO, 'Conejo'),
         (AVE, 'Ave'),
-        (CANINO, 'Canino'),
-        (FELINO, 'Felino'),
-        (SILVESTRE, 'Silvestre'),
+        (CANINO, 'Perro'),
+        (FELINO, 'Gato'),
+        (SILVESTRE, 'Fauna silvestre'),
         (ABEJA, 'Abeja'),
+        (AQUATICO, 'Organismos acuáticos'),
     )
 
     rol = models.CharField(max_length=3, choices=ROL, default='ST')

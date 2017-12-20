@@ -188,6 +188,10 @@
           <p class="h2 mb-5 mt-5">¿{{ user }} quieres responder a esta pregunta?</p>
           <input type="submit" id="{{instance.pk}}" class="change_state btn btn-primary" name="" value="Responder">
         </div>
+        {% elif user.rol == 'TC' and instance.status == 'RP' %}
+        <div class="container text-center">
+          <p class="h2 mb-5 mt-5">Lo lamento {{ user }}, otro profesor ya tomo la pregunta.</p>
+        </div>
         {% elif instance.status == 'CL' %}
         <div class="container messages-cont">
           {% for message in messages %}
