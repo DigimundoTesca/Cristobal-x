@@ -5,5 +5,5 @@ from .views import ReporteUsuarios
 app_name = 'analytics'
 
 urlpatterns = [
-    url(r'^analytics/test/reportes/$', ReporteUsuarios.as_view(), name='reporte_usuarios'),
+    url(r'^reporte/$', ReporteUsuarios.as_view(), name='report'),
 ]
