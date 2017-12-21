@@ -24,6 +24,7 @@ class RegisterForm(UserCreationForm):
             'email',
             'rol',
             'speciality',
+            'date_end',
             'password1',
             'password2',
         )
@@ -32,6 +33,7 @@ class RegisterForm(UserCreationForm):
             'email': 'Correo electronico',
             'rol': 'Tipo de usuario',
             'speciality': 'Especialidad',
+            'date_end': 'Fecha de caducidad',
             'password1': 'Contraseña',
             'password2': 'Confirmar contraseña',
         }

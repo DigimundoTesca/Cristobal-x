@@ -47,6 +47,11 @@
                 {{ form.rol }}
               </div>
               <div class="form-group d-flex flex-column-reverse">
+                {{ form.date_end.errors }}
+                <label for="{{ form.date_end.id_for_label }}">{{ form.date_end.label }}</label>
+                {{ form.date_end }}
+              </div>
+              <div class="form-group d-flex flex-column-reverse">
                 {{ form.speciality.errors }}
                 <label for="{{ form.speciality.id_for_label }}">{{ form.speciality.label }}</label>
                 {{ form.speciality }}
