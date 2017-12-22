@@ -25,6 +25,7 @@ from django.core.mail import EmailMultiAlternatives
 from django.template.loader import get_template
 from django.template import Context
 
+from .tasks import notify_user
 
 def index(request):
     if request.user.is_authenticated():
@@ -201,6 +202,10 @@ def logout(request):
 
 @login_required(login_url='home:inicio')
 def user(request):
+
+    notify_user("nara")
+    print("Notificar Usuario")
+
     if request.user.rol == 'ST':
         template = 'user.html'
         solved = Question.objects.filter(user_question=request.user.pk).order_by('-id')
