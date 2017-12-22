@@ -61,7 +61,7 @@ class Question(models.Model):
     user_response = models.ForeignKey(User, related_name='teacher_question', default=User.DEFAULT_USER)
     calification = models.PositiveSmallIntegerField(default=0)
     date = models.DateTimeField(editable=False, auto_now=True, null=True)
-    specie = models.CharField(max_length=10, choices=SPECIES)
+    specie = models.CharField(max_length=10, choices=SPECIES, null=True)
 
     def __str__(self):
         return '%s' % self.title
