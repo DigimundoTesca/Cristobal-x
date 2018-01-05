@@ -1,0 +1,129 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block content %}
+<div class="pageContainer">
+  <header class="unam-primary sticky-top">
+    <div class="container-fluid mainMenu">
+      {% block navigation %}
+      {% include 'base/nav.html' %}
+      {% endblock %}
+    </div>
+  </header>
+  <div class="container-fuid">
+    <div id="mainBanner" class="d-flex justify-content-around align-items-center">
+      <div class="container-fluid d-inline-flex">
+        <img src="{% static 'images/unam.png' %}" alt="Albeitar FMVZ" style="width:20%; heigth:auto; max-width:290px;" class="m-auto">
+        <img src="{% static 'images/logo.png' %}" alt="Albeitar FMVZ" style="width:20%; heigth:auto; max-width:290px;" class="m-auto">
+        <img src="{% static 'images/fmvz.png' %}" alt="Albeitar FMVZ" style="width:20%; heigth:auto; max-width:290px;" class="m-auto">
+      </div>
+      <p class="bannerText lead mx-2 text-center">Sistéma de apoyo para los alumnos de la Facultad de Medicina Veterinaria y Zootecnia.</p>
+    </div>
+    <div class="row foroContainer">
+      <main id="foroMain" class="col-12 pt-3">
+        <div class="jumbotron">
+          <div class="row container-fluid m-auto p-0">
+            <div class="col-sm-12 col-md-8 d-flex  mx-auto p-0 align-items-center flex-column justify-content-around">
+              <h3>Búsqueda</h3>
+              <form method="get" accept-charset="utf-8" class="w-100">
+                <div class="form-group d-flex flex-column">
+                  <label>Especie</label>
+                </div>
+                <div class="row d-felx justify-content-around">
+                  <a href="/buscar/1/"><button type="button" class="btn btn-primary">
+                    Bovinos <span class="badge badge-light">9</span>
+                    <span class="sr-only">Especies</span>
+                  </button></a>
+                  <a href="/buscar/2/"><button type="button" class="btn btn-primary">
+                    Caprinos <span class="badge badge-light">9</span>
+                    <span class="sr-only">Especies</span>
+                  </button></a>
+                  <a href="/buscar/3/"><button type="button" class="btn btn-primary">
+                    Leporidos <span class="badge badge-light">9</span>
+                    <span class="sr-only">Especies</span>
+                  </button></a>
+                  <a href="/buscar/4/"><button type="button" class="btn btn-primary">
+                    Equinos <span class="badge badge-light">9</span>
+                    <span class="sr-only">Especies</span>
+                  </button></a>
+                </div>
+                <br>
+                <div class="row d-felx justify-content-around">
+                  <a href="/buscar/5/"><button type="button" class="btn btn-primary">
+                    Caninos <span class="badge badge-light">9</span>
+                    <span class="sr-only">Especies</span>
+                  </button></a>
+                  <a href="/buscar/6/"><button type="button" class="btn btn-primary">
+                    Felinos <span class="badge badge-light">9</span>
+                    <span class="sr-only">Especies</span>
+                  </button></a>
+                  <a href="/buscar/7/"><button type="button" class="btn btn-primary">
+                    Porcinos <span class="badge badge-light">9</span>
+                    <span class="sr-only">Especies</span>
+                  </button></a>
+                  <a href="/buscar/8/"><button type="button" class="btn btn-primary">
+                    Abejas <span class="badge badge-light">9</span>
+                    <span class="sr-only">Especies</span>
+                  </button></a>
+                </div>
+                <br>
+                <div class="row d-felx justify-content-around col-12">
+                  <a href="/buscar/9/"><button type="button" class="btn btn-primary">
+                    Aves <span class="badge badge-light">9</span>
+                    <span class="sr-only">Especies</span></button></a>
+                    <a href="/buscar/10/"><button type="button" class="btn btn-primary">
+                      F. silvestre <span class="badge badge-light">9</span>
+                      <span class="sr-only">Especies</span>
+                    </button></a>
+                    <a href="/buscar/11/"><button type="button" class="btn btn-primary">
+                      Acuaticos <span class="badge badge-light">9</span>
+                      <span class="sr-only">Especies</span>
+                    </button></a>
+                    <a href="{% url 'home:inicio' %}"><button type="button" class="btn btn-primary">
+                      Todos <span class="badge badge-light">9</span>
+                      <span class="sr-only">Especies</span>
+                    </button></a>
+                  </div>
+                </form>
+              </div>
+              <div class="col-md-4 d-flex  mx-auto p-0 align-items-center flex-column justify-content-around text-center">
+                <h3>Inicia sesión para realizar una pregunta</h3>
+                <div class="logIn bcard bg-light mx-auto">
+                  <div class="card-header unam-primary text-uppercase">Inicia Sesión</div>
+                  <div class="card-body">
+                    <form id="loginForm" method="post">
+                      {% csrf_token %}
+                      {{form.as_p}}
+                      <input type="submit" class="btnSubmit btn col s12 nav-link unam-primary text-white text-center" value="Ingresar">
+                    </form>
+                    {% if message %}
+                    <p>{{ message }}</p>
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="jumbotron infoText mt-3">
+            <h1 class="h1">Artículos recientes</h1>
+            <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae earum molestiae quae, ratione est ducimus.</p>
+            <hr class="my-4">
+            <div class="card-container d-flex flex-row flex-wrap justify-content-around align-items-center">
+              {% for article in articles %}
+              <div class="card">
+                <div class="card-body">
+                  <div class="card-title card-banner">
+                    <img src="{% static 'images/banner.jpg' %}" class="img-fluid" alt="Question image">
+                  </div>
+                  <h5 class="card-subtitle mb-2 mt-4 text-dark">{{ article.question.title }}</h5>
+                  <p class="card-text">{{ article.race }}</p>                  
+                  <p class="card-text">{{ article.question.description }}</p>                  
+                  <a href="{{ article.get_absolute_url }}" class="card-link">Leer más</a>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+    {% endblock %}

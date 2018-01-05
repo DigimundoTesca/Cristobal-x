@@ -1,0 +1,53 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block content %}
+<div class="pageContainer">
+  <header class="unam-primary sticky-top">
+    <div class="container-fluid mainMenu">
+      {% block navigation %}
+      {% include 'base/nav.html' %}
+      {% endblock %}
+    </div>
+  </header>
+  <div class="container-fuid">
+    <div id="mainBanner" class="d-flex justify-content-around align-items-center">
+      <div class="container-fluid d-inline-flex">
+        <img src="{% static 'images/unam.png' %}" alt="Albeitar FMVZ" style="width:20%; heigth:auto; max-width:290px;" class="m-auto">
+        <img src="{% static 'images/logo.png' %}" alt="Albeitar FMVZ" style="width:20%; heigth:auto; max-width:290px;" class="m-auto">
+        <img src="{% static 'images/fmvz.png' %}" alt="Albeitar FMVZ" style="width:20%; heigth:auto; max-width:290px;" class="m-auto">
+      </div>
+      <p class="bannerText lead mx-2 text-center">Sistéma de apoyo para los alumnos de la Facultad de Medicina Veterinaria y Zootecnia.</p>
+    </div>
+    <div class="row foroContainer">
+      <main id="foroMain" class="col-12 pt-3">
+        <div class="jumbotron">
+          <div class="row container-fluid m-auto p-0">
+            <div class="col-sm-12 col-md-8 d-flex  mx-auto p-0 align-items-center flex-column justify-content-around">
+              <div class="col-12 d-flex  mx-auto p-0 align-items-center flex-column justify-content-around text-center">
+                <h3 class="mb-5">Inicia sesión para acceder a las consultas</h3>
+                <div class="logIn bcard bg-light mx-auto">
+                  <div class="card-header unam-primary text-uppercase">Inicia Sesión</div>
+                  <div class="card-body">
+                    <form id="loginForm" method="post">
+                      {% csrf_token %}
+                      {{form.as_p}}
+                      <input type="submit" class="btnSubmit btn col s12 nav-link unam-primary text-white text-center" value="Ingresar">
+                    </form>
+                    {% if message %}
+                    <p>{{ message }}</p>
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <p class="h5 text-justify">"Creación de una comunidad de aprendizaje no formal de medicina veterinaria, mediante el desarrollo de una aplicación móvil para consultar casos clínicos a expertos”<br><br>Trabajo realizado con el apoyo del Programa UNAM-DGAPA-PAPIME PE205817.</p>
+      </div>
+    </main>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,48 @@
+.messages-cont{
+	position: relative;	
+	overflow-y: scroll;
+	height: 50rem;
+	margin-top: 30px;
+}
+
+.image_card{
+	height: 100px;
+}
+
+.card-message{	
+	box-shadow: 5px 5px 5px #888888;
+}
+
+.card-header{
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+.card-footer{
+	padding: 0px; 	
+}
+
+.card-footer p{
+	margin-bottom: 0px;		
+	margin: 4px;
+}
+
+body{
+	background: white;
+}
+
+::-webkit-scrollbar
+{
+  width: 8px;  /* for vertical scrollbars */
+  height: 8px; /* for horizontal scrollbars */
+}
+
+::-webkit-scrollbar-track
+{
+  background: rgba(0, 0, 0, 0.1);
+}
+
+::-webkit-scrollbar-thumb
+{
+  background: rgba(0, 0, 0, 0.5);
+}

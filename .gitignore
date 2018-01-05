@@ -4,6 +4,7 @@
 
 ## File-based project format:
 *.iws
+*.rdb
 
 ## Plugin-specific files:
 
@@ -127,11 +128,20 @@ analytics/migrations/*
 home/migrations/*
 !home/migrations/__init__.py
 
+users/migrations/*
+!users/migrations/__init__.py
+
+chat/migrations/*
+!chat/migrations/__init__.py
+
 # Django settings
 staticfiles/
 #Database
-media/
+questions/
+pet_guru/media/
+documents/
 # Databases
 *.sqlite3
 .Rproj.user
 .Rhistory
+media/

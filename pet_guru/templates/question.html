@@ -1,0 +1,325 @@
+{% extends 'base/base.html' %} 
+{% load static %} 
+{% block content %}
+{% block link %}
+<link rel="stylesheet" href="{% static 'css/5star.css' %} "/>
+<link rel="stylesheet" href="{% static 'css/chat.css' %} "/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+{% endblock link %}
+<div class="pageContainer">
+  <header class="unam-primary sticky-top">
+    <div class="container-fluid mainMenu">
+      {% block navigation %} {% include 'base/nav.html' %} {% endblock %}
+    </div>
+  </header>
+  <div id="cuestionContainer">
+    <div class="py-3 container">
+      <h2 class="text-center display-4">{{ titulo }}</h2>
+      <h3 class="alert-heading text-center">Descripción de la consulta:</h3>
+      <p class="py-3">{{instance.description}}</p>
+      <p class="py-2 h4">Calificacón: {{instance.calification}} <i class="fa fa-star" aria-hidden="true"></i></p>
+    </div>
+    <div id="cuestion" class="py-5 d-flex flex-column justify-content-center align-items-center">
+      <div class="alert alert-dark w-100 px-3 py-5" role="alert">
+        <div class="row">
+          <div class="col-sm-4 col-md-4">
+            <h2 class="alert-heading text-center mb-4">Datos clínicos.</h2>
+            <p>Especie: {{ instance.get_specie_display }}</p>
+            <div class="">{% for field, value in values.items %}
+              {% if field == 'id' or field == 'Pregunta' or field == 'numero de especie' or field == 'Especie'%}
+              {% else %}
+              <div class="d-inline text-dark">{{ field }} :</div>
+              <div class="d-inline font-weight-bold">{{ value }}</div> 
+              <br>
+              {% endif %}
+              {% endfor %}
+
+            </div>
+          </div>
+          <hr>
+          <div class="col-sm-12 col-md-8 justify-content-center align-self-center">
+            <div id="galleryContainer">
+              <div id="gallery" style="display:none;">
+                {% if images %}
+                {% for image in images %}
+                <img alt="Image 1 Title" src="{{image.image.url}}" data-image="{{image.image.url}}" data-description="Image 1 Description"> 
+                {% endfor %}
+                {% else %}
+                <img src="{{ instance.get_first_image }}" alt="Image 1 Title" data-description="Image 1 Description">
+                {% endif %}
+              </div>
+            </div>
+            <div class="mt-3">
+              <div class="row">
+                {% if document %}
+                {% for doc in document %}
+
+                <a href="{% get_media_prefix %}{{doc.document}}" target="_blank">
+                  <img src="{{ doc.get_icon_extension }}" alt="Image 1 Title" data-description="Image 1 Description" width="60px" height="60px">
+                </a>
+
+                {% endfor %}
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container"> <!-- Seccion de Comentarios -->
+        {% if user == instance.user_question and instance.status == 'RP' %}
+        <div class="row">
+          <div class="col-12">
+            <button type="submit" style="width:150px; height:50px;" class="btn btn-danger float-right" data-toggle="modal" data-target="#closeModal"> Cerrar pregunta</button>
+          </div>
+        </div>
+        <div>
+          <h1  class="text-center">Comentarios</h1>
+          <form class="col-md-12" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}               
+            <div class="form-row">
+              <label class="col-md-2" for="id_message">Mensaje:</label>
+              <div class="col-md-10">
+                <textarea class="form-control" name="message" cols="40" rows="10" maxlength="200" required id="id_message"></textarea>              
+              </div>
+            </div>
+            <div class="form-row fileContainer">
+              <label class="col-md-2" for="id_document">Documento:</label>
+              <input class="form-control-file" type="file" name="document" id="id_document" />
+            </div>
+            <div class="form-row fileContainer">
+              <label class="col-md-2" for="id_image">Imagen:</label>
+              <input class="form-control-file" type="file" name="image" id="id_image" />        
+            </div>
+            <div class="form-row">
+              <button type="submit" name="submit" class="col-md-2 ml-md-auto btn btn-primary">Enviar</button>              
+            </div>
+          </form>                        
+        </div>
+        <div class="container messages-cont">
+          {% for message in messages %}
+          <div class="row justify-content-start">
+            <div class="col-md-7 col-sm-7">
+              <div class="card card-message">
+                <div class="card-header text-left">
+                  {% if message.handle == instance.user_response.username %}
+                  <p>Albeitar </p>
+                  {% else %}  
+                  {{message.handle}}
+                  {% endif %}
+                </div>
+                <div class="card-body text-left">
+                  <p>{{message.message}}</p>
+                  {% if message.image %}
+                  <a href="{{message.image.url}}">
+                    <img style="height: 200px" src="{{message.image.url}}" alt=""> <br>
+                  </a>
+                  {% endif%}
+                  {% if message.document %}
+                  Descargar:
+                  <a href="{{message.document.url}}" target="_blank"> {{message.document|cut:"documents/"}}</a>
+                  {% endif%} 
+                </div>
+                <div class="card-footer text-muted text-right">
+                  <p>{{ message.formatted_timestamp }}</p>
+                </div>
+              </div>
+            </div>
+          </div>  
+          {% endfor %}
+        </div>
+        {% elif user == instance.user_response and instance.status == 'RP' %}
+        <div>
+          <h1  class="text-center">Comentarios</h1>
+          <form class="col-md-12" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}               
+            <div class="form-row">
+              <label class="col-md-2" for="id_message">Mensaje:</label>
+              <div class="col-md-10">
+                <textarea class="form-control" name="message" cols="40" rows="10" maxlength="200" required id="id_message"></textarea>
+              </div>
+            </div>
+            <div class="form-row fileContainer">
+              <label class="col-md-2" for="id_document">Documento:</label>
+              <input class="form-control-file" type="file" name="document" id="id_document" />
+            </div>
+            <div class="form-row fileContainer">
+              <label class="col-md-2" for="id_image">Imagen:</label>
+              <input class="form-control-file" type="file" name="image" id="id_image" />        
+            </div>
+            <div class="form-row">
+              <button type="submit" name="submit" class="col-md-2 ml-md-auto btn btn-primary">Enviar</button>              
+            </div>
+          </form>                        
+        </div>
+        <div class="container messages-cont">
+          {% for message in messages %}
+          <div class="row justify-content-start">
+            <div class="col-md-7 col-sm-7">
+              <div class="card card-message">
+                <div class="card-header text-left">
+                  {% if message.handle == instance.user_response.username %}
+                  <p>Albeitar </p>
+                  {% else %}  
+                  {{message.handle}}
+                  {% endif %}
+                </div>
+                <div class="card-body text-left">
+                  <p>{{message.message}}</p>
+                  {% if message.image %}
+                  <a href="{{message.image.url}}">
+                    <img style="height: 200px" src="{{message.image.url}}" alt=""> <br>
+                  </a>
+                  {% endif%}
+                  {% if message.document %}
+                  Descargar:
+                  <a href="{{message.document.url}}" target="_blank"> {{message.document|cut:"documents/"}}</a>
+                  {% endif%} 
+                </div>
+                <div class="card-footer text-muted text-right">
+                  <p>{{ message.formatted_timestamp }}</p>
+                </div>
+              </div>
+            </div>
+          </div>  
+          {% endfor %}
+        </div>
+        {% elif user.rol == 'TC' and instance.status == 'OP' %}
+        <div class="container text-center">
+          <p class="h2 mb-5 mt-5">¿{{ user }} quieres responder a esta pregunta?</p>
+          <input type="submit" id="{{instance.pk}}" class="change_state btn btn-primary" name="" value="Responder">
+        </div>
+        {% elif user.rol == 'TC' and instance.status == 'RP' %}
+        <div class="container text-center">
+          <p class="h2 mb-5 mt-5">Lo lamento {{ user }}, otro profesor ya tomo la pregunta.</p>
+        </div>
+        {% elif instance.status == 'CL' %}
+        <div class="container messages-cont">
+          {% for message in messages %}
+          <div class="row justify-content-start">
+            <div class="col-md-7 col-sm-7">
+              <div class="card card-message">
+                <div class="card-header text-left">
+                  {% if message.handle == instance.user_response.username %}
+                  <p>Albeitar </p>
+                  {% else %}  
+                  {{message.handle}}
+                  {% endif %}
+                </div>
+                <div class="card-body text-left">
+                  <p>{{message.message}}</p>
+                  {% if message.image %}
+                  <a href="{{message.image.url}}">
+                    <img style="height: 200px" src="{{message.image.url}}" alt=""> <br>
+                  </a>
+                  {% endif%}
+                  {% if message.document %}
+                  Descargar:
+                  <a href="{{message.document.url}}" target="_blank"> {{message.document|cut:"documents/"}}</a>
+                  {% endif%} 
+                </div>
+                <div class="card-footer text-muted text-right">
+                  <p>{{ message.formatted_timestamp }}</p>
+                </div>
+              </div>
+            </div>
+          </div>  
+          {% endfor %}
+        </div>
+        {% else %}        
+        <div class="container text-center">
+          <p class="display-4">En espera de que un profesor responda tu pregunta.</p>
+        </div>      
+        {% endif %}
+      </div>    
+    </div>      
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="closeModal" tabindex="-1" role="dialog" aria-labelledby="closeModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="closeModalLabel">Califica la respuesta</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body p-0 d-inline-flex">
+          <ul id="rates" class="rate-area p-0 m-auto">
+            <input type="radio" id="5-star" name="rating" value="5" /><label for="5-star" title="Amazing">5 stars</label>
+            <input type="radio" id="4-star" name="rating" value="4" /><label for="4-star" title="Good">4 stars</label>
+            <input type="radio" id="3-star" name="rating" value="3" /><label for="3-star" title="Average">3 stars</label>
+            <input type="radio" id="2-star" name="rating" value="2" /><label for="2-star" title="Not Good">2 stars</label>
+            <input type="radio" id="1-star" name="rating" value="1" /><label for="1-star" title="Bad">1 star</label>
+          </ul>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn-close btn btn-success">Calificar y cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endblock %} 
+  {% block javascript%}
+  <script type="text/javascript">
+  $(function() {
+    $('.btn-close').click(function () {
+      send_close();
+    });
+    $('.change_state').click(function () {
+      var pk = $(this).attr('id');   
+      console.log(pk);
+      change_state(pk);
+    });
+    function change_state(pk) {
+      $.ajax({
+        url: '{% url "home:pregunta" label %}',
+        type: 'POST',
+        data: {
+          csrfmiddlewaretoken: '{{ csrf_token }}',
+          'type': 'changestate',
+          'pk': pk,
+        },
+        traditional: true,
+        datatype: 'jsonp',
+        success: function (result) {
+          location.reload()
+        },
+      });
+    }
+    function send_close() {
+      if (document.getElementById('1-star').checked) {
+        rate_value = document.getElementById('1-star').value;
+      }
+      else if (document.getElementById('2-star').checked) {
+        rate_value = document.getElementById('2-star').value;
+      }
+      else if (document.getElementById('3-star').checked) {
+        rate_value = document.getElementById('3-star').value;
+      }
+      else if (document.getElementById('4-star').checked) {
+        rate_value = document.getElementById('4-star').value;
+      }
+      else {
+        rate_value = document.getElementById('5-star').value;
+      }
+      console.log(rate_value);
+      $.ajax({
+        url: "{% url 'home:pregunta' label %}",
+        type: 'POST',
+        data: {
+          csrfmiddlewaretoken: '{{ csrf_token }}',
+          'calif': rate_value,
+          'changeto': 'CL',
+        },
+        traditional: true,
+        datatype: 'jsonp',
+        success: function (result) {
+          location.reload()
+        },
+      });
+    }
+  });
+  </script>
+  {% endblock javascript%}

@@ -1,0 +1,460 @@
+$primarydark: #064789;
+$primarycolor: #016FB9;
+$primarylight: #C1CC99;
+$extralight: #DFF0E8;
+$backcolor: #87BFFF;
+$text: #000;
+$accent: #DC6545;
+$primarytext: #212121;
+$secondarycolor: #CCD44D;
+$divider-color: #BDBDBD;
+$danger:#dc3545 !important;
+$success:#28a745 !important;
+$white: #FFFFFF;
+
+
+body {
+  font-size: 18px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  color: $text;
+  background-color: $backcolor;
+  font-smooth: antialised;
+}
+.pageContainer {
+  max-width: 2000px;
+  width: 100%;
+  margin: 0 auto;
+  background-color: $white;
+}
+a.link {
+  color: #fefefe;
+  font-weight: 300;
+  transition: all .3s ease;
+}
+a.link:hover {
+  text-decoration: none;
+  color: #a0a0a0;
+}
+a.unam-primary:hover {
+  background-color: $white !important;
+  color: $primarycolor !important;
+  border: 1px solid $primarycolor !important;
+  transition: all 0.7s ease-in-out;
+}
+a.unam-dark:hover {
+  background-color: $white !important;
+  color: $primarydark !important;
+  border: 1px solid $primarydark !important;
+  transition: all 0.7s ease-in-out;
+}
+.wbreak {
+  word-break: break-word;
+}
+.btn-danger {
+  color: $white;
+  background-color: $danger;
+  border-color: $danger;
+}
+.btn-success {
+  color: $white;
+  background-color: $success;
+  border-color: $success;
+}
+.buttonSection{
+  input {
+    min-width: 200px;
+    font-size: 20px;
+    line-height: 30px;
+  }
+}
+.btn {
+  cursor: pointer !important;
+}
+.mail-btn {
+  cursor: pointer !important;
+  min-width: 160px;
+}
+card-btn {
+  padding: .5rem .75rem;
+}
+.card-text {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+.btn-outline-light:hover {
+  color: #353535;
+}
+// Color styles
+.unam-dark {
+  background-color: $primarydark;
+  color: $white;
+}
+.unam-primary {
+  background-color: $primarycolor;
+  color: $white;
+}
+.jumbotron {
+  background-color: rgba(233,236,239,0.8);
+}
+.input-group-addon {
+  border-left: none;
+}
+// Page styles
+.bck1 {
+  background-image: url(../images/erizo.jpg);
+  background-size: contain;
+  background-repeat: repeat;
+  background-position: center center;
+}
+.bck2 {
+  background-image: url(../images/fox.jpg);
+  background-size: contain;
+  background-repeat: repeat;
+  background-position: center center;
+}
+.bck3 {
+  background-image: url(../images/squirrel.jpg);
+  background-size: contain;
+  background-repeat: repeat;
+  background-position: center center;
+}
+.bck4 {
+  background-image: url(../images/venado.jpg);
+  background-size: contain;
+  background-repeat: repeat;
+  background-position: center center;
+}
+.bckBlue {
+  background-color: #189ada;
+  min-height: 300px;
+  color: #FFF;
+}
+.bckLight {
+  background-color: #5eb8e4;
+  min-height: 300px;
+  color: #FFF;
+}
+#mainBanner {
+  width: 100%;
+  height: 400px;
+  background-image: url(../images/main.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  flex-direction: column;
+}
+#mainLogo {
+  background-color: #FFF;
+  border-radius: 20px 20px 10px 10px;
+  height: 30px;
+  width: auto;
+}
+.bannerText {
+  font-weight: bold;
+  max-width: 600px;
+}
+.infoSquares i {
+  font-size: 35px;
+  margin-top: 10px;
+}
+#mainBar {
+  min-height: 450px;
+  background-image: url(../images/banner.jpg);
+  background-size: cover;
+  background-position: center center;
+  justify-content: flex-end;
+  align-items: center;
+}
+#loginForm input {
+  width: 80%;
+}
+#loginForm .btnSubmit {
+  width: initial;
+}
+.mainMenu {
+  padding: 0;
+}
+.navbar-nav li a {
+  font-size: 20px; 
+}
+.logIn {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  color: $primarytext;
+}
+.newQuestion {
+  margin: 10px auto;
+  max-width: 200px;
+  display: none;
+}
+.infoText {
+  margin-bottom: 0;
+  background-color: $extralight;
+}
+.speciesMenu {
+  max-width: 1000px;
+  margin: 20px auto !important;
+  margin-bottom: 0 !important;
+}
+.animals {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  a {
+    width: 150px;
+    height: 150px;
+    border-radius: 100%;
+    border: 1px solid $primarylight;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    transition: all 0.3s ease-in-out;
+  }
+  a:hover {
+    cursor: pointer;
+    border: 3px solid $primarycolor;
+    background-color: $primarylight;
+  }
+  img {
+    width: 100px;
+    height: auto;
+  }
+}
+// Card banner styles
+.card-banner {
+  height: 250px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.card-banner img {
+
+}
+.foroContainer {
+  margin: 0;
+}
+// Question cards styles
+.card-container {
+  .card {
+    width: 100%;
+    max-width: 530px;
+
+  }
+}
+// Gallery and single cuestion page styles
+#cuestionContainer {
+  min-height: 100vh;
+}
+#gallery {
+  margin: 0 auto;
+}
+.ug-textpanel-textwrapper {
+  display: none !important;
+}
+#cuestion {  
+  .questionSingle {
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+  }
+}
+// Footer styles
+.footer {
+  font-size: 1.2rem;
+  background-color: $primarydark;
+  min-height: 5rem;
+  align-items: center;
+  display: flex;
+  padding: .2rem 2rem;
+}
+.text-muted {
+  a {
+    color: $white !important;
+    font-weight: 300;
+    opacity: .8;
+  }
+  a:hover {
+    color: $secondarycolor !important;
+    border-bottom: 1px dotted $divider-color;
+  }
+}
+.Dashboard {
+  min-height: 400px;
+}
+.Dashboard h3 {
+  margin-top: 10px;
+}
+#mailLike {
+  height: 600px;
+  width: 80%;
+}
+#mailLike button {
+  padding: .2rem;
+}
+#userQuestions,
+#userCards {
+  height: 450px;
+  overflow-y: scroll;
+}
+#userCards {
+  display: none;
+}
+.userimg {
+  width: 100px;
+  height: auto;
+}
+p.calif {
+  font-size: 40px;
+  font-weight: bold;
+}
+.profStar > * {
+  font-size: 25px;
+  margin-right: 5px;
+}
+#questionField {
+  max-width: 300px
+}
+// Chat styles
+#chatContainer {
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  overflow: scroll;
+}
+#chatform {
+  min-height: 200px;
+  max-height: 350px;
+  overflow-y: scroll;
+}
+#chatmessages {
+  min-height: 80%;
+  overflow-y: scroll;
+  position: relative;
+  margin-bottom: 100px;
+}
+#message {
+  max-width: 300px;
+  min-width: 250px;
+}
+.sendChat {
+  bottom: 0;
+  right: 30px;
+  width: inherit;
+  position: absolute !important;
+  height: 70px !important;
+  background-color: #fff;
+}
+// User mail like table styles
+#userTable td , th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 4px;
+}
+#userTable tr:nth-child(even) {
+  background-color: #dddddd;
+}
+// User card articles
+.articleCard {
+  min-width: 280px;
+  width: 20%;
+  height: 350px;
+}
+// comments docs and images
+.fileContainer {
+  overflow: hidden;
+  position: relative;
+  background: lightgray;
+  width: 250px;
+  display: block;
+  border-radius: .5em;
+  padding: .5em;
+  cursor: pointer;
+}
+.fileContainer [type=file] {
+  cursor: inherit;
+  display: block;
+  font-size: 999px;
+  filter: alpha(opacity=0);
+  min-height: 100%;
+  min-width: 100%;
+  opacity: 0;
+  position: absolute;
+  right: 0;
+  text-align: right;
+  top: 0;
+}
+.ug-slider-wrapper {
+  background-color: #FFF !important;
+}
+
+
+
+
+@media screen and (min-width:  550px) {
+  .logIn {
+    max-width: 20rem;
+  }
+}
+@media screen and (min-width:  768px) {
+  .card {
+    margin: 15px 0;
+  }
+  .welcome-buttons {
+    flex-direction: row;
+    .newQuestion {
+      margin: 0;
+    }
+  }
+  .Dashboard {
+    min-height: 200px;
+  }
+  .Dashboard h3 {
+    margin-top: initial;
+  }
+  // comments docs and images
+  .fileContainer {
+    overflow: initial;
+    position: initial;
+    background: transparent;
+    width: initial;
+    display: initial;
+    border-radius: 0;
+    padding: initial;
+    cursor: initial;
+  }
+  .fileContainer [type=file] {
+    cursor: initial;
+    display: initial;
+    font-size: initial;
+    filter: none;
+    min-height: 100%;
+    min-width: 100%;
+    opacity: initial;
+    position: initial;
+  }
+}
+@media screen and (min-width:  1024px) {
+  #mainLogo {
+    width: auto;
+    height: 30px;
+    margin-right: 20px;
+  }
+  .navbar-nav li a {
+    font-size: 25px;
+  }
+  .h1 {
+    font-size: 4.5rem;
+    font-weight: 300;
+    line-height: 1.1;
+  }
+  .logIn {
+    margin-right: 50px;
+  }
+}

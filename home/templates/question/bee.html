@@ -1,0 +1,136 @@
+{{ form.non_field_errors }}
+<hr>
+<h4>Reseña</h4>
+<div class="form-group">
+  {{ form.colony_type.errors }}
+  <label for="{{ form.colony_type.id_for_label }}">{{ form.colony_type.label }}</label>
+  {{ form.colony_type }}
+</div>
+<div class="form-group">
+  {{ form.hive_review.errors }}
+  <label for="{{ form.hive_review.id_for_label }}">{{ form.hive_review.label }}</label>
+  <div class="input-group">
+    {{ form.hive_review }}
+    <span class="input-group-addon">
+      <input id="beehivec" type="checkbox" aria-label="Checkbox for following text input" onclick="beechangehive()">
+    </span>
+    <span class="input-group-addon">Sin datos</span>
+  </div>
+</div>
+<div class="form-group">
+  {{ form.queen_presence.errors }}
+  <label for="{{ form.queen_presence.id_for_label }}">{{ form.queen_presence.label }}</label>
+  {{ form.queen_presence }}
+</div>
+<div class="form-group">
+  {{ form.disease_signs.errors }}
+  <label for="{{ form.disease_signs.id_for_label }}">{{ form.disease_signs.label }}</label>
+  <div class="input-group">
+    {{ form.disease_signs }}
+    <span class="input-group-addon">
+      <input id="beesignsc" type="checkbox" aria-label="Checkbox for following text input" onclick="beechangesigns()">
+    </span>
+    <span class="input-group-addon">Sin datos</span>
+  </div>
+</div>
+<div class="form-group">
+  {{ form.breeding.errors }}
+  <label for="{{ form.breeding.id_for_label }}">{{ form.breeding.label }}</label>
+  {{ form.breeding }}
+</div>
+<div class="form-group">
+  {{ form.adult_bee.errors }}
+  <label for="{{ form.adult_bee.id_for_label }}">{{ form.adult_bee.label }}</label>
+  {{ form.adult_bee }}
+</div>
+<div class="form-group">
+  {{ form.backstage_bee.errors }}
+  <label for="{{ form.backstage_bee.id_for_label }}">{{ form.backstage_bee.label }}</label>
+  <div class="input-group">
+    {{ form.backstage_bee }}
+    <span class="input-group-addon">
+      <input id="beebackc" type="checkbox" aria-label="Checkbox for following text input" onclick="beechangeback()">
+    </span>
+    <span class="input-group-addon">Sin datos</span>
+  </div>
+</div>
+<div class="form-group">
+  {{ form.real_cell.errors }}
+  <label for="{{ form.real_cell.id_for_label }}">{{ form.real_cell.label }}</label>
+  <div class="input-group">
+    {{ form.real_cell }}
+    <span class="input-group-addon">
+      <input id="beecellc" type="checkbox" aria-label="Checkbox for following text input" onclick="beechangecell()">
+    </span>
+    <span class="input-group-addon">Sin datos</span>
+  </div>
+</div>
+<div class="form-group">
+  {{ form.backstage_breeding.errors }}
+  <label for="{{ form.backstage_breeding.id_for_label }}">{{ form.backstage_breeding.label }}</label>
+  <div class="input-group">
+    {{ form.backstage_breeding }}
+    <span class="input-group-addon">
+      <input id="beebckbreedc" type="checkbox" aria-label="Checkbox for following text input" onclick="beechangebckbreed()">
+    </span>
+    <span class="input-group-addon">Sin datos</span>
+  </div>
+</div>
+<div class="form-group">
+  {{ form.eggs.errors }}
+  <label for="{{ form.eggs.id_for_label }}">{{ form.eggs.label }}</label>
+    {{ form.eggs }}
+</div>
+<div class="form-group">
+  {{ form.quantity_eggs.errors }}
+  <label for="{{ form.quantity_eggs.id_for_label }}">{{ form.quantity_eggs.label }}</label>
+  <div class="input-group">
+    {{ form.quantity_eggs }}
+    <span class="input-group-addon">
+      <input id="beequantc" type="checkbox" aria-label="Checkbox for following text input" onclick="beechangequant()">
+    </span>
+    <span class="input-group-addon">Sin datos</span>
+  </div>
+</div>
+<div class="form-group">
+  {{ form.observations.errors }}
+  <label for="{{ form.observations.id_for_label }}">{{ form.observations.label }}</label>
+  <div class="input-group">
+    {{ form.observations }}
+    <span class="input-group-addon">
+      <input id="beeobsc" type="checkbox" aria-label="Checkbox for following text input" onclick="beechangeobs()">
+    </span>
+    <span class="input-group-addon">Sin datos</span>
+  </div>
+</div>
+<div class="form-group">
+  {{ form.stool_spots.errors }}
+  <label for="{{ form.stool_spots.id_for_label }}">{{ form.stool_spots.label }}</label>
+  {{ form.stool_spots }}
+</div>
+<div class="form-group">
+  {{ form.piece_larvae.errors }}
+  <label for="{{ form.piece_larvae.id_for_label }}">{{ form.piece_larvae.label }}</label>
+  {{ form.piece_larvae }}
+</div>
+<div class="form-group">
+  {{ form.dead_bees.errors }}
+  <label for="{{ form.dead_bees.id_for_label }}">{{ form.dead_bees.label }}</label>
+  {{ form.dead_bees }}
+</div>
+<div class="form-group">
+  {{ form.food_racks.errors }}
+  <label for="{{ form.food_racks.id_for_label }}">{{ form.food_racks.label }}</label>
+  {{ form.food_racks }}
+</div>
+<div class="form-group">
+  {{ form.number_racks.errors }}
+  <label for="{{ form.number_racks.id_for_label }}">{{ form.number_racks.label }}</label>
+  <div class="input-group">
+    {{ form.number_racks }}
+    <span class="input-group-addon">
+      <input id="beerackc" type="checkbox" aria-label="Checkbox for following text input" onclick="beechangerack()">
+    </span>
+    <span class="input-group-addon">Sin datos</span>
+  </div>
+</div>

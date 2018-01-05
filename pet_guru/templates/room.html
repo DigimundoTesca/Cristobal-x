@@ -1,0 +1,96 @@
+{% extends 'base/base.html' %}
+{% block content %}
+  {% include 'base/nav.html' %}
+  {% load staticfiles %}
+  {% block link %}
+    <link rel="stylesheet" href="{% static 'css/chat.css' %} "/>
+  {% endblock link %}
+  <div id="" class="container">
+    <h1>{{ room.label }}</h1>
+    <div class="container">
+      <div class="container messages-cont">         
+        {% for message in messages %}
+          {{request.user.username}} {{message.handle|stringformat:"s" }}
+          {% if request.user.username == message.handle|stringformat:"s" %}          
+          <div class="card card-message col-md-3">  
+            profe
+          {% else %}  
+            alumno
+          <div class="card card-message col-md-5">  
+          {% endif %}          
+            <div class="card-body">
+              <h4 class="card-title">{{message.handle}}</h4>
+              <p class="card-text">{{message.message}}</p>
+              <p>{{ message.formatted_timestamp }}</p>
+            </div>
+          </div>          
+        {% endfor %}
+      </div>
+      <div class="container send_form">        
+
+
+      </div>
+    </div>
+  </div>
+  <div id="chatContainer" class="container">
+    <h1>{{ room.label }}</h1>
+    <p>
+      <label for="handle">Bienvenido</label>
+      <label id="handle"> {{ request.user.username }} </label>
+    </p>
+    <form id="chatform">
+      <table class="table" id="chat">
+        <tbody id="bodymessages">
+          {% for message in messages %}
+            <tr>
+              
+              <td>{{ message.handle }}</td>
+              <td>{{ message.message }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <div class="container sendChat position-static">
+        <input id="message" type="text" autofocus>
+        <button type="submit" class="btn_send btn btn-primary">Enviar</button>
+      </div>
+    </form>
+  </div>
+{% endblock content %}
+{% block footer %}
+  {% include 'base/footer.html' %}
+{% endblock footer %}
+{% block javascript%}
+  
+  <script type="text/javascript">
+  $(function() {
+  function send_data () {
+  var message = $('#message').val();
+  var handler = $('#handle').text();
+  $.ajax({
+  url: "{% url 'chat:chat_room' label %}",
+  type: 'POST',
+  data: {
+  csrfmiddlewaretoken: '{{ csrf_token }}',
+  'message': message,
+  'handler': handler,
+  },
+  traditional: true,
+  datatype: 'jsonp',
+  success: function (result) {
+  
+  },
+  });
+  }
+  $('.btn_send').click(function(){
+  send_data();
+  });
+  $("#message").on('keyup', function (e) {
+  if (e.keyCode == 13) {
+  send_data();
+  }
+  });
+  
+  });
+  </script>
+{% endblock javascript%}

@@ -1,16 +1,19 @@
-from django.conf import settings
-from django.conf.urls import url, include
+from django.conf.urls import url
 from . import views
 
-# from .views import NuevaPregunta
-
-app_name='home'
+app_name = 'home'
 
 urlpatterns = [
-
-  url(r'^$', views.index, name='inicio'),    
-  url(r'^nosotros/$', views.nosotros, name='nosotros'),
-  url(r'^reglamento/$', views.reglamento, name='reglamento'),
-  url(r'^pregunta/$', views.question, name='single-question'),
-  url(r'^logout/$', views.logout, name='logout'),
+    url(r'^$', views.index, name='inicio'),
+    url(r'^user/$', views.user, name='usuario'),
+    url(r'^cards/$', views.cards, name='articulos'),
+    url(r'^nosotros/$', views.us, name='nosotros'),
+    url(r'^reglamento/$', views.rules, name='reglamento'),
+    url(r'^pregunta/(?P<id>\d+)/$', views.question, name='pregunta'),
+    url(r'^registro/$', views.register, name='register'),
+    url(r'^tutorial/$', views.tuto, name='tutorial'),
+    url(r'^logout/$', views.logout, name='logout'),
+    # Just for develop; delete on production
+    url(r'^buscar/(?P<label>\w+)/$', views.search, name='search'),
+    url(r'^mail/$', views.mail, name='mail'),
 ]
