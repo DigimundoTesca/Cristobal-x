@@ -25,6 +25,8 @@ from django.core.mail import EmailMultiAlternatives
 from django.template.loader import get_template
 from django.template import Context
 
+from .tasks import time_on_emails
+
 
 def index(request):
     if request.user.is_authenticated():
@@ -49,7 +51,7 @@ def index(request):
     if request.method == 'POST':
         user_log = request.POST['Usuario']
         pass_log = request.POST['Contraseña']
-        user_auth = authenticate(request,username=user_log,password=pass_log)
+        user_auth = authenticate(request, username=user_log, password=pass_log)
 
         if user_auth is not None:
             login_django(request, user_auth)
@@ -201,6 +203,7 @@ def logout(request):
 
 @login_required(login_url='home:inicio')
 def user(request):
+
     if request.user.rol == 'ST':
         template = 'user.html'
         solved = Question.objects.filter(user_question=request.user.pk).order_by('-id')
@@ -275,9 +278,11 @@ def user(request):
                     emails = User.objects.filter(speciality='BV').filter(rol='TC')
                     try:
                         for user_speciality in emails:
+                            time_on_emails(base.pk, user_speciality.email,
+                                           html_content)
                             sendmailform(request, user_speciality.email, html_content)
                     except Exception as e:
-                        print('ERROR: ' + e.args)
+                        print('ERROR: ' + e)
 
                     return redirect('home:usuario')
 
@@ -300,6 +305,8 @@ def user(request):
                     emails = User.objects.filter(speciality='PR').filter(rol='TC')
                     try:
                         for user_speciality in emails:
+                            time_on_emails(base.pk, user_speciality.email,
+                                           html_content)
                             sendmailform(request, user_speciality.email, html_content)
                     except Exception as e:
                         print('ERROR: ' + e.args)
@@ -325,6 +332,8 @@ def user(request):
                     emails = User.objects.filter(speciality='EQ').filter(rol='TC')
                     try:
                         for user_speciality in emails:
+                            time_on_emails(base.pk, user_speciality.email,
+                                           html_content)
                             sendmailform(request, user_speciality.email, html_content)
                     except Exception as e:
                         print('ERROR: ' + e.args)
@@ -350,6 +359,8 @@ def user(request):
                     emails = User.objects.filter(speciality='OV').filter(rol='TC')
                     try:
                         for user_speciality in emails:
+                            time_on_emails(base.pk, user_speciality.email,
+                                           html_content)
                             sendmailform(request, user_speciality.email, html_content)
                     except Exception as e:
                         print('ERROR: ' + e.args)
@@ -375,6 +386,8 @@ def user(request):
                     emails = User.objects.filter(speciality='CP').filter(rol='TC')
                     try:
                         for user_speciality in emails:
+                            time_on_emails(base.pk, user_speciality.email,
+                                           html_content)
                             sendmailform(request, user_speciality.email, html_content)
                     except Exception as e:
                         print('ERROR: ' + e.args)
@@ -399,6 +412,8 @@ def user(request):
                     emails = User.objects.filter(speciality='LP').filter(rol='TC')
                     try:
                         for user_speciality in emails:
+                            time_on_emails(base.pk, user_speciality.email,
+                                           html_content)
                             sendmailform(request, user_speciality.email, html_content)
                     except Exception as e:
                         print('ERROR: ' + e.args)
@@ -678,7 +693,7 @@ def register(request):
         return redirect('home:inicio')
 
 
-def search(request, label): 
+def search(request, label):
     message = None
     template = 'article.html'
     articles = Question.objects.filter(specie=label)
