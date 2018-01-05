@@ -62,6 +62,12 @@ a.unam-dark:hover {
 card-btn {
   padding: .5rem .75rem; }
 
+.card-text {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical; }
+
 .btn-outline-light:hover {
   color: #353535; }
 
