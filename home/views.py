@@ -722,7 +722,7 @@ def search(request, label):
 
 def sendmailform(request, email_user, html_content):
     if email_user:
-        fromaddr = "albeitarunam@gmail.com"
+        fromaddr = "albeitarfmvz@comunidad.unam.mx"
         toaddr = email_user
         msg = MIMEMultipart()
         msg['From'] = fromaddr
@@ -744,9 +744,9 @@ def sendmailform(request, email_user, html_content):
 
         # msg.attach(part)
 
-        server = smtplib.SMTP('smtp.gmail.com', 587)
+        server = smtplib.SMTP('smtp-mail.outlook.com', 587)
         server.starttls()
-        server.login(fromaddr, "digimundounam")
+        server.login(fromaddr, "Medicina_2018")
         text = msg.as_string()
         server.sendmail(fromaddr, toaddr, text)
         server.quit()
@@ -754,7 +754,7 @@ def sendmailform(request, email_user, html_content):
 
 def sendstudentmail(request, email_user, html_content):
     if email_user:
-        fromaddr = "albeitarunam@gmail.com"
+        fromaddr = "albeitarfmvz@comunidad.unam.mx"
         toaddr = email_user
         msg = MIMEMultipart()
         msg['From'] = fromaddr
@@ -762,9 +762,9 @@ def sendstudentmail(request, email_user, html_content):
         msg['Subject'] = "Tu pregunta ha sido respondida."
         body = html_content
         msg.attach(MIMEText(body, 'html'))
-        server = smtplib.SMTP('smtp.gmail.com', 587)
+        server = smtplib.SMTP('smtp-mail.outlook.com', 587)
         server.starttls()
-        server.login(fromaddr, "digimundounam")
+        server.login(fromaddr, "Medicina_2018")
         text = msg.as_string()
         server.sendmail(fromaddr, toaddr, text)
         server.quit()
@@ -772,7 +772,7 @@ def sendstudentmail(request, email_user, html_content):
 
 def sendprofmail(request, email_user, html_content):
     if email_user:
-        fromaddr = "albeitarunam@gmail.com"
+        fromaddr = "albeitarfmvz@comunidad.unam.mx"
         toaddr = email_user
         msg = MIMEMultipart()
         msg['From'] = fromaddr
@@ -780,9 +780,9 @@ def sendprofmail(request, email_user, html_content):
         msg['Subject'] = "Se ha generado un comentario respecto a una de sus respuestas."
         body = html_content
         msg.attach(MIMEText(body, 'html'))
-        server = smtplib.SMTP('smtp.gmail.com', 587)
+        server = smtplib.SMTP('smtp-mail.outlook.com', 587)
         server.starttls()
-        server.login(fromaddr, "digimundounam")
+        server.login(fromaddr, "Medicina_2018")
         text = msg.as_string()
         server.sendmail(fromaddr, toaddr, text)
         server.quit()
@@ -790,7 +790,7 @@ def sendprofmail(request, email_user, html_content):
 
 def sendclosemail(request, email_user, html_content):
     if email_user:
-        fromaddr = "albeitarunam@gmail.com"
+        fromaddr = "albeitarfmvz@comunidad.unam.mx"
         toaddr = email_user
         msg = MIMEMultipart()
         msg['From'] = fromaddr
@@ -798,9 +798,9 @@ def sendclosemail(request, email_user, html_content):
         msg['Subject'] = "Se ha marcado como RESUELTA una de las preguntas que ayudó a resolver."
         body = html_content
         msg.attach(MIMEText(body, 'html'))
-        server = smtplib.SMTP('smtp.gmail.com', 587)
+        server = smtplib.SMTP('smtp-mail.outlook.com', 587)
         server.starttls()
-        server.login(fromaddr, "digimundounam")
+        server.login(fromaddr, "Medicina_2018")
         text = msg.as_string()
         server.sendmail(fromaddr, toaddr, text)
         server.quit()
