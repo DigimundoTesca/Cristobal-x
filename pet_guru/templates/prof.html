@@ -54,6 +54,8 @@
                   <i class="fa fa-star" aria-hidden="true"></i>
                   {% endif %}
                 </div>
+                <br>
+                <a class="btn btn-info" href="mailto:albeitarfmvz@comunidad.unam.mx" "email me" target="_blank">Comentarios y denuncias</a>
               </div>
               <div class="col-sm-12 col-md-9 p-0">
                 <div id="mailLike" class="col-sm-12 w-100 p-0 text-center d-flex flex-column justify-content-around">
@@ -136,37 +138,37 @@
   </div>
   {% endblock %}
 
-{%block javascript%}
+  {%block javascript%}
 
-<script type="text/javascript">
-  $(function () {
+  <script type="text/javascript">
+    $(function () {
 
-    function change_state(pk) {      
-      $.ajax({
-        url: '{% url "home:usuario" %}',
-        type: 'POST',
-        data: {
-          csrfmiddlewaretoken: '{{ csrf_token }}',
-          'type': 'changestate',
-          'pk': pk,
-        },
-        traditional: true,
-        datatype: 'jsonp',
-        success: function (result) {
-          console.log("wuuju");
-        },
-      });  
-    }
-    $('.change_state').click(function () {
-      var pk = $(this).attr('id');
-      console.log(pk)
-      change_state(pk);      
+      function change_state(pk) {      
+        $.ajax({
+          url: '{% url "home:usuario" %}',
+          type: 'POST',
+          data: {
+            csrfmiddlewaretoken: '{{ csrf_token }}',
+            'type': 'changestate',
+            'pk': pk,
+          },
+          traditional: true,
+          datatype: 'jsonp',
+          success: function (result) {
+            console.log("wuuju");
+          },
+        });  
+      }
+      $('.change_state').click(function () {
+        var pk = $(this).attr('id');
+        console.log(pk)
+        change_state(pk);      
+      });
+
+
     });
 
-    
-  });
 
+  </script>
 
-</script>
-
-{%endblock javascript%}
+  {%endblock javascript%}
