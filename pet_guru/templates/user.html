@@ -50,6 +50,7 @@
               <img src="{% static 'images/user.png' %}" alt="User image" class="mb-2 img-thumbnail rounded-circle mx-auto d-block userimg">
               <p>Usuario: {{ user }}</p>
               <p>Tipo de usuario: {{ request.user.get_rol_display }}</p>
+              <a class="btn btn-info" href="mailto:albeitarfmvz@comunidad.unam.mx" "email me" target="_blank">Comentarios y denuncias</a>
             </div>            
             <div class="col-sm-12 col-md-9 p-0">
               <div id="mailLike" class="col-sm-12 w-100 p-0 text-center d-flex flex-column justify-content-around">
