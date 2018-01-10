@@ -38,7 +38,7 @@ class ReporteUsuarios(TemplateView):
         # Inserta contenido a celdas
         ws1.title = "Reporte de usuarios"
         ws2.title = "Reporte de preguntas"
-        ws1['A1'] = 'Reporte general de usuarios Albeitar'
+        ws1['A1'] = 'Reporte general de usuarios Albéitar'
         #ws1.column_dimensions['D3'].width = 150
         # Aplica estilos a las celdas
         ws1['A1'].alignment = Alignment(horizontal='center')
