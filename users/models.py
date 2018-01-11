@@ -46,6 +46,7 @@ class User(AbstractUser):
 
     rol = models.CharField(max_length=3, choices=ROL, default='ST')
     speciality = models.CharField(max_length=15, choices=SPECIES)
+    date_end = models.CharField(max_length=20, null=True)
 
     class Meta(AbstractUser.Meta):
         swappable = 'AUTH_USER_MODEL'
