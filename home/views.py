@@ -52,21 +52,21 @@ def index(request):
     if request.method == 'POST':
         user_log = request.POST['Usuario']
         pass_log = request.POST['Contraseña']
-        user = User.objects.get(username=user_log)
+        user = User.objects.filter(username=user_log).first()
         if user:
             date_end = user.date_end
             if date_end:
-                y = int(date_end[0:3])
-                m = int(date_end[5:6])
-                d = int(date_end[8:9])
+                y = int(date_end[2:4])
+                m = int(date_end[5:7])
+                d = int(date_end[8:10])
                 caducated = caducated_user(y, m, d, user.pk)
-                if caducated:
+                if caducated == True:
                     user_auth = authenticate(request, username=user_log, password=pass_log)
                     if user_auth is not None:
                         login_django(request, user_auth)
                         return redirect('home:usuario')
                     else:
-                        message = "Contraseña incorrectos."
+                        message = "Contraseña incorrecta."
                 else:
                     message = "Usuario caducado."
             else:
@@ -75,9 +75,9 @@ def index(request):
                     login_django(request, user_auth)
                     return redirect('home:usuario')
                 else:
-                    message = "Contraseña incorrectos."
+                    message = "Contraseña incorrecta."
         else:
-            message = "Usuario no valido."
+            message = "Usuario incorrecto."
 
     context = {
         'title': "PetGurú - Inicio",
