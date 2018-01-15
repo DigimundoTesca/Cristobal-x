@@ -19,8 +19,8 @@ $(document).ready(function() {
 
 
 // Sinlge Question gallery
-jQuery(document).ready(function(){ 
-    jQuery("#gallery").unitegallery(); 
+jQuery(document).ready(function(){
+    jQuery("#gallery").unitegallery();
 });
 
 
