@@ -23,7 +23,6 @@
               <div class="col-sm-12 col-md-3 d-flex p-0 text-center flex-column justify-content-start mt-5">
                 <img src="{% static 'images/user.png' %}" alt="User image" class="mb-2 img-thumbnail rounded-circle mx-auto d-block userimg">
                 <p>Usuario: {{ user }}</p>
-                <p>Tipo de usuario: profesor</p>
                 <p>Especialidad: {{ user.get_speciality_display }}</p>
                 <p>Tipo de usuario: {{request.user.get_rol_display}}</p>
                 <p>Calificacion: {{ avg|floatformat:2 }}</p>
