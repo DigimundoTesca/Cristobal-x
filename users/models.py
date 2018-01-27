@@ -31,10 +31,10 @@ class User(AbstractUser):
 
 
     SPECIES = (
-        (BOVINO, 'Vaca'),
+        (BOVINO, 'Bovino'),
         (PORCINO, 'Cerdo'),
-        (EQUINO, 'Caballo'),
-        (OVINO, 'Oveja'),
+        (EQUINO, 'Équido'),
+        (OVINO, 'Borrego'),
         (CAPRINO, 'Cabra'),
         (LEPORIDO, 'Conejo'),
         (AVE, 'Ave'),
