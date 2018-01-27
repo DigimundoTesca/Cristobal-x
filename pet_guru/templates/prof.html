@@ -24,7 +24,6 @@
                 <img src="{% static 'images/user.png' %}" alt="User image" class="mb-2 img-thumbnail rounded-circle mx-auto d-block userimg">
                 <p>Usuario: {{ user }}</p>
                 <p>Especialidad: {{ user.get_speciality_display }}</p>
-                <p>Tipo de usuario: {{request.user.get_rol_display}}</p>
                 <p>Calificacion: {{ avg|floatformat:2 }}</p>
                 <div class="row text-center d-flex justify-content-center profStar">
                   {% if avg > 4.5%}
