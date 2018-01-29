@@ -1,5 +1,6 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from datetime import date
 
 
 class User(AbstractUser):
@@ -30,10 +31,10 @@ class User(AbstractUser):
 
 
     SPECIES = (
-        (BOVINO, 'Vaca'),
+        (BOVINO, 'Bovino'),
         (PORCINO, 'Cerdo'),
-        (EQUINO, 'Caballo'),
-        (OVINO, 'Oveja'),
+        (EQUINO, 'Équido'),
+        (OVINO, 'Borrego'),
         (CAPRINO, 'Cabra'),
         (LEPORIDO, 'Conejo'),
         (AVE, 'Ave'),
@@ -46,7 +47,11 @@ class User(AbstractUser):
 
     rol = models.CharField(max_length=3, choices=ROL, default='ST')
     speciality = models.CharField(max_length=15, choices=SPECIES)
-    date_end = models.CharField(max_length=20, null=True)
+    date_end = models.DateField(null=True)
+
+    @property
+    def is_past_due(self):
+        return date.today() > self.date_end
 
     class Meta(AbstractUser.Meta):
         swappable = 'AUTH_USER_MODEL'

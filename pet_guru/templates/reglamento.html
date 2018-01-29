@@ -5,39 +5,50 @@
   <header class="unam-primary sticky-top">
     <div class="container-fluid mainMenu">
       {% block navigation %}
-        {% include 'base/nav.html' %}
+      {% include 'base/nav.html' %}
       {% endblock %}
     </div>
   </header>
   <main>
     <div class="jumbotron mb-0">
       <div class="container-fluid">
-        <h1 class="h1">Reglamento e instrucciones</h1>
-        <p class="lead">Lee atentamente cada sección, para tener la mejor experiencia en la plataforma.</p>
+        <h1 class="h1">REGLAMENTO PARA USUARIOS</h1>
+        <p class="lead">Para fines de este Reglamento se entenderá como:</p>
+        <p><span class="font-weight-bold">FMVZ: </span>Facultad de Medicina Veterinaria y Zootecnia de la Universidad Nacional Autónoma de México.</p>
+        <p><span class="font-weight-bold">Albéitar FMVZ: </span>Aplicación web que actúa como comunidad de aprendizaje dentro del ámbito de la Medicina Veterinaria y Zootecnia.</p>
+        <p><span class="font-weight-bold">Alumnos: </span>Estudiantes de la carrera de Medicina Veterinaria y Zootecnia, que han terminado el 100% de créditos o que se encuentren activos en un programa de Servicio Social.</p>
+        <p><span class="font-weight-bold">Albéitar: </span>Médico Veterinario Zootecnista, que labora como profesor de la FMVZ. </p>
+        <p><span class="font-weight-bold">Usuarios: </span>: Alumnos egresados y albéitares que se encuentren registrados en “Albéitar FMVZ”.</p>
+        <p><span class="font-weight-bold">Administradores: </span>Encargados de supervisar las actividades de los usuarios dentro de “Albéitar FMVZ”.</p>
         <hr class="my-4">
-        <h3>Reglamento</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo assumenda, quaerat. Voluptas repudiandae nostrum officia iure voluptatum, harum minima error beatae, optio alias magni, dolor illo consequuntur fugit est quo.30</p>
+        <p class="h3">Para lograr el objetivo de “Albéitar FMVZ” se atiende a las siguientes disposiciones:</p>
+        <p class="h4 pt-5">I REGISTRO DE USUARIOS. </p>
         <ol>
-          <li>Lorem ipsum dolor sit amet.</li>
-          <li>Lorem ipsum dolor sit amet.</li>
-          <li>Lorem ipsum dolor sit amet.</li>
-          <li>Lorem ipsum dolor sit amet.</li>
+          <li class="pt-3">Solo los usuarios registrados pueden acceder a la aplicación.</li>
+          <li class="pt-3">Pueden ser usuarios registrados de la aplicación:<br>
+            a.  Alumnos que realizan su servicio social.<br>
+            b.  Alumnos realizando estancias en áreas rurales que se originen de actividades académicas de la FMVZ.<br> 
+            c.  Alumnos que reciban, a solicitud, autorización expresa de los administradores de la aplicación.<br>
+            d.  Académicos que colaboran como expertos, en máximo 3 categorías, para las asesorías a los alumnos.
+          </li>
+          <li class="pt-3">El nombre de usuario y contraseña asignado a cada usuario es de uso personal e intransferible.</li>
+          <li class="pt-3">Está estrictamente prohibido a los usuarios compartir sus datos de acceso para permitir que otra persona acceda a la aplicación.</li>
+          <li class="py-3">La vigencia del usuario alumno será la misma correspondiente al periodo en el que se encuentren inscritos en su respectivo programa de servicio social, estancia o cualquier otra actividad autorizada por los administradores de “Albéitar FMVZ”. </li>
         </ol>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo assumenda, quaerat. Voluptas repudiandae nostrum officia iure voluptatum, harum minima error beatae, optio alias magni, dolor illo consequuntur fugit est quo.30</p>
-        <ul>
-          <li>Lorem ipsum dolor sit amet.</li>
-          <li>Lorem ipsum dolor sit amet.</li>
-          <li>Lorem ipsum dolor sit amet.</li>
-          <li>Lorem ipsum dolor sit amet.</li>
-        </ul>
-        <hr class="my-4 pt-4">
-        <h3>Instrucciones</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo assumenda, quaerat. Voluptas repudiandae nostrum officia iure voluptatum, harum minima error beatae, optio alias magni, dolor illo consequuntur fugit est quo.30</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo assumenda, quaerat. Voluptas repudiandae nostrum officia iure voluptatum, harum minima error beatae, optio alias magni, dolor illo consequuntur fugit est quo.30</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo assumenda, quaerat. Voluptas repudiandae nostrum officia iure voluptatum, harum minima error beatae, optio alias magni, dolor illo consequuntur fugit est quo.30</p>
-        <p class="lead pt-4">
-          <a class="btn unam-primary btn-lg" href="{% url 'home:inicio' %}" role="button">Consultas</a>
-        </p>
+        <hr class="my-4">
+        <p class="h4 pt-3">II OPERATIVIDAD.</p>
+        <ol>
+          <li class="pt-3">Una vez concluida y cerrada la consulta, esta se publicará en la sección Aprendizaje y a partir de ese momento, la información queda de libre acceso para todos los usuarios de “Albéitar FMVZ”.</li>
+          <li class="pt-3">Durante su participación dentro de la aplicación, los usuarios deben otorgarse entre sí, el trato que corresponde como universitarios. No se permite el uso de lenguaje vulgar, los insultos o las agresiones; está prohibido cualquier forma de acoso. Cualquier comportamiento indebido deberá ser informado al administrador, quien tomará las medidas correspondientes, que pueden incluir:<br><br>
+            <i class="fa fa-arrow-right pt-2" aria-hidden="true"></i>  Amonestación.<br>
+            <i class="fa fa-arrow-right pt-2" aria-hidden="true"></i>  Expulsión de la aplicación.<br>
+            <i class="fa fa-arrow-right pt-2" aria-hidden="true"></i>  Denuncia ante las autoridades universitarias o civiles, cuando así corresponda.
+
+          </li>
+          <li class="pt-3">El usuario que comparta datos, imágenes o video, es responsable de obtener los permisos necesarios de parte de los dueños de los animales o las instalaciones que puedan aparecer en el material. </li>
+          <li class="pt-3">Todos los contenidos multimedia se comparten mediante licencia Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) de Creative Commons.</li>
+          <li class="pt-3">Cualquier cuestión o circunstancia no previstos expresamente en este Reglamento serán resueltos por los administradores de “Albéitar FMVZ”.</li>
+        </ol>
       </div>
     </div>
   </main>

@@ -3,8 +3,6 @@ from pet_guru.settings.base import *
 DEBUG = False
 
 ALLOWED_HOSTS = ['*']
-TEMPLATES[0]['OPTIONS']['debug'] = DEBUG
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
  
 # Database
 DATABASES = {

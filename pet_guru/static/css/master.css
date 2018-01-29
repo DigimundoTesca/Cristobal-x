@@ -111,12 +111,12 @@ card-btn {
 
 .bckBlue {
   background-color: #189ada;
-  min-height: 300px;
+  height: 200px;
   color: #FFF; }
 
 .bckLight {
   background-color: #5eb8e4;
-  min-height: 300px;
+  height: 200px;
   color: #FFF; }
 
 #mainBanner {
@@ -130,7 +130,7 @@ card-btn {
 #mainLogo {
   background-color: #FFF;
   border-radius: 20px 20px 10px 10px;
-  height: 40px;
+  height: 30px;
   width: auto; }
 
 .bannerText {
@@ -161,7 +161,8 @@ card-btn {
 .navbar-nav li a {
   font-size: 20px; }
 
-.logIn {
+.logIn,
+.uscard {
   margin: 0;
   padding: 0;
   width: 100%;
@@ -353,7 +354,10 @@ p.calif {
 
 @media screen and (min-width: 550px) {
   .logIn {
-    max-width: 20rem; } }
+    max-width: 20rem; }
+
+  .uscard {
+    max-width: 400px; } }
 @media screen and (min-width: 768px) {
   .card {
     margin: 15px 0; }
@@ -391,7 +395,7 @@ p.calif {
 @media screen and (min-width: 1024px) {
   #mainLogo {
     width: auto;
-    height: 50px;
+    height: 30px;
     margin-right: 20px; }
 
   .navbar-nav li a {
@@ -402,7 +406,8 @@ p.calif {
     font-weight: 300;
     line-height: 1.1; }
 
-  .logIn {
+  .logIn,
+  .uscard {
     margin-right: 50px; } }
 
 /*# sourceMappingURL=master.css.map */

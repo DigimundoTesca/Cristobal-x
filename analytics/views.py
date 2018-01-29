@@ -88,7 +88,7 @@ class ReporteUsuarios(TemplateView):
             ws2.cell(row=count, column=1, value=question.id)
             ws2.cell(row=count, column=2, value=question.title)
             ws2.cell(row=count, column=3, value=question.get_specie_display())
-            ws2.cell(row=count, column=4, value=question.user_response.username)
+            ws2.cell(row=count, column=4, value=question.user_question.username)
             ws2.cell(row=count, column=5, value=question.get_status_display())
             count += 1
 
