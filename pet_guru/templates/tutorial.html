@@ -19,20 +19,13 @@
           <div class="row container-fluid m-auto p-0">
             <div class="col-sm-12 col-md-8 d-flex  mx-auto p-0 align-items-center flex-column justify-content-around">
               <div class="col-12 d-flex  mx-auto p-0 align-items-center flex-column justify-content-around text-center">
-
-                <video width="100%" height="auto" controls>
-                  <source src="{% static 'images/tuto.mp4' %}" type="video/mp4">
-                  <source src="movie.ogg" type="video/ogg">
-                    Your browser does not support the video tag.
-                </video>
-
-
+                <embed src={% static 'images/tuto.pdf' %} width="100%" height="500px" type='application/pdf'>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </main>
+      </main>
+    </div>
   </div>
-</div>
-{% endblock %}
+  {% endblock %}
