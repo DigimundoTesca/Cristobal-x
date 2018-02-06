@@ -278,9 +278,9 @@ def user(request):
                     cow.save()
                     save_documents(base)
                     save_images(base)
-                    emails = User.objects.filter(speciality='BV').filter(rol='TC')
-                    try:
-                        for user_speciality in emails:
+                    emails = User.objects.filter(speciality='BV').filter(rol='TC')                    
+                    try:                        
+                        for user_speciality in emails:                            
                             time_on_emails(base.pk, user_speciality.email,
                                            html_content)
                             sendmailform(request, user_speciality.email, html_content)
@@ -442,6 +442,8 @@ def user(request):
                     emails = User.objects.filter(speciality='AV').filter(rol='TC')
                     try:
                         for user_speciality in emails:
+                            time_on_emails(base.pk, user_speciality.email,
+                                           html_content)
                             sendmailform(request, user_speciality.email, html_content)
                     except Exception as e:
                         print('ERROR: ' + e.args)
@@ -467,6 +469,8 @@ def user(request):
                     emails = User.objects.filter(speciality='CN').filter(rol='TC')
                     try:
                         for user_speciality in emails:
+                            time_on_emails(base.pk, user_speciality.email,
+                                           html_content)
                             sendmailform(request, user_speciality.email, html_content)
                     except Exception as e:
                         print('ERROR: ' + e.args)
@@ -492,6 +496,8 @@ def user(request):
                     emails = User.objects.filter(speciality='FL').filter(rol='TC')
                     try:
                         for user_speciality in emails:
+                            time_on_emails(base.pk, user_speciality.email,
+                                           html_content)
                             sendmailform(request, user_speciality.email, html_content)
                     except Exception as e:
                         print('ERROR: ' + e.args)
@@ -517,6 +523,8 @@ def user(request):
                     emails = User.objects.filter(speciality='SL').filter(rol='TC')
                     try:
                         for user_speciality in emails:
+                            time_on_emails(base.pk, user_speciality.email,
+                                           html_content)
                             sendmailform(request, user_speciality.email, html_content)
                     except Exception as e:
                         print('ERROR: ' + e.args)
@@ -542,6 +550,8 @@ def user(request):
                     emails = User.objects.filter(speciality='AQ').filter(rol='TC')
                     try:
                         for user_speciality in emails:
+                            time_on_emails(base.pk, user_speciality.email,
+                                           html_content)
                             sendmailform(request, user_speciality.email, html_content)
                     except Exception as e:
                         print('ERROR: ' + e.args)
@@ -567,6 +577,8 @@ def user(request):
                     emails = User.objects.filter(speciality='BJ').filter(rol='TC')
                     try:
                         for user_speciality in emails:
+                            time_on_emails(base.pk, user_speciality.email,
+                                           html_content)
                             sendmailform(request, user_speciality.email, html_content)
                     except Exception as e:
                         print('ERROR: ' + e.args)
@@ -725,7 +737,7 @@ def search(request, label):
 
 def sendmailform(request, email_user, html_content):
     if email_user:
-        fromaddr = "albeitarfmvz@comunidad.unam.mx"
+        fromaddr = "drdr_2@hotmail.com"
         toaddr = email_user
         msg = MIMEMultipart()
         msg['From'] = fromaddr
@@ -749,7 +761,7 @@ def sendmailform(request, email_user, html_content):
 
         server = smtplib.SMTP('smtp-mail.outlook.com', 587)
         server.starttls()
-        server.login(fromaddr, "Medicina_2018")
+        server.login(fromaddr, "d3819234f6")
         text = msg.as_string()
         server.sendmail(fromaddr, toaddr, text)
         server.quit()
