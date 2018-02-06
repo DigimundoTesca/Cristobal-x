@@ -7,11 +7,12 @@ from email.mime.text import MIMEText
 import smtplib
 
 
-@background(schedule=5)
+@background(schedule=60)
 def time_on_emails(pk,user_speciality, html_content):
     pregunta = Question.objects.get(pk=pk)    
 
     if pregunta.status == 'OP'and pregunta.pk==pk:
+        time_on_emails(pk,user_speciality,html_content)
         sendmailform(user_speciality, html_content)
 
 
