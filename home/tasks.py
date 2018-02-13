@@ -7,7 +7,7 @@ from email.mime.text import MIMEText
 import smtplib
 
 
-@background(schedule=60)
+@background(schedule=64800)
 def time_on_emails(pk,user_speciality, html_content):
     pregunta = Question.objects.get(pk=pk)    
 
@@ -23,7 +23,7 @@ def sendmailform(email_user, html_content):
         msg = MIMEMultipart()
         msg['From'] = fromaddr
         msg['To'] = toaddr
-        msg['Subject'] = "Aun no se ah respondido la pregunta en el grupo del cual usted es especialista."
+        msg['Subject'] = "Una pregunta del grupo en el cual es usted especialista sigue sin ser contestada."
 
         body = html_content
 
