@@ -4,14 +4,14 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.template.loader import get_template
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
-import smtplib
+import smtplib, time
 from celery import shared_task
 
 
 @shared_task
 def time_on_emails(pk,user_speciality, html_content):
-    pregunta = Question.objects.get(pk=pk)
-
+    time.sleep(60)
+    pregunta = Question.objects.get(pk=pk)    
     if pregunta.status == 'OP'and pregunta.pk==pk:
         print("test")
         time_on_emails(pk,user_speciality,html_content)
