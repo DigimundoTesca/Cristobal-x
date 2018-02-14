@@ -27,6 +27,7 @@ USER_APPS = [
     'home.apps.HomeConfig',
     'analytics.apps.AnalyticsConfig',
     'background_task',
+    'celery',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_APPS + USER_APPS
