@@ -280,9 +280,9 @@ def user(request):
                     save_images(base)
                     emails = User.objects.filter(speciality='BV').filter(rol='TC')
                     try:
-                        for user_speciality in emails:                            
-                            sendmailform(request, user_speciality.email, html_content)                            
-                            time_on_emails.delay(base.pk, user_speciality.email,html_content)                                                        
+                        for user_speciality in emails:
+                            sendmailform(request, user_speciality.email, html_content)
+                            time_on_emails.delay(base.pk, user_speciality.email,html_content)
                     except Exception as e:
                         print('ERROR: ' + e)
 
@@ -307,9 +307,8 @@ def user(request):
                     emails = User.objects.filter(speciality='PR').filter(rol='TC')
                     try:
                         for user_speciality in emails:
-                            time_on_emails(base.pk, user_speciality.email,
-                                           html_content)
                             sendmailform(request, user_speciality.email, html_content)
+                            time_on_emails.delay(base.pk, user_speciality.email,html_content)
                     except Exception as e:
                         print('ERROR: ' + e.args)
 
@@ -334,9 +333,9 @@ def user(request):
                     emails = User.objects.filter(speciality='EQ').filter(rol='TC')
                     try:
                         for user_speciality in emails:
-                            time_on_emails(base.pk, user_speciality.email,
-                                           html_content)
                             sendmailform(request, user_speciality.email, html_content)
+                            time_on_emails.delay(
+                                base.pk, user_speciality.email, html_content)
                     except Exception as e:
                         print('ERROR: ' + e.args)
 
@@ -361,9 +360,8 @@ def user(request):
                     emails = User.objects.filter(speciality='OV').filter(rol='TC')
                     try:
                         for user_speciality in emails:
-                            time_on_emails(base.pk, user_speciality.email,
-                                           html_content)
                             sendmailform(request, user_speciality.email, html_content)
+                            time_on_emails.delay(base.pk, user_speciality.email,html_content)
                     except Exception as e:
                         print('ERROR: ' + e.args)
 
@@ -388,9 +386,8 @@ def user(request):
                     emails = User.objects.filter(speciality='CP').filter(rol='TC')
                     try:
                         for user_speciality in emails:
-                            time_on_emails(base.pk, user_speciality.email,
-                                           html_content)
                             sendmailform(request, user_speciality.email, html_content)
+                            time_on_emails.delay(base.pk, user_speciality.email,html_content)
                     except Exception as e:
                         print('ERROR: ' + e.args)
                     return redirect('home:usuario')
@@ -414,9 +411,8 @@ def user(request):
                     emails = User.objects.filter(speciality='LP').filter(rol='TC')
                     try:
                         for user_speciality in emails:
-                            time_on_emails(base.pk, user_speciality.email,
-                                           html_content)
                             sendmailform(request, user_speciality.email, html_content)
+                            time_on_emails.delay(base.pk, user_speciality.email,html_content)
                     except Exception as e:
                         print('ERROR: ' + e.args)
 
@@ -441,9 +437,9 @@ def user(request):
                     emails = User.objects.filter(speciality='AV').filter(rol='TC')
                     try:
                         for user_speciality in emails:
-                            time_on_emails(base.pk, user_speciality.email,
-                                           html_content)
                             sendmailform(request, user_speciality.email, html_content)
+                            time_on_emails.delay(
+                                base.pk, user_speciality.email, html_content)
                     except Exception as e:
                         print('ERROR: ' + e.args)
 
@@ -468,9 +464,9 @@ def user(request):
                     emails = User.objects.filter(speciality='CN').filter(rol='TC')
                     try:
                         for user_speciality in emails:
-                            time_on_emails(base.pk, user_speciality.email,
-                                           html_content)
                             sendmailform(request, user_speciality.email, html_content)
+                            time_on_emails.delay(
+                                base.pk, user_speciality.email, html_content)
                     except Exception as e:
                         print('ERROR: ' + e.args)
 
@@ -495,9 +491,9 @@ def user(request):
                     emails = User.objects.filter(speciality='FL').filter(rol='TC')
                     try:
                         for user_speciality in emails:
-                            time_on_emails(base.pk, user_speciality.email,
-                                           html_content)
                             sendmailform(request, user_speciality.email, html_content)
+                            time_on_emails.delay(
+                                base.pk, user_speciality.email, html_content)
                     except Exception as e:
                         print('ERROR: ' + e.args)
 
@@ -522,9 +518,9 @@ def user(request):
                     emails = User.objects.filter(speciality='SL').filter(rol='TC')
                     try:
                         for user_speciality in emails:
-                            time_on_emails(base.pk, user_speciality.email,
-                                           html_content)
                             sendmailform(request, user_speciality.email, html_content)
+                            time_on_emails.delay(
+                                base.pk, user_speciality.email, html_content)
                     except Exception as e:
                         print('ERROR: ' + e.args)
 
@@ -548,10 +544,9 @@ def user(request):
                     save_images(base)
                     emails = User.objects.filter(speciality='AQ').filter(rol='TC')
                     try:
-                        for user_speciality in emails:
-                            time_on_emails(base.pk, user_speciality.email,
-                                           html_content)
+                        for user_speciality in emails:                            
                             sendmailform(request, user_speciality.email, html_content)
+                            time_on_emails.delay(base.pk, user_speciality.email,html_content)                                                        
                     except Exception as e:
                         print('ERROR: ' + e.args)
 
@@ -575,10 +570,9 @@ def user(request):
                     save_images(base)
                     emails = User.objects.filter(speciality='BJ').filter(rol='TC')
                     try:
-                        for user_speciality in emails:
-                            time_on_emails(base.pk, user_speciality.email,
-                                           html_content)
+                        for user_speciality in emails:                            
                             sendmailform(request, user_speciality.email, html_content)
+                            time_on_emails.delay(base.pk, user_speciality.email,html_content)                                                        
                     except Exception as e:
                         print('ERROR: ' + e.args)
 

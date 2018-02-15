@@ -14,7 +14,7 @@ def time_on_emails(pk,user_speciality, html_content):
     pregunta = Question.objects.get(pk=pk)
     if pregunta.status == 'OP'and pregunta.pk==pk:        
         sendmailform(user_speciality, html_content)
-        time_on_emails(pk,user_speciality,html_content)
+        time_on_emails.delay(pk,user_speciality,html_content)
 
 #@background(schedule=64800)
 #def time_on_emails(pk,user_speciality, html_content):
