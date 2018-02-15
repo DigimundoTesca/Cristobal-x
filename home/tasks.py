@@ -30,7 +30,7 @@ def time_on_emails(pk,user_speciality, html_content):
 def sendmailform(email_user, html_content):
     print("Envia Email")
     if email_user:
-        fromaddr = "albeitarfmvz@comunidad.unam.mx"
+        fromaddr = "tester_lord@outlook.es"
         toaddr = email_user
         msg = MIMEMultipart()
         msg['From'] = fromaddr
@@ -53,7 +53,7 @@ def sendmailform(email_user, html_content):
 
         server = smtplib.SMTP('smtp-mail.outlook.com', 587)
         server.starttls()
-        server.login(fromaddr, "Medicina_2018")
+        server.login(fromaddr, "qonmqa3p")
         text = msg.as_string()
         server.sendmail(fromaddr, toaddr, text)
         server.quit()
