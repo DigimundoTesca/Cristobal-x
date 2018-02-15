@@ -282,7 +282,7 @@ def user(request):
                     try:
                         for user_speciality in emails:
                             sendmailform(request, user_speciality.email, html_content)
-                            time_on_emails.delay(base.pk, user_speciality.email,html_content)
+                            time_on_emails.apply_async(base.pk, user_speciality.email,html_content,countdown=60)
                     except Exception as e:
                         print('ERROR: ' + e)
 

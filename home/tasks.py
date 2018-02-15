@@ -9,12 +9,12 @@ from celery import shared_task
 
 
 @shared_task
-def time_on_emails(pk,user_speciality, html_content):    
+def time_on_emails(pk,user_speciality, html_content):
     time.sleep(64800)
     pregunta = Question.objects.get(pk=pk)
-    if pregunta.status == 'OP'and pregunta.pk==pk:        
+    if pregunta.status == 'OP'and pregunta.pk==pk:
         sendmailform(user_speciality, html_content)
-        time_on_emails.delay(pk,user_speciality,html_content)
+        time_on_emails.apply_async(pk, user_speciality, html_content,countdown=60)
 
 #@background(schedule=64800)
 #def time_on_emails(pk,user_speciality, html_content):
@@ -25,7 +25,7 @@ def time_on_emails(pk,user_speciality, html_content):
 #        sendmailform(user_speciality, html_content)
 
 
-def sendmailform(email_user, html_content):    
+def sendmailform(email_user, html_content):
     if email_user:
         fromaddr = "albeitarfmvz@comunidad.unam.mx"
         toaddr = email_user
