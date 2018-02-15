@@ -10,7 +10,7 @@ from celery import shared_task
 
 @shared_task
 def time_on_emails(pk,user_speciality, html_content):    
-    time.sleep(60)
+    time.sleep(64800)
     pregunta = Question.objects.get(pk=pk)
     if pregunta.status == 'OP'and pregunta.pk==pk:        
         sendmailform(user_speciality, html_content)
