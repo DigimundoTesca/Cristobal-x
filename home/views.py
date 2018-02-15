@@ -280,11 +280,9 @@ def user(request):
                     save_images(base)
                     emails = User.objects.filter(speciality='BV').filter(rol='TC')
                     try:
-                        for user_speciality in emails:
-                            print("Send Mail Form")
+                        for user_speciality in emails:                            
                             sendmailform(request, user_speciality.email, html_content)                            
-                            time_on_emails.delay(base.pk, user_speciality.email,html_content)                            
-                            print("After method time email")
+                            time_on_emails.delay(base.pk, user_speciality.email,html_content)                                                        
                     except Exception as e:
                         print('ERROR: ' + e)
 

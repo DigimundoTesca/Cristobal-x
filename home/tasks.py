@@ -9,12 +9,10 @@ from celery import shared_task
 
 
 @shared_task
-def time_on_emails(pk,user_speciality, html_content):
-    print("Entra al Task")
+def time_on_emails(pk,user_speciality, html_content):    
     time.sleep(60)
     pregunta = Question.objects.get(pk=pk)
-    if pregunta.status == 'OP'and pregunta.pk==pk:
-        print("test")
+    if pregunta.status == 'OP'and pregunta.pk==pk:        
         sendmailform(user_speciality, html_content)
         time_on_emails(pk,user_speciality,html_content)
 
@@ -27,10 +25,9 @@ def time_on_emails(pk,user_speciality, html_content):
 #        sendmailform(user_speciality, html_content)
 
 
-def sendmailform(email_user, html_content):
-    print("Envia Email")
+def sendmailform(email_user, html_content):    
     if email_user:
-        fromaddr = "tester_lord@outlook.es"
+        fromaddr = "albeitarfmvz@comunidad.unam.mx"
         toaddr = email_user
         msg = MIMEMultipart()
         msg['From'] = fromaddr
@@ -53,7 +50,7 @@ def sendmailform(email_user, html_content):
 
         server = smtplib.SMTP('smtp-mail.outlook.com', 587)
         server.starttls()
-        server.login(fromaddr, "qonmqa3p")
+        server.login(fromaddr, "Medicina_2018")
         text = msg.as_string()
         server.sendmail(fromaddr, toaddr, text)
         server.quit()
