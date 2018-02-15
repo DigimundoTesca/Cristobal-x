@@ -11,11 +11,12 @@ from celery import shared_task
 @shared_task
 def time_on_emails(pk,user_speciality, html_content):
     time.sleep(60)
-    pregunta = Question.objects.get(pk=pk)    
+    pregunta = Question.objects.get(pk=pk)
     if pregunta.status == 'OP'and pregunta.pk==pk:
         print("test")
-        time_on_emails(pk,user_speciality,html_content)
         sendmailform(user_speciality, html_content)
+        time_on_emails(pk,user_speciality,html_content)
+
 
 #@background(schedule=64800)
 #def time_on_emails(pk,user_speciality, html_content):
