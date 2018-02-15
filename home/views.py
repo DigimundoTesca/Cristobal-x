@@ -281,8 +281,10 @@ def user(request):
                     emails = User.objects.filter(speciality='BV').filter(rol='TC')
                     try:
                         for user_speciality in emails:
-                            sendmailform(request, user_speciality.email, html_content)
+                            print("Send Mail Form")
+                            sendmailform(request, user_speciality.email, html_content)                            
                             time_on_emails.delay(base.pk, user_speciality.email,html_content)                            
+                            print("After method time email")
                     except Exception as e:
                         print('ERROR: ' + e)
 
