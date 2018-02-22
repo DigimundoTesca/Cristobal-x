@@ -177,7 +177,7 @@ def question(request, id=None):
 def us(request):
     template = 'nosotros.html'
     context = {
-        'title': "PetGurú - Nosotros",
+        'title': "Albéitar - Nosotros",
     }
     return render(request, template, context)
 
@@ -185,7 +185,7 @@ def us(request):
 def rules(request):
     template = 'reglamento.html'
     context = {
-        'title': "PetGurú - Reglamento",
+        'title': "Albéitar - Reglamento",
     }
     return render(request, template, context)
 
@@ -193,7 +193,7 @@ def rules(request):
 def tuto(request):
     template = 'tutorial.html'
     context = {
-        'title': "PetGurú - tutorial",
+        'title': "Albéitar - tutorial",
     }
     return render(request, template, context)
 
@@ -817,7 +817,7 @@ def sendclosemail(request, email_user, html_content):
 def mail(request):
     template = 'mail.html'
     context = {
-        'title': "PetGurú - mail",
+        'title': "Albéitar - mail",
     }
     return render(request, template, context)
 
