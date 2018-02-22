@@ -63,7 +63,7 @@ def index(request):
             message = "Usuario incorrecto."
 
     context = {
-        'title': "PetGurú - Inicio",
+        'title': "Albéitar",
         'message': message,
         'articles': articles,
         'form': login_form,
@@ -544,9 +544,9 @@ def user(request):
                     save_images(base)
                     emails = User.objects.filter(speciality='AQ').filter(rol='TC')
                     try:
-                        for user_speciality in emails:                            
+                        for user_speciality in emails:
                             sendmailform(request, user_speciality.email, html_content)
-                            time_on_emails.delay(base.pk, user_speciality.email,html_content)                                                        
+                            time_on_emails.delay(base.pk, user_speciality.email,html_content)
                     except Exception as e:
                         print('ERROR: ' + e.args)
 
@@ -570,9 +570,9 @@ def user(request):
                     save_images(base)
                     emails = User.objects.filter(speciality='BJ').filter(rol='TC')
                     try:
-                        for user_speciality in emails:                            
+                        for user_speciality in emails:
                             sendmailform(request, user_speciality.email, html_content)
-                            time_on_emails.delay(base.pk, user_speciality.email,html_content)                                                        
+                            time_on_emails.delay(base.pk, user_speciality.email,html_content)
                     except Exception as e:
                         print('ERROR: ' + e.args)
 
@@ -720,7 +720,7 @@ def search(request, label):
             message = "Usuario o contraseña incorrectos."
 
     context = {
-        'title': "PetGurú - Inicio",
+        'title': "Albéitar",
         'message': message,
         'articles': articles,
         'form': login_form,
