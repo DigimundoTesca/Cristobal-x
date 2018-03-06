@@ -1,12 +1,8 @@
-{% extends 'base/base.html' %}
-{% load static %}
-{% block content %}
+{% extends 'base/base.html' %} {% load static %} {% block content %}
 <div class="pageContainer">
   <header class=" sticky-top">
     <div class="container-fluid mainMenu">
-      {% block navigation %}
-      {% include 'base/nav.html' %}
-      {% endblock %}
+      {% block navigation %} {% include 'base/nav.html' %} {% endblock %}
     </div>
   </header>
   <div id="mainBar" class="unam-primary mainBanner container-fluid d-flex">
@@ -15,12 +11,14 @@
       <div class="card-body">
         <div class="form-group">
           <h4>Misión</h4>
-          <p>Optimizar la comunicación entre alumnos y académicos de la FMVZ-UNAM mediante la creación de un vínculo tecnológico para la atención de casos clínicos. </p>
+          <p>Optimizar la comunicación entre alumnos y académicos de la FMVZ-UNAM mediante la creación de un vínculo tecnológico para
+          la atención de casos clínicos. </p>
         </div>
         <hr>
         <div class="form-group">
           <h4>Visión</h4>
-          <p>Ser la herramienta de consulta online de mayor uso para asesorías en casos clínicos para los estudiantes de la FMVZ que hayan terminado los créditos de la carrera de Medicina Veterinaria y Zootecnia.</p>
+          <p>Ser la herramienta de consulta online de mayor uso para asesorías en casos clínicos para los estudiantes de la FMVZ que hayan
+          terminado los créditos de la carrera de Medicina Veterinaria y Zootecnia.</p>
         </div>
       </div>
     </div>
@@ -49,15 +47,47 @@
     <div class="jumbotron mb-0">
       <div class="container-fluid">
         <h1 class="h2 wbreak">Nosotros</h1>
-        <p class="lead">Albéitar FMVZ es una aplicación de aprendizaje colaborativo, cuyo objetivo es fortalecer la formación y el desarrollo profesional de los alumnos que se encuentran realizando servicio social o estancias en áreas rurales, mediante asesorías de académicos expertos de la FMVZ para las atenciones médicas que ofrezcan, con la finalidad de brindar un servicio de calidad digno de representar a la UNAM.</p>
+        <p class="lead">Albéitar FMVZ es una aplicación de aprendizaje colaborativo, cuyo objetivo es fortalecer la formación y el desarrollo
+          profesional de los alumnos que se encuentran realizando servicio social o estancias en áreas rurales, mediante
+          asesorías de académicos expertos de la FMVZ para las atenciones médicas que ofrezcan, con la finalidad de brindar
+          un servicio de calidad digno de representar a la UNAM.</p>
         <hr class="my-4">
         <h1 class="h2 wbreak">Razón de ser.</h1>
-        <p class="lead">La Real Academia Española© refiere como albéitar a la persona que ejerce la veterinaria. Una parte sustancial de la formación del alumno universitario en su camino como veterinario es la realización del servicio social es; durante esta actividad tiene la oportunidad de poner en práctica sus conocimientos en situaciones del mundo laboral y profesional. Por otra parte, tiene un fuerte significado de retribución social, el cual es más acentuado cuando el servicio social tiene como objetivo acercar los servicios veterinarios a poblaciones rurales.<br>El personal docente es el elemento esencial de UNAM y la base sobre la que se ha construido el prestigio y liderazgo nacional e internacional de su Facultad de Medicina Veterinaria y Zootecnia. Muchos de estos profesores brindan asesorías a sus estudiantes e incluso a sus exalumnos, ya sea por vía telefónica, correo electrónico y otras tecnologías de comunicación, contribuyendo así a la formación permanente de los MVZ en México.<br>Las tecnologías de la información y la comunicación están modificando la forma en la que se realiza la educación hoy día, y la seguirán modificando a futuro. En este sentido, se espera que el papel del docente sea cada vez menos de instructor y más de asesor, que el autoaprendizaje sea la forma más común de aprendizaje y que la educación continua tenga tanta importancia como la educación escolar.<br>Cabe señalar que la consulta y discusión de casos clínicos es una técnica consecuente con la estrategia de aprendizaje basado en problemas, en la que el alumno mejora sus habilidades y amplía sus conocimientos, llevando a la práctica conocimientos previos sobre una disciplina concreta, con la asesoría de un docente.<br>La comunidad de aprendizaje que se crea mediante esta aplicación móvil atiende estas tendencias de la educación consolidando de manera vanguardista las tecnologías de la información y comunicación.
+        <p class="lead">
+          La Real Academia Española© refiere como albéitar a la persona que ejerce la veterinaria. Una parte sustancial de la formación
+          del alumno universitario en su camino hacia la medicina veterinaria es la realización del servicio social es; durante
+          esta actividad tiene la oportunidad de poner en práctica sus conocimientos en situaciones del mundo laboral y profesional.
+          Por otra parte, tiene un fuerte significado de retribución social, el cual es más acentuado cuando el servicio
+          social tiene como objetivo acercar los servicios médicos veterinarios a poblaciones rurales. El personal docente
+          es el elemento esencial de UNAM y la base sobre la que se ha construido el prestigio y liderazgo nacional e internacional
+          de su Facultad de Medicina Veterinaria y Zootecnia. Muchos de estos profesores brindan asesorías a sus estudiantes
+          e incluso a sus exalumnos, ya sea por vía telefónica, correo electrónico y otras tecnologías de comunicación, contribuyendo
+          así a la formación permanente de los MVZ en México. Las tecnologías de la información y la comunicación están modificando
+          la forma en la que se realiza la educación hoy día, y la seguirán modificando a futuro. En este sentido, se espera
+          que el papel del docente sea cada vez menos de instructor y más de asesor, que el autoaprendizaje sea la forma
+          más común de aprendizaje y que la educación continua tenga tanta importancia como la educación escolar. Cabe señalar
+          que la consulta y discusión de casos clínicos es una técnica consecuente con la estrategia de aprendizaje basado
+          en problemas, en la que el alumno mejora sus habilidades y amplía sus conocimientos, llevando a la práctica conocimientos
+          previos sobre una disciplina concreta, con la asesoría de un docente. La comunidad de aprendizaje que se crea mediante
+          esta aplicación móvil atiende estas tendencias de la educación consolidando de manera vanguardista las tecnologías
+          de la información y comunicación.
         </p>
         <hr class="my-4">
         <p class="h3">Créditos</p>
-        <p class="lead">Agradecemos la valiosa colaboración del equipo de desarrollo, así como también las sugerencias de los académicos participantes en el proyecto.</p>
-        <p class="h5 text-justify">"Creación de una comunidad de aprendizaje no formal de medicina veterinaria, mediante el desarrollo de una aplicación móvil para consultar casos clínicos a expertos”<br><br>Trabajo realizado con el apoyo del Programa UNAM-DGAPA-PAPIME PE205817.</p>
+        <p class="lead">
+          Agradecemos la valiosa colaboración del equipo de desarrollo de la Secretaría de Medicina:<br>
+          Alejandro Rodríguez Monterde Karen <br>   
+          Lizeth Tajonar García Carlos <br>
+          Antonio López Díaz <br>
+          Brenda Patricia Morales González <br>
+          Así como también las sugerencias de los académicos participantes en el proyecto. "Creación de una comunidad de aprendizaje no formal de medicina
+          veterinaria, mediante el desarrollo de una aplicación móvil para consultar casos clínicos a expertos” 
+          Trabajo realizado con el apoyo del Programa UNAM-DGAPA-PAPIME PE205817.
+        </p>
+        <p class="h5 text-justify">"Creación de una comunidad de aprendizaje no formal de medicina veterinaria, mediante el desarrollo de una aplicación
+          móvil para consultar casos clínicos a expertos”
+          <br>
+          <br>Trabajo realizado con el apoyo del Programa UNAM-DGAPA-PAPIME PE205817.</p>
       </div>
     </div>
   </main>

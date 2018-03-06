@@ -63,7 +63,7 @@ def index(request):
             message = "Usuario incorrecto."
 
     context = {
-        'title': "PetGurú - Inicio",
+        'title': "Albéitar",
         'message': message,
         'articles': articles,
         'form': login_form,
@@ -177,7 +177,7 @@ def question(request, id=None):
 def us(request):
     template = 'nosotros.html'
     context = {
-        'title': "PetGurú - Nosotros",
+        'title': "Albéitar - Nosotros",
     }
     return render(request, template, context)
 
@@ -185,7 +185,7 @@ def us(request):
 def rules(request):
     template = 'reglamento.html'
     context = {
-        'title': "PetGurú - Reglamento",
+        'title': "Albéitar - Reglamento",
     }
     return render(request, template, context)
 
@@ -193,7 +193,7 @@ def rules(request):
 def tuto(request):
     template = 'tutorial.html'
     context = {
-        'title': "PetGurú - tutorial",
+        'title': "Albéitar - tutorial",
     }
     return render(request, template, context)
 
@@ -281,9 +281,8 @@ def user(request):
                     emails = User.objects.filter(speciality='BV').filter(rol='TC')
                     try:
                         for user_speciality in emails:
-                            time_on_emails(base.pk, user_speciality.email,
-                                           html_content)
                             sendmailform(request, user_speciality.email, html_content)
+                            time_on_emails.delay(base.pk, user_speciality.email,html_content)
                     except Exception as e:
                         print('ERROR: ' + e)
 
@@ -308,9 +307,8 @@ def user(request):
                     emails = User.objects.filter(speciality='PR').filter(rol='TC')
                     try:
                         for user_speciality in emails:
-                            time_on_emails(base.pk, user_speciality.email,
-                                           html_content)
                             sendmailform(request, user_speciality.email, html_content)
+                            time_on_emails.delay(base.pk, user_speciality.email,html_content)
                     except Exception as e:
                         print('ERROR: ' + e.args)
 
@@ -335,9 +333,9 @@ def user(request):
                     emails = User.objects.filter(speciality='EQ').filter(rol='TC')
                     try:
                         for user_speciality in emails:
-                            time_on_emails(base.pk, user_speciality.email,
-                                           html_content)
                             sendmailform(request, user_speciality.email, html_content)
+                            time_on_emails.delay(
+                                base.pk, user_speciality.email, html_content)
                     except Exception as e:
                         print('ERROR: ' + e.args)
 
@@ -362,9 +360,8 @@ def user(request):
                     emails = User.objects.filter(speciality='OV').filter(rol='TC')
                     try:
                         for user_speciality in emails:
-                            time_on_emails(base.pk, user_speciality.email,
-                                           html_content)
                             sendmailform(request, user_speciality.email, html_content)
+                            time_on_emails.delay(base.pk, user_speciality.email,html_content)
                     except Exception as e:
                         print('ERROR: ' + e.args)
 
@@ -389,9 +386,8 @@ def user(request):
                     emails = User.objects.filter(speciality='CP').filter(rol='TC')
                     try:
                         for user_speciality in emails:
-                            time_on_emails(base.pk, user_speciality.email,
-                                           html_content)
                             sendmailform(request, user_speciality.email, html_content)
+                            time_on_emails.delay(base.pk, user_speciality.email,html_content)
                     except Exception as e:
                         print('ERROR: ' + e.args)
                     return redirect('home:usuario')
@@ -415,9 +411,8 @@ def user(request):
                     emails = User.objects.filter(speciality='LP').filter(rol='TC')
                     try:
                         for user_speciality in emails:
-                            time_on_emails(base.pk, user_speciality.email,
-                                           html_content)
                             sendmailform(request, user_speciality.email, html_content)
+                            time_on_emails.delay(base.pk, user_speciality.email,html_content)
                     except Exception as e:
                         print('ERROR: ' + e.args)
 
@@ -443,6 +438,8 @@ def user(request):
                     try:
                         for user_speciality in emails:
                             sendmailform(request, user_speciality.email, html_content)
+                            time_on_emails.delay(
+                                base.pk, user_speciality.email, html_content)
                     except Exception as e:
                         print('ERROR: ' + e.args)
 
@@ -468,6 +465,8 @@ def user(request):
                     try:
                         for user_speciality in emails:
                             sendmailform(request, user_speciality.email, html_content)
+                            time_on_emails.delay(
+                                base.pk, user_speciality.email, html_content)
                     except Exception as e:
                         print('ERROR: ' + e.args)
 
@@ -493,6 +492,8 @@ def user(request):
                     try:
                         for user_speciality in emails:
                             sendmailform(request, user_speciality.email, html_content)
+                            time_on_emails.delay(
+                                base.pk, user_speciality.email, html_content)
                     except Exception as e:
                         print('ERROR: ' + e.args)
 
@@ -518,6 +519,8 @@ def user(request):
                     try:
                         for user_speciality in emails:
                             sendmailform(request, user_speciality.email, html_content)
+                            time_on_emails.delay(
+                                base.pk, user_speciality.email, html_content)
                     except Exception as e:
                         print('ERROR: ' + e.args)
 
@@ -543,6 +546,7 @@ def user(request):
                     try:
                         for user_speciality in emails:
                             sendmailform(request, user_speciality.email, html_content)
+                            time_on_emails.delay(base.pk, user_speciality.email,html_content)
                     except Exception as e:
                         print('ERROR: ' + e.args)
 
@@ -568,6 +572,7 @@ def user(request):
                     try:
                         for user_speciality in emails:
                             sendmailform(request, user_speciality.email, html_content)
+                            time_on_emails.delay(base.pk, user_speciality.email,html_content)
                     except Exception as e:
                         print('ERROR: ' + e.args)
 
@@ -715,7 +720,7 @@ def search(request, label):
             message = "Usuario o contraseña incorrectos."
 
     context = {
-        'title': "PetGurú - Inicio",
+        'title': "Albéitar",
         'message': message,
         'articles': articles,
         'form': login_form,
@@ -812,7 +817,7 @@ def sendclosemail(request, email_user, html_content):
 def mail(request):
     template = 'mail.html'
     context = {
-        'title': "PetGurú - mail",
+        'title': "Albéitar - mail",
     }
     return render(request, template, context)
 

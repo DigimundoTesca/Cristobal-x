@@ -27,6 +27,7 @@ USER_APPS = [
     'home.apps.HomeConfig',
     'analytics.apps.AnalyticsConfig',
     'background_task',
+    'celery',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_APPS + USER_APPS
@@ -91,6 +92,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# Celery
+CELERY_BROKER_URL = 'amqp://localhost'
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
