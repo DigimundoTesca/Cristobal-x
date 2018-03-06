@@ -145,12 +145,12 @@ class Specie(models.Model):
         (MALE, 'Macho'),
         (FEMALE, 'Hembra'),
     )
-    FIELDS_S = ('id', 'Pregunta', 'Raza', 'Edad', 'Sexo', 'Peso','numero de especie')
+    FIELDS_S = ('id', 'Pregunta', 'Raza', 'Edad', 'Peso', 'Sexo','numero de especie')
     question = models.OneToOneField(Question, default='', related_name='specie_question')
     race = models.CharField(max_length=20, null=False)
     age = models.CharField(max_length=20, null=False)
+    weight = models.DecimalField(max_digits=7, decimal_places=3)
     gender = models.CharField(max_length=3, choices=SEX, default=MALE)
-    weight = models.DecimalField(max_digits=5, decimal_places=3)
 
     def __str__(self):
         return '%s' % "self.SPECIES_NUM[self.specie]"
@@ -181,11 +181,11 @@ class Bovine(Specie):
 
 class Goat(Specie):
     DEFAULT_IMAGE = 'https://ae01.alicdn.com/kf/HTB1U26nKXXXXXaHXFXXq6xXFXXXO/Wild-Animals-with-Goats-Farm-Cute-font-b-Funny-b-font-font-b-Graphic-b-font.jpg'
-    FIELDS = Specie.FIELDS_S + ('Etapa fisiológica', 'Fin zootécnico', 'Sistema de produccion', 'Frecuencia cardiaca', 'frecuencia respiratoria', 'Temperatura(C°)', 'Llenado capilar',
-                                'Color de mucosa', 'Linfonodos', 'Movimientos Ruminales', 'Condicion corporal', 'Reflejo tusígeno')
+    FIELDS = Specie.FIELDS_S + ('Etapa fisiológica', 'Sistema de produccion', 'Fin zootécnico', 'Frecuencia cardiaca', 'frecuencia respiratoria', 'Temperatura(C°)', 'Llenado capilar',
+                                'Color de mucosa', 'Linfonodos', 'Movimientos Ruminales', 'Reflejo tusígeno', 'Condicion corporal')
     physiological_stage = models.CharField(max_length=30, null=True)
-    zootechnical = models.CharField(max_length=50, null=True)
     production_system = models.CharField(max_length=30, null=True)
+    zootechnical = models.CharField(max_length=50, null=True)
     heart_rate = models.IntegerField()
     respiratory_rate = models.IntegerField()
     temperature = models.DecimalField(max_digits=5, decimal_places=3)
@@ -193,8 +193,8 @@ class Goat(Specie):
     mucosal_color = models.CharField(max_length=30, null=True)
     lymph_nodes = models.CharField(max_length=50, null=True)
     ruminal = models.CharField(max_length=80, null=True)
-    body_condition = models.TextField(null=True)
     cough = models.CharField(max_length=80, null=True)
+    body_condition = models.TextField(null=True)
     def __str__(self):
         return '%s' % self.id
 
@@ -215,7 +215,7 @@ class Rabbit(Specie):
         (FATTEN, 'Engorda'),
     )
     FIELDS = Specie.FIELDS_S + ('Etapa productiva', 'Frecuencia cardiaca', 'Frecuencia respiratoria', 'Temperatura(C°)',
-                                'Llenado capilar', 'Color de mucosa', 'Linfonodos', 'Condicion corporal', 'Deshidratación')
+                                'Llenado capilar', 'Color de mucosa', 'Ganglios linfáticos', 'Deshidratación', 'Condicion corporal')
     DEFAULT_IMAGE = 'https://s-media-cache-ak0.pinimg.com/originals/2d/74/16/2d7416c37512798a5ec46abb17f8ecda.jpg'
     productive_stage = models.CharField(max_length=10, choices=PRODUCTIVE, default=LACTATING)
     heart_rate = models.IntegerField()
@@ -224,8 +224,8 @@ class Rabbit(Specie):
     capilar = models.IntegerField()
     mucosal_color = models.CharField(max_length=30, null=True)
     lymph_nodes = models.CharField(max_length=50, null=True)
-    body_condition = models.TextField(null=True)
     dehydration = models.CharField(max_length=50, null=True)
+    body_condition = models.TextField(null=True)
 
     def __str__(self):
         return '%s' % self.id
@@ -236,12 +236,12 @@ class Rabbit(Specie):
 
 class Ovine(Specie):
     DEFAULT_IMAGE = 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Silhouette_1_%28mouton%29.svg/2000px-Silhouette_1_%28mouton%29.svg.png'
-    FIELDS = Specie.FIELDS_S + ('Etapa fisiológica', 'Fin zootécnico', 'Sistema de produccion', 'Frecuencia cardiaca',
+    FIELDS = Specie.FIELDS_S + ('Etapa fisiológica', 'Sistema de produccion', 'Fin zootécnico', 'Frecuencia cardiaca',
                                 'frecuencia respiratoria', 'Temperatura(C°)', 'Color de mucosa', 'Linfonodos',
                                 'Movimientos Ruminales', 'Condicion corporal')
     physiological_stage = models.CharField(max_length=30, null=True)
-    zootechnical = models.CharField(max_length=50, null=True)
     production_system = models.CharField(max_length=30, null=True)
+    zootechnical = models.CharField(max_length=50, null=True)
     heart_rate = models.IntegerField()
     respiratory_rate = models.IntegerField()
     temperature = models.DecimalField(max_digits=5, decimal_places=3)
@@ -300,17 +300,17 @@ class Cat(Specie):
 class Porcine(Specie):
     DEFAULT_IMAGE = 'https://images.vexels.com/media/users/3/140977/isolated/preview/6742cff06429c1440b9a2fb1c841a287-pig-silhouette-1-by-vexels.png'
     FIELDS = Specie.FIELDS_S + ('Etapa fisiológica', 'Sistema de produccion', 'Curso de padecimiento en dias',
-                                'Frecuencia cardiaca', 'frecuencia respiratoria', 'Temperatura(C°)', 'Condicion corporal'
-                                , 'Actitude', 'color')
+                                'Frecuencia cardiaca', 'frecuencia respiratoria', 'Temperatura(C°)', 'color'
+                                , 'Actitude', 'Condicion corporal')
     physiological_stage = models.CharField(max_length=30, null=True)
     production_system = models.CharField(max_length=30, null=True)
     curse = models.CharField(max_length=60, null=True)
     heart_rate = models.IntegerField()
     respiratory_rate = models.IntegerField()
     temperature = models.DecimalField(max_digits=5, decimal_places=3)
-    body_condition = models.TextField(null=True)
-    attitude = models.TextField(null=True)
     color = models.CharField(max_length=30, null=True)
+    attitude = models.TextField(null=True)
+    body_condition = models.TextField(null=True)
 
     def __str__(self):
         return '%s' % self.id
