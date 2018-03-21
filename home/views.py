@@ -607,7 +607,7 @@ def user(request):
 
     elif request.user.rol == 'TC':
         template = 'prof.html'
-        solved = Question.objects.filter(Q(status='OP') | Q(status='RP')).order_by('-id')
+        solved = Question.objects.filter(Q(status='OP') | Q(status='RP')).filter(specie=request.user.speciality).order_by('-id')
         article = Question.objects.filter(Q(status='CL')).order_by('-id')
         page = request.GET.get('page', 1)
         paginator = Paginator(solved, 6)

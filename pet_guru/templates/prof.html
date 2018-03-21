@@ -74,7 +74,7 @@
                       </thead>
                       <tbody>
                         {% for solved in solveds %}
-                        {% if solved.specie == user.speciality and solved.user_response == request.user or solved.user_response.pk == 1 and solved.specie == user.speciality %}  
+                        {% if solved.specie == user.speciality %}
                         <tr>
                           <td>
                             <a href="{{ solved.get_absolute_url }}" class="pl-2" style="color:#000000; text-decoration:none;">{{ solved.title }}</a>
