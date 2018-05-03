@@ -32,16 +32,16 @@
                     </tr>
                   </thead>
                   <tbody>
-                    {% if solveds|length > 0 %}
-                    {% for solved in solveds %}  
+                    {% if userLists|length > 0 %}
+                    {% for userList in userLists %}  
                     <tr>
                       <td>
-                        <p class="m-0 text-center font-weight-bold">{{ solved }}</p>
+                        <p class="m-0 text-center font-weight-bold">{{ userList }}</p>
                       </td>
                       <td  class="text-center">
-                        {% if solved.rol == 'AD' %}
+                        {% if userList.rol == 'AD' %}
                           <p class="m-0 text-center font-weight-bold">Administrador</p>
-                        {% elif solved.rol == 'TC' %}
+                        {% elif userList.rol == 'TC' %}
                           <p class="m-0 text-center font-weight-bold">Profesor</p>
                         {% else %}
                           <p class="m-0 text-center font-weight-bold">Estudiante</p>
@@ -49,10 +49,10 @@
                       </td>
                       <td class="text-center">
                         <div class="d-flex flex-row flex-wrap justify-content-center">
-                          {% if solved.is_active %}
+                          {% if userList.is_active %}
                             <form id="delete-form">
                               {% csrf_token %} 
-                              <button id="{{solved.id}}" style="min-width: 115px; height: 40px;" class="btn btn-danger delete_question d-flex flex-row justify-content-around">
+                              <button id="{{userList.id}}" style="min-width: 115px; height: 40px;" class="btn btn-danger deactivate d-flex flex-row justify-content-around">
                                 <i class="fa fa-user-times" aria-hidden="true"></i>
                                 Desactivar
                               </button>
@@ -60,7 +60,7 @@
                           {% else %}
                             <form id="delete-form">
                               {% csrf_token %} 
-                              <button id="{{solved.id}}" style="min-width: 115px; height: 40px;" class="btn btn-success delete_question d-flex flex-row justify-content-around">
+                              <button id="{{userList.id}}" style="min-width: 115px; height: 40px;" class="btn btn-success activate d-flex flex-row justify-content-around">
                                 <i class="fa fa-user-plus" aria-hidden="true"></i>
                                 Activar
                               </button>
@@ -93,33 +93,54 @@
 
 <script type="text/javascript">
   $(function () {
-    $('.delete_question').click(function (e) {
+    $('.deactivate').click(function (e) {
       e.preventDefault();
       var pk = $(this).attr('id');
+      var state = 'deactivate';
       console.log(pk)
       swal({
-        title: '¿Borrar pregunta?',
-        text: "¡Esto no se puede revertir!",
+        title: '¿Desactivar usuario?',
+        text: "¡El usuario ya no podra ingresar!",
         type: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#28a745',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Si, borrar!',
+        confirmButtonText: 'Si, desactivar!',
         cancelButtonText: 'Cancelar'
       }).then((result) => {
         console.log('submiting');
-        delete_question(pk); 
+        userState(pk, state); 
         $('#delete-form').submit();              
       })
     });
 
-    function delete_question(pk) {      
+    $('.activate').click(function (e) {
+      e.preventDefault();
+      var pk = $(this).attr('id');
+      var state = 'activate';
+      swal({
+        title: '¿Reactivar usuario?',
+        text: "¡El usuario tendrá acceso!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#28a745',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, activar!',
+        cancelButtonText: 'Cancelar'
+      }).then((result) => {
+        console.log('submiting');
+        userState(pk, state); 
+        $('#delete-form').submit();              
+      })
+    });
+
+    function userState(pk, state) {      
       $.ajax({
-        url: '{% url "home:revision" %}',
+        url: '{% url "home:userlist" %}',
         type: 'POST',
         data: {
           csrfmiddlewaretoken: '{{ csrf_token }}',
-          'type': 'deleteQ',
+          'type': state,
           'pk': pk,
         },
         traditional: true,

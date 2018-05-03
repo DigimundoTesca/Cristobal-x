@@ -32,7 +32,7 @@
                     <tr class="bg-dark text-white h4 text-uppercase">
                       <th id="questionField" class="text-center">Pregunta</th>
                       <th class="text-center">Estatus</th>
-                      <th class="text-center">Fecha</th>
+                      <th class="text-center">Estudiante / Fecha</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -54,7 +54,7 @@
                         </div>
                       </td>
                       <td  class="text-center">
-                        {{ solved.date }}
+                        <strong>{{ solved.user_question }}</strong> / {{ solved.date|date:" d, M, Y" }}
                       </td>
                     </tr>
                     {% endfor %}

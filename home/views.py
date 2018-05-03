@@ -709,7 +709,7 @@ def check(request):
                     pk = request.POST['pk']
                     change = Question.objects.get(pk=pk)
                     change.delete()
-                    return redirect('home:check')
+                    return redirect('home:revision')
 
 
         template = "admin_check.html"
@@ -730,7 +730,7 @@ def check(request):
         }
         return render(request, template, context)
     else:
-        return redirect('home:check')
+        return redirect('home:revision')
 
 
 
@@ -740,32 +740,31 @@ def userlist(request):
 
         if request.method == 'POST':
             if 'type' in request.POST:
-                if request.POST['type'] == 'deleteQ':
+                if request.POST['type'] == 'deactivate':
                     pk = request.POST['pk']
-                    change = Question.objects.get(pk=pk)
-                    change.delete()
-                    return redirect('home:check')
+                    user = User.objects.get(id=pk)
+                    user.is_active = False
+                    user.save()
+                    return redirect('home:userlist')
+                elif request.POST['type'] == 'activate':
+                    pk = request.POST['pk']
+                    user = User.objects.get(id=pk)
+                    user.is_active = True
+                    user.save()
+                    return redirect('home:userlist')
 
 
         template = "userList.html"
         messages = None
-        solved = User.objects.all().order_by('id')
-        page = request.GET.get('page', 1)
-        paginator = Paginator(solved, 10)
-        try:
-            solved = paginator.page(page)
-        except PageNotAnInteger:
-            solved = paginator.page(1)
-        except EmptyPage:
-            solved = paginator.page(paginator.num_pages)
+        userList = User.objects.all().order_by('id')
 
         context = {
-            'title': "Revisión",
-            'solveds': solved,
+            'title': "Listado de usuarios",
+            'userLists': userList,
         }
         return render(request, template, context)
     else:
-        return redirect('home:check')
+        return redirect('home:userlist')
 
 
 
