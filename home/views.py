@@ -701,6 +701,20 @@ def register(request):
         return redirect('home:inicio')
 
 
+
+@login_required(login_url='home:inicio')
+def check(request):
+    if request.user.rol == 'AD':
+        template = "admin_check.html"
+        messages = None
+        context = {
+            'title': 'Revisión',
+        }
+        return render(request, template, context)
+    else:
+        return redirect('home:inicio')
+
+
 def search(request, label):
     message = None
     template = 'article.html'
