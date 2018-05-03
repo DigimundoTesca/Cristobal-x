@@ -1,0 +1,135 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block content %}
+<div class="pageContainer">
+  <header class="unam-primary sticky-top">
+    <div class="container-fluid mainMenu">
+      {% block navigation %}
+      {% include 'base/nav.html' %}
+      {% endblock %}
+    </div>
+  </header>
+  <div class="container-fuid">
+    <div id="mainBanner" class="d-flex justify-content-around align-items-center">
+      <img src="{% static 'images/ban.jpg' %}" alt="Albéitar FMVZ" style="width:100%; heigth:auto;" class="m-auto">
+    </div>
+    <div class="row foroContainer">
+      <div class="container col-sm-12 col-md-10 p-0">
+        <div id="" class="col questContainer">
+          <div class="row d-flex flex-row justify-content-around">
+
+
+            <div id="mailLike" class="col-sm-12 w-100 p-0 text-center d-flex flex-column justify-content-around">
+              <h3 class="py-4">Listado de usuarios:</h3>
+
+              <div id="userQuestions" class="col questContainer">
+                <table id="userTable" class="w-100 justify-content-between">
+                  <thead>
+                    <tr class="bg-dark text-white h4 text-uppercase">
+                      <th class="text-center">Usuario</th>
+                      <th class="text-center">Tipo de Usuario</th>
+                      <th class="text-center">Estatus</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% if solveds|length > 0 %}
+                    {% for solved in solveds %}  
+                    <tr>
+                      <td>
+                        <p class="m-0 text-center font-weight-bold">{{ solved }}</p>
+                      </td>
+                      <td  class="text-center">
+                        {% if solved.rol == 'AD' %}
+                          <p class="m-0 text-center font-weight-bold">Administrador</p>
+                        {% elif solved.rol == 'TC' %}
+                          <p class="m-0 text-center font-weight-bold">Profesor</p>
+                        {% else %}
+                          <p class="m-0 text-center font-weight-bold">Estudiante</p>
+                        {% endif %}
+                      </td>
+                      <td class="text-center">
+                        <div class="d-flex flex-row flex-wrap justify-content-center">
+                          {% if solved.is_active %}
+                            <form id="delete-form">
+                              {% csrf_token %} 
+                              <button id="{{solved.id}}" style="min-width: 115px; height: 40px;" class="btn btn-danger delete_question d-flex flex-row justify-content-around">
+                                <i class="fa fa-user-times" aria-hidden="true"></i>
+                                Desactivar
+                              </button>
+                            </form>
+                          {% else %}
+                            <form id="delete-form">
+                              {% csrf_token %} 
+                              <button id="{{solved.id}}" style="min-width: 115px; height: 40px;" class="btn btn-success delete_question d-flex flex-row justify-content-around">
+                                <i class="fa fa-user-plus" aria-hidden="true"></i>
+                                Activar
+                              </button>
+                            </form>
+                          {% endif %}
+                        </div>
+                      </td>
+                    </tr>
+                    {% endfor %}
+                    {% else %}
+                    <tr>
+                      <td>
+                        No hay usuarios
+                      </td>
+                    </tr>
+                    {% endif %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{%block javascript%}
+
+<script type="text/javascript">
+  $(function () {
+    $('.delete_question').click(function (e) {
+      e.preventDefault();
+      var pk = $(this).attr('id');
+      console.log(pk)
+      swal({
+        title: '¿Borrar pregunta?',
+        text: "¡Esto no se puede revertir!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#28a745',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, borrar!',
+        cancelButtonText: 'Cancelar'
+      }).then((result) => {
+        console.log('submiting');
+        delete_question(pk); 
+        $('#delete-form').submit();              
+      })
+    });
+
+    function delete_question(pk) {      
+      $.ajax({
+        url: '{% url "home:revision" %}',
+        type: 'POST',
+        data: {
+          csrfmiddlewaretoken: '{{ csrf_token }}',
+          'type': 'deleteQ',
+          'pk': pk,
+        },
+        traditional: true,
+        datatype: 'jsonp',
+        success: function (result) {
+          console.log("wuuju");
+        },
+      });  
+    }
+  });
+</script>
+
+{%endblock javascript%}

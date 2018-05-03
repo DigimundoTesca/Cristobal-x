@@ -12,10 +12,7 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.http import HttpResponseRedirect
 from .forms import *
 from django.utils.datastructures import MultiValueDictKeyError
-from .models import Question
-from .models import Specie
-from .models import ImageQuestion
-from .models import Document
+from .models import *
 from users.helper_user import *
 
 from email.mime.multipart import MIMEMultipart
@@ -717,7 +714,7 @@ def check(request):
 
         template = "admin_check.html"
         messages = None
-        solved = Question.objects.all().order_by('-id')
+        solved = Question.objects.all().order_by('id')
         page = request.GET.get('page', 1)
         paginator = Paginator(solved, 10)
         try:
@@ -734,6 +731,43 @@ def check(request):
         return render(request, template, context)
     else:
         return redirect('home:check')
+
+
+
+@login_required(login_url='home:inicio')
+def userlist(request):
+    if request.user.rol == 'AD':
+
+        if request.method == 'POST':
+            if 'type' in request.POST:
+                if request.POST['type'] == 'deleteQ':
+                    pk = request.POST['pk']
+                    change = Question.objects.get(pk=pk)
+                    change.delete()
+                    return redirect('home:check')
+
+
+        template = "userList.html"
+        messages = None
+        solved = User.objects.all().order_by('id')
+        page = request.GET.get('page', 1)
+        paginator = Paginator(solved, 10)
+        try:
+            solved = paginator.page(page)
+        except PageNotAnInteger:
+            solved = paginator.page(1)
+        except EmptyPage:
+            solved = paginator.page(paginator.num_pages)
+
+        context = {
+            'title': "Revisión",
+            'solveds': solved,
+        }
+        return render(request, template, context)
+    else:
+        return redirect('home:check')
+
+
 
 
 def search(request, label):
