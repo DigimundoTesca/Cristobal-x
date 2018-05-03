@@ -11,10 +11,10 @@
     <ul class="navbar-nav  ml-auto mr-2">
       {% if user.rol == 'AD' %}
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'home:register' %}">Registro de usuario</a>
+        <a class="nav-link" href="{% url 'home:register' %}">Registro</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'home:check' %}">Revisión</a>
+        <a class="nav-link" href="{% url 'home:revision' %}">Revisión</a>
       </li>
       {% endif %}
       {% if not user.is_authenticated %}

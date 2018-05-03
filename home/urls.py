@@ -11,7 +11,7 @@ urlpatterns = [
     url(r'^reglamento/$', views.rules, name='reglamento'),
     url(r'^pregunta/(?P<id>\d+)/$', views.question, name='pregunta'),
     url(r'^registro/$', views.register, name='register'),
-    url(r'^revision/$', views.check, name='check'),
+    url(r'^revision/$', views.check, name='revision'),
     url(r'^tutorial/$', views.tuto, name='tutorial'),
     url(r'^logout/$', views.logout, name='logout'),
     # Just for develop; delete on production

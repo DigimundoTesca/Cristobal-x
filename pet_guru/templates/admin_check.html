@@ -14,7 +14,68 @@
       <img src="{% static 'images/ban.jpg' %}" alt="Albéitar FMVZ" style="width:100%; heigth:auto;" class="m-auto">
     </div>
     <div class="row foroContainer">
-      holis
+      <div class="container col-sm-12 col-md-9 p-0">
+        <div id="" class="col questContainer">
+          <div class="row d-flex flex-row justify-content-start">
+            {% for solved in solveds %} 
+            <div class="card articleCard" style="height: 450px;">
+              <div class="card-body d-flex flex-column justify-content-lg-around">
+                <div class="card-title card-banner">
+                  <img src="{{ solved.get_first_image }}" class="img-fluid" alt="Question image">
+                </div>
+                <h4 class="card-title">{{ solved.title }}</h4>
+                <p class="card-text text-truncate">{{ solved.description }}.</p>
+                <p class="card-text text-truncate">{{ solved.user_question }}.</p>
+                <div class="d-flex flex-row flex-wrap justify-content-around">
+                  <a href="{{ solved.get_absolute_url }}"> <button class="btn btn-success mail-btn">Ver pregunta</button> </a>
+                  <form method="POST">
+                    {% csrf_token %} 
+                    <button type="submit" id="{{solved.id}}" class="btn btn-danger delete_question">
+                      <i class="fa fa-trash-o" aria-hidden="true"></i>
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   {% endblock %}
+
+  {%block javascript%}
+
+  <script type="text/javascript">
+    $(function () {
+
+      function delete_question(pk) {      
+        $.ajax({
+          url: '{% url "home:revision" %}',
+          type: 'POST',
+          data: {
+            csrfmiddlewaretoken: '{{ csrf_token }}',
+            'type': 'deleteQ',
+            'pk': pk,
+          },
+          traditional: true,
+          datatype: 'jsonp',
+          success: function (result) {
+            console.log("wuuju");
+          },
+        });  
+      }
+      $('.delete_question').click(function () {
+        var pk = $(this).attr('id');
+        console.log(pk)
+        delete_question(pk);      
+      });
+
+
+    });
+
+
+  </script>
+
+  {%endblock javascript%}

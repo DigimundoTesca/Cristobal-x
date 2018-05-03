@@ -705,14 +705,35 @@ def register(request):
 @login_required(login_url='home:inicio')
 def check(request):
     if request.user.rol == 'AD':
+
+        if request.method == 'POST':
+            if 'type' in request.POST:
+                if request.POST['type'] == 'deleteQ':
+                    pk = request.POST['pk']
+                    change = Question.objects.get(pk=pk)
+                    change.delete()
+                    return redirect('home:check')
+
+
         template = "admin_check.html"
         messages = None
+        solved = Question.objects.all().order_by('-id')
+        page = request.GET.get('page', 1)
+        paginator = Paginator(solved, 10)
+        try:
+            solved = paginator.page(page)
+        except PageNotAnInteger:
+            solved = paginator.page(1)
+        except EmptyPage:
+            solved = paginator.page(paginator.num_pages)
+
         context = {
-            'title': 'Revisión',
+            'title': "Revisión",
+            'solveds': solved,
         }
         return render(request, template, context)
     else:
-        return redirect('home:inicio')
+        return redirect('home:check')
 
 
 def search(request, label):
