@@ -14,7 +14,7 @@
   </header>
   <div id="cuestionContainer">
     <div class="py-3 container">
-      <h2 class="text-center display-4">{{ titulo }}</h2>
+      <h2 class="text-center display-4">#{{ instance.id }} {{ titulo }}</h2>
       <h3 class="alert-heading text-center">Descripción de la consulta:</h3>
       <p class="py-3">{{instance.description}}</p>
       <p class="py-2 h4">Calificación: {{instance.calification}} <i class="fa fa-star" aria-hidden="true"></i></p>
@@ -24,7 +24,6 @@
         <div class="row">
           <div class="col-sm-4 col-md-4">
             <h2 class="alert-heading text-center mb-4">Datos clínicos.</h2>
-            <p>Pregunta: #{{ instance.id }}</p>
             <p>Especie: {{ instance.get_specie_display }}</p>
             <div class="">{% for field, value in values.items %}
               {% if field == 'id' or field == 'Pregunta' or field == 'numero de especie' or field == 'Especie'%}

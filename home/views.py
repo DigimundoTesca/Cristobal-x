@@ -24,6 +24,7 @@ from django.template.loader import get_template
 from django.template import Context
 
 from .tasks import time_on_emails
+# from .filters import UserFilter
 
 
 def index(request):
@@ -710,6 +711,19 @@ def check(request):
                     change = Question.objects.get(pk=pk)
                     change.delete()
                     return redirect('home:revision')
+        elif request.method == 'GET':
+            template = "admin_check.html"
+            messages = "showUser"
+            solved = Question.objects.all().order_by('id')
+            user_list = Question.objects.all()
+            user_filter = QuestionFilter(request.GET, queryset=user_list)
+            context = {
+            'title': "Revisión",
+            'message': "showUser",
+            'solveds': solved,
+            'filter': user_filter,
+             }
+            return render(request, 'admin_check.html', context)
 
 
         template = "admin_check.html"
@@ -727,6 +741,7 @@ def check(request):
         context = {
             'title': "Revisión",
             'solveds': solved,
+            'message': "notshow",
         }
         return render(request, template, context)
     else:
@@ -752,6 +767,19 @@ def userlist(request):
                     user.is_active = True
                     user.save()
                     return redirect('home:userlist')
+        elif request.method == 'GET':
+            template = "userList.html"
+            messages = "showUser"
+            solved = Question.objects.all().order_by('id')
+            user_list = User.objects.all()
+            user_filter = UserFilter(request.GET, queryset=user_list)
+            context = {
+            'title': "Revisión",
+            'message': "showUser",
+            'solveds': solved,
+            'filter': user_filter,
+             }
+            return render(request, 'userList.html', context)
 
 
         template = "userList.html"
