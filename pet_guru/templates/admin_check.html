@@ -21,6 +21,12 @@
 
             <div id="mailLike" class="col-sm-12 w-100 p-0 text-center d-flex flex-column justify-content-around">
               <h3 class=" mb-3">Preguntas existentes:</h3>
+              <div class="pb-4">
+                <form method="get">
+                  {{ filter.form.as_p }}
+                  <button class="btn btn-success" type="submit">Buscar ID</button>
+                </form>                
+              </div>
               <div class="row pl-5 py-3">
                 <button id="mailToogle" class="btn btn-primary m-1" style="min-width:50px;" onclick="showMail();"><i class="fa fa-bars" aria-hidden="true"></i></button>
                 <button id="cardToggle" class="btn btn-primary m-1" style="min-width:50px;" onclick="showCard()"><i class="fa fa-plus-square-o" aria-hidden="true"></i></button>
@@ -36,7 +42,29 @@
                     </tr>
                   </thead>
                   <tbody>
-                    {% if solveds|length > 0 %}
+                    {% if message == 'showUser' %}
+                    {% for question in filter.qs %}
+                    <tr>
+                      <td>
+                        <a href="{{ question.get_absolute_url }}" class="pl-2" style="color:#000000; text-decoration:none;">#{{ question.id }} {{ question.title }}</a>
+                      </td>
+                      <td class="text-center">
+                        <div class="d-flex flex-row flex-wrap justify-content-around">
+                          <a href="{{ question.get_absolute_url }}"> <button class="btn btn-success mail-btn">Ver pregunta</button> </a>
+                          <form id="delete-form">
+                            {% csrf_token %} 
+                            <button id="{{question.id}}" style="width: 40px;" class="btn btn-danger delete_question">
+                              <i class="fa fa-trash-o" aria-hidden="true"></i>
+                            </button>
+                          </form>
+                        </div>
+                      </td>
+                      <td  class="text-center">
+                        <strong>{{ question.user_question }}</strong> / {{ question.date|date:" d, M, Y" }}
+                      </td>
+                    </tr>
+                    {% endfor %}
+                    {% elif solveds|length > 0 %}
                     {% for solved in solveds %}  
                     <tr>
                       <td>
@@ -71,7 +99,29 @@
 
               <div id="userCards" class="col questContainer">
                 <div class="row d-flex flex-row justify-content-around">
-                  {% if solveds|length > 0 %}
+                  {% if message == 'showUser' %}
+                  {% for question in filter.qs %}
+                  <div class="card articleCard" style="height: 450px;">
+                    <div class="card-body d-flex flex-column justify-content-around">
+                      <div class="card-title card-banner">
+                        <img src="{{ question.get_first_image }}" class="img-fluid" alt="Question image">
+                      </div>
+                      <h4 class="card-title">#{{question.id }} {{question.title }}</h4>
+                      <p class="card-text text-truncate">{{question.description }}.</p>
+                      <p ><strong>Estudiante:</strong><br>{{question.user_question }}.</p>
+                      <div class="d-flex flex-row flex-wrap justify-content-around">
+                        <a href="{{ question.get_absolute_url }}"> <button class="btn btn-success mail-btn">Ver pregunta</button> </a>
+                        <form id="delete-form">
+                          {% csrf_token %} 
+                          <button id="{{question.id}}" style="width: 40px;" class="btn btn-danger delete_question">
+                            <i class="fa fa-trash-o" aria-hidden="true"></i>
+                          </button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                  {% endfor %}
+                  {% elif solveds|length > 0 %}
                   {% for solved in solveds %} 
                   <div class="card articleCard" style="height: 450px;">
                     <div class="card-body d-flex flex-column justify-content-lg-around">

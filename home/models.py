@@ -10,6 +10,7 @@ from django.shortcuts import get_object_or_404
 from django.contrib.staticfiles.templatetags.staticfiles import static
 
 from users.models import User
+import django_filters
 
 
 class Question(models.Model):
@@ -716,3 +717,17 @@ class Document(models.Model):
             return static('extensions/'+extension+'.png')
         else:
             return static('extensions/blank.png')
+
+
+
+
+
+class QuestionFilter(django_filters.FilterSet):
+    class Meta:
+        model = Question
+        fields = ['id' ]
+
+class UserFilter(django_filters.FilterSet):
+    class Meta:
+        model = User
+        fields = ['username' ]

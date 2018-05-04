@@ -21,7 +21,12 @@
 
             <div id="mailLike" class="col-sm-12 w-100 p-0 text-center d-flex flex-column justify-content-around">
               <h3 class="py-4">Listado de usuarios:</h3>
-
+              <div class="pb-4">
+                <form method="get">
+                  {{ filter.form.as_p }}
+                  <button class="btn btn-success" type="submit">Buscar</button>
+                </form>                
+              </div>
               <div id="userQuestions" class="col questContainer">
                 <table id="userTable" class="w-100 justify-content-between">
                   <thead>
@@ -32,7 +37,45 @@
                     </tr>
                   </thead>
                   <tbody>
-                    {% if userLists|length > 0 %}
+                    {% if message == 'showUser' %}
+                    {% for user in filter.qs %} 
+                    <tr>
+                      <td>
+                        <p class="m-0 text-center font-weight-bold">{{ user }}</p>
+                      </td>
+                      <td  class="text-center">
+                        {% if user.rol == 'AD' %}
+                        <p class="m-0 text-center font-weight-bold">Administrador</p>
+                        {% elif user.rol == 'TC' %}
+                        <p class="m-0 text-center font-weight-bold">Profesor</p>
+                        {% else %}
+                        <p class="m-0 text-center font-weight-bold">Estudiante</p>
+                        {% endif %}
+                      </td>
+                      <td class="text-center">
+                        <div class="d-flex flex-row flex-wrap justify-content-center">
+                          {% if user.is_active %}
+                          <form id="delete-form">
+                            {% csrf_token %} 
+                            <button id="{{user.id}}" style="min-width: 115px; height: 40px;" class="btn btn-danger deactivate d-flex flex-row justify-content-around">
+                              <i class="fa fa-user-times" aria-hidden="true"></i>
+                              Desactivar
+                            </button>
+                          </form>
+                          {% else %}
+                          <form id="delete-form">
+                            {% csrf_token %} 
+                            <button id="{{user.id}}" style="min-width: 115px; height: 40px;" class="btn btn-success activate d-flex flex-row justify-content-around">
+                              <i class="fa fa-user-plus" aria-hidden="true"></i>
+                              Activar
+                            </button>
+                          </form>
+                          {% endif %}
+                        </div>
+                      </td>
+                    </tr>
+                    {% endfor %}
+                    {% elif userLists|length > 0 %}
                     {% for userList in userLists %}  
                     <tr>
                       <td>
@@ -40,31 +83,31 @@
                       </td>
                       <td  class="text-center">
                         {% if userList.rol == 'AD' %}
-                          <p class="m-0 text-center font-weight-bold">Administrador</p>
+                        <p class="m-0 text-center font-weight-bold">Administrador</p>
                         {% elif userList.rol == 'TC' %}
-                          <p class="m-0 text-center font-weight-bold">Profesor</p>
+                        <p class="m-0 text-center font-weight-bold">Profesor</p>
                         {% else %}
-                          <p class="m-0 text-center font-weight-bold">Estudiante</p>
+                        <p class="m-0 text-center font-weight-bold">Estudiante</p>
                         {% endif %}
                       </td>
                       <td class="text-center">
                         <div class="d-flex flex-row flex-wrap justify-content-center">
                           {% if userList.is_active %}
-                            <form id="delete-form">
-                              {% csrf_token %} 
-                              <button id="{{userList.id}}" style="min-width: 115px; height: 40px;" class="btn btn-danger deactivate d-flex flex-row justify-content-around">
-                                <i class="fa fa-user-times" aria-hidden="true"></i>
-                                Desactivar
-                              </button>
-                            </form>
+                          <form id="delete-form">
+                            {% csrf_token %} 
+                            <button id="{{userList.id}}" style="min-width: 115px; height: 40px;" class="btn btn-danger deactivate d-flex flex-row justify-content-around">
+                              <i class="fa fa-user-times" aria-hidden="true"></i>
+                              Desactivar
+                            </button>
+                          </form>
                           {% else %}
-                            <form id="delete-form">
-                              {% csrf_token %} 
-                              <button id="{{userList.id}}" style="min-width: 115px; height: 40px;" class="btn btn-success activate d-flex flex-row justify-content-around">
-                                <i class="fa fa-user-plus" aria-hidden="true"></i>
-                                Activar
-                              </button>
-                            </form>
+                          <form id="delete-form">
+                            {% csrf_token %} 
+                            <button id="{{userList.id}}" style="min-width: 115px; height: 40px;" class="btn btn-success activate d-flex flex-row justify-content-around">
+                              <i class="fa fa-user-plus" aria-hidden="true"></i>
+                              Activar
+                            </button>
+                          </form>
                           {% endif %}
                         </div>
                       </td>
