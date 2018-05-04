@@ -40,7 +40,7 @@
                     {% for solved in solveds %}  
                     <tr>
                       <td>
-                        <a href="{{ solved.get_absolute_url }}" class="pl-2" style="color:#000000; text-decoration:none;">{{ solved.title }}</a>
+                        <a href="{{ solved.get_absolute_url }}" class="pl-2" style="color:#000000; text-decoration:none;">#{{ solved.id }} {{ solved.title }}</a>
                       </td>
                       <td class="text-center">
                         <div class="d-flex flex-row flex-wrap justify-content-around">
@@ -78,7 +78,7 @@
                       <div class="card-title card-banner">
                         <img src="{{ solved.get_first_image }}" class="img-fluid" alt="Question image">
                       </div>
-                      <h4 class="card-title">{{ solved.title }}</h4>
+                      <h4 class="card-title">#{{ solved.id }} {{ solved.title }}</h4>
                       <p class="card-text text-truncate">{{ solved.description }}.</p>
                       <p ><strong>Estudiante:</strong><br>{{ solved.user_question }}.</p>
                       <div class="d-flex flex-row flex-wrap justify-content-around">
