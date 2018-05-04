@@ -91,7 +91,7 @@
               <input class="form-control-file" type="file" name="image" id="id_image" accept="image/png, .jpeg, .jpg, image/gif"/>          
             </div>
             <div class="form-row">
-              <button type="submit" name="submit" id="m1" class="col-md-2 ml-md-auto btn btn-primary subMessage">Enviar</button>              
+              <button type="submit" name="submit2me" id="m1" class="col-md-2 ml-md-auto btn btn-primary subMessage">Enviar</button>              
             </div>
           </form>                        
         </div>
@@ -148,7 +148,7 @@
               <input class="form-control-file" type="file" name="image" id="id_image" accept="image/png, .jpeg, .jpg, image/gif"/>        
             </div>
             <div class="form-row">
-              <button type="submit" name="submit" id="m2" class="col-md-2 ml-md-auto btn btn-primary subMessage">Enviar</button>              
+              <button type="submit" name="submit2" id="m2" class="col-md-2 ml-md-auto btn btn-primary subMessage">Enviar</button>              
             </div>
           </form>                        
         </div>
@@ -282,23 +282,22 @@
               change_state(pk);
             });
             // Function to show swal2 send confirmation
-            // $('.subMessage').click(function (e) {
-            //   var form2sent = $(this).attr('id');
-            //   var subForm = '#messageForm' + form2sent;
-            //   console.log(subForm)
-            //   e.preventDefault();
-            //   swal({
-            //     title: 'Su mensaje será enviado',
-            //     type: 'success',
-            //     confirmButtonColor: '#28a745',
-            //     confirmButtonText: 'Enviar',
-            //     timer: 2000,
-            //   },
-            //   function () {
-            //     console.log('submiting');
-            //     subForm.submit();              
-            //   });
-            // });
+            $('.subMessage').click(function (e) {
+              e.preventDefault();
+              var form2sent = $(this).attr('id');
+              var subForm = "messageForm" + form2sent;
+              swal({
+                title: 'Su mensaje será enviado',
+                type: 'success',
+                showConfirmButton: false,
+                timer: 2000
+              }).catch(swal.noop)
+              submitMe(subForm);
+            });
+            function submitMe(subForm) {
+              console.log(subForm);
+              document.getElementById(subForm).submit(); 
+            }
             function change_state(pk) {
               $.ajax({
                 url: '{% url "home:pregunta" label %}',
