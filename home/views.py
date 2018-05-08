@@ -12,10 +12,7 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.http import HttpResponseRedirect
 from .forms import *
 from django.utils.datastructures import MultiValueDictKeyError
-from .models import Question
-from .models import Specie
-from .models import ImageQuestion
-from .models import Document
+from .models import *
 from users.helper_user import *
 
 from email.mime.multipart import MIMEMultipart
@@ -27,6 +24,7 @@ from django.template.loader import get_template
 from django.template import Context
 
 from .tasks import time_on_emails
+# from .filters import UserFilter
 
 
 def index(request):
@@ -699,6 +697,104 @@ def register(request):
         return render(request, template, context)
     else:
         return redirect('home:inicio')
+
+
+
+@login_required(login_url='home:inicio')
+def check(request):
+    if request.user.rol == 'AD':
+
+        if request.method == 'POST':
+            if 'type' in request.POST:
+                if request.POST['type'] == 'deleteQ':
+                    pk = request.POST['pk']
+                    change = Question.objects.get(pk=pk)
+                    change.delete()
+                    return redirect('home:revision')
+        elif request.method == 'GET':
+            template = "admin_check.html"
+            messages = "showUser"
+            solved = Question.objects.all().order_by('id')
+            user_list = Question.objects.all()
+            user_filter = QuestionFilter(request.GET, queryset=user_list)
+            context = {
+            'title': "Revisión",
+            'message': "showUser",
+            'solveds': solved,
+            'filter': user_filter,
+             }
+            return render(request, 'admin_check.html', context)
+
+
+        template = "admin_check.html"
+        messages = None
+        solved = Question.objects.all().order_by('id')
+        page = request.GET.get('page', 1)
+        paginator = Paginator(solved, 10)
+        try:
+            solved = paginator.page(page)
+        except PageNotAnInteger:
+            solved = paginator.page(1)
+        except EmptyPage:
+            solved = paginator.page(paginator.num_pages)
+
+        context = {
+            'title': "Revisión",
+            'solveds': solved,
+            'message': "notshow",
+        }
+        return render(request, template, context)
+    else:
+        return redirect('home:revision')
+
+
+
+@login_required(login_url='home:inicio')
+def userlist(request):
+    if request.user.rol == 'AD':
+
+        if request.method == 'POST':
+            if 'type' in request.POST:
+                if request.POST['type'] == 'deactivate':
+                    pk = request.POST['pk']
+                    user = User.objects.get(id=pk)
+                    user.is_active = False
+                    user.save()
+                    return redirect('home:userlist')
+                elif request.POST['type'] == 'activate':
+                    pk = request.POST['pk']
+                    user = User.objects.get(id=pk)
+                    user.is_active = True
+                    user.save()
+                    return redirect('home:userlist')
+        elif request.method == 'GET':
+            template = "userList.html"
+            messages = "showUser"
+            solved = Question.objects.all().order_by('id')
+            user_list = User.objects.all()
+            user_filter = UserFilter(request.GET, queryset=user_list)
+            context = {
+            'title': "Revisión",
+            'message': "showUser",
+            'solveds': solved,
+            'filter': user_filter,
+             }
+            return render(request, 'userList.html', context)
+
+
+        template = "userList.html"
+        messages = None
+        userList = User.objects.all().order_by('id')
+
+        context = {
+            'title': "Listado de usuarios",
+            'userLists': userList,
+        }
+        return render(request, template, context)
+    else:
+        return redirect('home:userlist')
+
+
 
 
 def search(request, label):

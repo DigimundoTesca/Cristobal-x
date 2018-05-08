@@ -1,0 +1,203 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block content %}
+<div class="pageContainer">
+  <header class="unam-primary sticky-top">
+    <div class="container-fluid mainMenu">
+      {% block navigation %}
+      {% include 'base/nav.html' %}
+      {% endblock %}
+    </div>
+  </header>
+  <div class="container-fuid">
+    <div id="mainBanner" class="d-flex justify-content-around align-items-center">
+      <img src="{% static 'images/ban.jpg' %}" alt="Albéitar FMVZ" style="width:100%; heigth:auto;" class="m-auto">
+    </div>
+    <div class="row foroContainer">
+      <div class="container col-sm-12 col-md-10 p-0">
+        <div id="" class="col questContainer">
+          <div class="row d-flex flex-row justify-content-around">
+
+
+            <div id="mailLike" class="col-sm-12 w-100 p-0 text-center d-flex flex-column justify-content-around">
+              <h3 class=" mb-3">Preguntas existentes:</h3>
+              <div class="pb-4">
+                <form method="get">
+                  {{ filter.form.as_p }}
+                  <button class="btn btn-success" type="submit">Buscar ID</button>
+                </form>                
+              </div>
+              <div class="row pl-5 py-3">
+                <button id="mailToogle" class="btn btn-primary m-1" style="min-width:50px;" onclick="showMail();"><i class="fa fa-bars" aria-hidden="true"></i></button>
+                <button id="cardToggle" class="btn btn-primary m-1" style="min-width:50px;" onclick="showCard()"><i class="fa fa-plus-square-o" aria-hidden="true"></i></button>
+              </div>
+
+              <div id="userQuestions" class="col questContainer">
+                <table id="userTable" class="w-100 justify-content-around">
+                  <thead>
+                    <tr class="bg-dark text-white h4 text-uppercase">
+                      <th id="questionField" class="text-center">Pregunta</th>
+                      <th class="text-center">Estatus</th>
+                      <th class="text-center">Estudiante / Fecha</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% if message == 'showUser' %}
+                    {% for question in filter.qs %}
+                    <tr>
+                      <td>
+                        <a href="{{ question.get_absolute_url }}" class="pl-2" style="color:#000000; text-decoration:none;">#{{ question.id }} {{ question.title }}</a>
+                      </td>
+                      <td class="text-center">
+                        <div class="d-flex flex-row flex-wrap justify-content-around">
+                          <a href="{{ question.get_absolute_url }}"> <button class="btn btn-success mail-btn">Ver pregunta</button> </a>
+                          <form id="delete-form">
+                            {% csrf_token %} 
+                            <button id="{{question.id}}" style="width: 40px;" class="btn btn-danger delete_question">
+                              <i class="fa fa-trash-o" aria-hidden="true"></i>
+                            </button>
+                          </form>
+                        </div>
+                      </td>
+                      <td  class="text-center">
+                        <strong>{{ question.user_question }}</strong> / {{ question.date|date:" d, M, Y" }}
+                      </td>
+                    </tr>
+                    {% endfor %}
+                    {% elif solveds|length > 0 %}
+                    {% for solved in solveds %}  
+                    <tr>
+                      <td>
+                        <a href="{{ solved.get_absolute_url }}" class="pl-2" style="color:#000000; text-decoration:none;">#{{ solved.id }} {{ solved.title }}</a>
+                      </td>
+                      <td class="text-center">
+                        <div class="d-flex flex-row flex-wrap justify-content-around">
+                          <a href="{{ solved.get_absolute_url }}"> <button class="btn btn-success mail-btn">Ver pregunta</button> </a>
+                          <form id="delete-form">
+                            {% csrf_token %} 
+                            <button id="{{solved.id}}" style="width: 40px;" class="btn btn-danger delete_question">
+                              <i class="fa fa-trash-o" aria-hidden="true"></i>
+                            </button>
+                          </form>
+                        </div>
+                      </td>
+                      <td  class="text-center">
+                        <strong>{{ solved.user_question }}</strong> / {{ solved.date|date:" d, M, Y" }}
+                      </td>
+                    </tr>
+                    {% endfor %}
+                    {% else %}
+                    <tr>
+                      <td>
+                        No hay preguntas
+                      </td>
+                    </tr>
+                    {% endif %}
+                  </tbody>
+                </table>
+              </div>
+
+              <div id="userCards" class="col questContainer">
+                <div class="row d-flex flex-row justify-content-around">
+                  {% if message == 'showUser' %}
+                  {% for question in filter.qs %}
+                  <div class="card articleCard" style="height: 450px;">
+                    <div class="card-body d-flex flex-column justify-content-around">
+                      <div class="card-title card-banner">
+                        <img src="{{ question.get_first_image }}" class="img-fluid" alt="Question image">
+                      </div>
+                      <h4 class="card-title">#{{question.id }} {{question.title }}</h4>
+                      <p class="card-text text-truncate">{{question.description }}.</p>
+                      <p ><strong>Estudiante:</strong><br>{{question.user_question }}.</p>
+                      <div class="d-flex flex-row flex-wrap justify-content-around">
+                        <a href="{{ question.get_absolute_url }}"> <button class="btn btn-success mail-btn">Ver pregunta</button> </a>
+                        <form id="delete-form">
+                          {% csrf_token %} 
+                          <button id="{{question.id}}" style="width: 40px;" class="btn btn-danger delete_question">
+                            <i class="fa fa-trash-o" aria-hidden="true"></i>
+                          </button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                  {% endfor %}
+                  {% elif solveds|length > 0 %}
+                  {% for solved in solveds %} 
+                  <div class="card articleCard" style="height: 450px;">
+                    <div class="card-body d-flex flex-column justify-content-lg-around">
+                      <div class="card-title card-banner">
+                        <img src="{{ solved.get_first_image }}" class="img-fluid" alt="Question image">
+                      </div>
+                      <h4 class="card-title">#{{ solved.id }} {{ solved.title }}</h4>
+                      <p class="card-text text-truncate">{{ solved.description }}.</p>
+                      <p ><strong>Estudiante:</strong><br>{{ solved.user_question }}.</p>
+                      <div class="d-flex flex-row flex-wrap justify-content-around">
+                        <a href="{{ solved.get_absolute_url }}"> <button class="btn btn-success mail-btn">Ver pregunta</button> </a>
+                        <form id="delete-form">
+                          {% csrf_token %} 
+                          <button id="{{solved.id}}" style="width: 40px;" class="btn btn-danger delete_question">
+                            <i class="fa fa-trash-o" aria-hidden="true"></i>
+                          </button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                  {% endfor %}
+                  {% else %}
+                  <p>no hay preguntas</p>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{%block javascript%}
+
+<script type="text/javascript">
+  $(function () {
+    $('.delete_question').click(function (e) {
+      e.preventDefault();
+      var pk = $(this).attr('id');
+      console.log(pk)
+      swal({
+        title: '¿Borrar pregunta?',
+        text: "¡Esto no se puede revertir!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#28a745',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, borrar!',
+        cancelButtonText: 'Cancelar'
+      }).then((result) => {
+        console.log('submiting');
+        delete_question(pk); 
+        $('#delete-form').submit();              
+      })
+    });
+
+    function delete_question(pk) {      
+      $.ajax({
+        url: '{% url "home:revision" %}',
+        type: 'POST',
+        data: {
+          csrfmiddlewaretoken: '{{ csrf_token }}',
+          'type': 'deleteQ',
+          'pk': pk,
+        },
+        traditional: true,
+        datatype: 'jsonp',
+        success: function (result) {
+          console.log("wuuju");
+        },
+      });  
+    }
+  });
+</script>
+
+{%endblock javascript%}
