@@ -32,6 +32,7 @@
       <li class="nav-item">
         <a class="nav-link" href="{% url 'home:articulos' %}">Aprendizaje</a>
       </li>
+      {% endif %}
       <li class="nav-item">
         <a class="nav-link" href="{% url 'home:nosotros' %}">Nosotros</a>
       </li>
@@ -41,7 +42,6 @@
       <li class="nav-item">
         <a class="nav-link" href="{% url 'home:tutorial' %}">Tutorial</a>
       </li>
-      {% endif %}
       {% if user.is_authenticated %}
       <li class="nav-item">
         <a class="nav-link" href="{% url 'home:logout' %}">Cerrar Sesion</a>
