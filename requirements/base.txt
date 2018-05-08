@@ -18,3 +18,4 @@ gunicorn==19.7.1
 # -------------------------------------------------------
 olefile==0.44
 django-background-tasks
+-U "Celery[redis]"
