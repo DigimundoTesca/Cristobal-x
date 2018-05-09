@@ -97,176 +97,194 @@
         </div>
         <div class="container messages-cont">
           {% for message in messages %}
-          <div class="row justify-content-start">
-            <div class="col-md-7 col-sm-7">
-              <div class="card card-message">
-                <div class="card-header text-left">
+          <div class="row">
+            {% if message.handle == instance.user_response.username %}
+            <div class="col-md-7 col-sm-7 mr-auto">
+              {% else %} 
+              <div class="col-md-7 col-sm-7 ml-auto">
+                {% endif %}
+                <div class="card card-message">
                   {% if message.handle == instance.user_response.username %}
-                  <p>Albéitar </p>
+                  <div class="card-header text-left">
+                    <p class="font-weight-bold m-0">Albéitar </p>
+                  </div>
                   {% else %}  
-                  {{message.handle}}
+                  <div class="card-header text-right" style="background: #B2EBF2;">
+                    <p class="font-weight-bold m-0">{{message.handle}}</p>
+                  </div>
                   {% endif %}
-                </div>
-                <div class="card-body text-left">
-                  <p>{{message.message}}</p>
-                  {% if message.image %}
-                  <a href="{{message.image.url}}">
-                    <img class="img-fluid" src="{{message.image.url}}" alt=""> <br>
-                  </a>
-                  {% endif%}
-                  {% if message.document %}
-                  <a href="{{message.document.url}}" target="_blank" style="display:block;">Descargar:</a>
-                  <!-- <iframe src="{{message.document.url}}" style="width:220px; height: auto;" class="img-fluid" frameborder="0"></iframe>   --> 
-                  <iframe src="https://docs.google.com/viewer?url={{message.document.url}}&embedded=true" style="width:220px; height: auto;" class="img-fluid" frameborder="0"></iframe>               
-                  {% endif%} 
-                </div>
-                <div class="card-footer text-muted text-right">
-                  <p>{{ message.formatted_timestamp }}</p>
+                  <div class="card-body text-left">
+                    <p>{{message.message}}</p>
+                    {% if message.image %}
+                    <a href="{{message.image.url}}">
+                      <img class="img-fluid" src="{{message.image.url}}" alt=""> <br>
+                    </a>
+                    {% endif%}
+                    {% if message.document %}
+                    <a href="{{message.document.url}}" target="_blank" style="display:block;">Descargar:</a>
+                    <!-- <iframe src="{{message.document.url}}" style="width:220px; height: auto;" class="img-fluid" frameborder="0"></iframe>   --> 
+                    <iframe src="https://docs.google.com/viewer?url={{message.document.url}}&embedded=true" style="width:220px; height: auto;" class="img-fluid" frameborder="0"></iframe>               
+                    {% endif%} 
+                  </div>
+                  <div class="card-footer text-muted text-right">
+                    <p>{{ message.formatted_timestamp }}</p>
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>  
-          {% endfor %}
-        </div>
-        {% elif user == instance.user_response and instance.status == 'RP' %}
-        <div>
-          <h1  class="text-center">Comentarios</h1>
-          <form id="messageFormm2" class="col-md-12" method="POST" enctype="multipart/form-data">
-            {% csrf_token %}               
-            <div class="form-row">
-              <label class="col-md-2" for="id_message">Mensaje:</label>
-              <div class="col-md-10">
-                <textarea class="form-control" name="message" cols="40" rows="10" maxlength="200" required id="id_message"></textarea>
+            </div>  
+            {% endfor %}
+          </div>
+          {% elif user == instance.user_response and instance.status == 'RP' %}
+          <div>
+            <h1  class="text-center">Comentarios</h1>
+            <form id="messageFormm2" class="col-md-12" method="POST" enctype="multipart/form-data">
+              {% csrf_token %}               
+              <div class="form-row">
+                <label class="col-md-2" for="id_message">Mensaje:</label>
+                <div class="col-md-10">
+                  <textarea class="form-control" name="message" cols="40" rows="10" maxlength="200" required id="id_message"></textarea>
+                </div>
               </div>
-            </div>
-            <div class="form-row fileContainer">
-              <label for="id_document">Documento:<br><span class="miniText">(Archivos en formato doc, docx, xls, xlsx, txt, pdf y videos)</span></label>
-              <input class="form-control-file" type="file" name="document" id="id_document" accept="application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, text/plain, application/pdf,video/*"/>
-            </div>
-            <div class="form-row fileContainer">
-              <label for="id_image">Imagen:<br><span class="miniText">(Solo imágenes en formato jpg, jpeg, png, gif)</span></label>
-              <input class="form-control-file" type="file" name="image" id="id_image" accept="image/png, .jpeg, .jpg, image/gif"/>        
-            </div>
-            <div class="form-row">
-              <button type="submit" name="submit2" id="m2" class="col-md-2 ml-md-auto btn btn-primary subMessage">Enviar</button>              
-            </div>
-          </form>                        
-        </div>
-        <div class="container messages-cont">
-          {% for message in messages %}
-          <div class="row justify-content-start">
-            <div class="col-md-7 col-sm-7">
-              <div class="card card-message">
-                <div class="card-header text-left">
-                  {% if message.handle == instance.user_response.username %}
-                  <p>Albéitar </p>
-                  {% else %}  
-                  {{message.handle}}
+              <div class="form-row fileContainer">
+                <label for="id_document">Documento:<br><span class="miniText">(Archivos en formato doc, docx, xls, xlsx, txt, pdf y videos)</span></label>
+                <input class="form-control-file" type="file" name="document" id="id_document" accept="application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, text/plain, application/pdf,video/*"/>
+              </div>
+              <div class="form-row fileContainer">
+                <label for="id_image">Imagen:<br><span class="miniText">(Solo imágenes en formato jpg, jpeg, png, gif)</span></label>
+                <input class="form-control-file" type="file" name="image" id="id_image" accept="image/png, .jpeg, .jpg, image/gif"/>        
+              </div>
+              <div class="form-row">
+                <button type="submit" name="submit2" id="m2" class="col-md-2 ml-md-auto btn btn-primary subMessage">Enviar</button>              
+              </div>
+            </form>                        
+          </div>
+          <div class="container messages-cont">
+            {% for message in messages %}
+            <div class="row">
+              {% if message.handle == instance.user_response.username %}
+              <div class="col-md-7 col-sm-7 mr-auto">
+                {% else %} 
+                <div class="col-md-7 col-sm-7 ml-auto">
                   {% endif %}
+                  <div class="card card-message">
+                    {% if message.handle == instance.user_response.username %}
+                    <div class="card-header text-left">
+                      <p class="font-weight-bold m-0">Albéitar </p>
+                    </div>
+                    {% else %}  
+                    <div class="card-header text-right" style="background: #B2EBF2;">
+                      <p class="font-weight-bold m-0">{{message.handle}}</p>
+                    </div>
+                    {% endif %}
+                    <div class="card-body text-left">
+                      <p>{{message.message}}</p>
+                      {% if message.image %}
+                      <a href="{{message.image.url}}">
+                        <img class="img-fluid" src="{{message.image.url}}" alt=""> <br>
+                      </a>
+                      {% endif%}
+                      {% if message.document %}
+                      <a href="{{message.document.url}}" target="_blank" style="display:block;">Descargar:</a>
+                      <!-- <iframe src="{{message.document.url}}" style="width:220px; height: auto;" class="img-fluid" frameborder="0"></iframe>   --> 
+                      <iframe src="https://docs.google.com/viewer?url={{message.document.url}}&embedded=true" style="width:220px; height: auto;" class="img-fluid" frameborder="0"></iframe>                 
+                      {% endif%} 
+                    </div>
+                    <div class="card-footer text-muted text-right">
+                      <p>{{ message.formatted_timestamp }}</p>
+                    </div>
+                  </div>
                 </div>
-                <div class="card-body text-left">
-                  <p>{{message.message}}</p>
-                  {% if message.image %}
-                  <a href="{{message.image.url}}">
-                    <img class="img-fluid" src="{{message.image.url}}" alt=""> <br>
-                  </a>
-                  {% endif%}
-                  {% if message.document %}
-                  <a href="{{message.document.url}}" target="_blank" style="display:block;">Descargar:</a>
-                  <!-- <iframe src="{{message.document.url}}" style="width:220px; height: auto;" class="img-fluid" frameborder="0"></iframe>   --> 
-                  <iframe src="https://docs.google.com/viewer?url={{message.document.url}}&embedded=true" style="width:220px; height: auto;" class="img-fluid" frameborder="0"></iframe>                 
-                  {% endif%} 
-                </div>
-                <div class="card-footer text-muted text-right">
-                  <p>{{ message.formatted_timestamp }}</p>
-                </div>
-              </div>
+              </div>  
+              {% endfor %}
             </div>
-          </div>  
-          {% endfor %}
-        </div>
-        {% elif user.rol == 'TC' and instance.status == 'OP' %}
-        <div class="container text-center">
-          <p class="h2 mb-5 mt-5">¿{{ user }} quieres responder a esta pregunta?</p>
-          <input type="submit" id="{{instance.pk}}" class="change_state btn btn-primary" name="" value="Responder">
-        </div>
-        {% elif user.rol == 'TC' and instance.status == 'RP' %}
-        <div class="container text-center">
-          <p class="h2 mb-5 mt-5">Lo lamento {{ user }}, otro profesor ya tomo la pregunta.</p>
-        </div>
-        {% elif instance.status == 'CL' %}
-        <div class="container messages-cont">
-          {% for message in messages %}
-          <div class="row justify-content-start">
-            <div class="col-md-7 col-sm-7">
-              <div class="card card-message">
-                <div class="card-header text-left">
-                  {% if message.handle == instance.user_response.username %}
-                  <p>Albéitar </p>
-                  {% else %}  
-                  {{message.handle}}
-                  {% endif %}
-                </div>
-                <div class="card-body text-left">
-                  <p>{{message.message}}</p>
-                  {% if message.image %}
-                  <a href="{{message.image.url}}">
-                    <img class="img-fluid" src="{{message.image.url}}" alt=""> <br>
-                  </a>
-                  {% endif%}
-                  {% if message.document %}
-                  <a href="{{message.document.url}}" target="_blank" style="display:block;">Descargar:</a>
-                  <!-- <iframe src="{{message.document.url}}" style="width:220px; height: auto;" class="img-fluid" frameborder="0"></iframe>   --> 
-                  <iframe src="https://docs.google.com/viewer?url={{message.document.url}}&embedded=true" style="width:220px; height: auto;" class="img-fluid" frameborder="0"></iframe>                   
-                  {% endif%} 
-                </div>
-                <div class="card-footer text-muted text-right">
-                  <p>{{ message.formatted_timestamp }}</p>
-                </div>
-              </div>
+            {% elif user.rol == 'TC' and instance.status == 'OP' %}
+            <div class="container text-center">
+              <p class="h2 mb-5 mt-5">¿{{ user }} quieres responder a esta pregunta?</p>
+              <input type="submit" id="{{instance.pk}}" class="change_state btn btn-primary" name="" value="Responder">
             </div>
-          </div>  
-          {% endfor %}
+            {% elif user.rol == 'TC' and instance.status == 'RP' %}
+            <div class="container text-center">
+              <p class="h2 mb-5 mt-5">Lo lamento {{ user }}, otro profesor ya tomo la pregunta.</p>
+            </div>
+            {% elif instance.status == 'CL' %}
+            <div class="container messages-cont">
+              {% for message in messages %}
+              <div class="row">
+                {% if message.handle == instance.user_response.username %}
+                <div class="col-md-7 col-sm-7 mr-auto">
+                  {% else %} 
+                  <div class="col-md-7 col-sm-7 ml-auto">
+                    {% endif %}
+                    <div class="card card-message">
+                      {% if message.handle == instance.user_response.username %}
+                      <div class="card-header text-left">
+                        <p class="font-weight-bold m-0">Albéitar </p>
+                      </div>
+                      {% else %}  
+                      <div class="card-header text-right" style="background: #B2EBF2;">
+                        <p class="font-weight-bold m-0">{{message.handle}}</p>
+                      </div>
+                      {% endif %}
+                      <div class="card-body text-left">
+                        <p>{{message.message}}</p>
+                        {% if message.image %}
+                        <a href="{{message.image.url}}">
+                          <img class="img-fluid" src="{{message.image.url}}" alt=""> <br>
+                        </a>
+                        {% endif%}
+                        {% if message.document %}
+                        <a href="{{message.document.url}}" target="_blank" style="display:block;">Descargar:</a>
+                        <!-- <iframe src="{{message.document.url}}" style="width:220px; height: auto;" class="img-fluid" frameborder="0"></iframe>   --> 
+                        <iframe src="https://docs.google.com/viewer?url={{message.document.url}}&embedded=true" style="width:220px; height: auto;" class="img-fluid" frameborder="0"></iframe>                   
+                        {% endif%} 
+                      </div>
+                      <div class="card-footer text-muted text-right">
+                        <p>{{ message.formatted_timestamp }}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>  
+                {% endfor %}
+              </div>
+              {% else %}        
+              <div class="container text-center">
+                <p class="display-4">En espera de que un profesor responda tu pregunta.</p>
+              </div>      
+              {% endif %}
+            </div>    
+          </div>      
         </div>
-        {% else %}        
-        <div class="container text-center">
-          <p class="display-4">En espera de que un profesor responda tu pregunta.</p>
-        </div>      
-        {% endif %}
-      </div>    
-    </div>      
-  </div>
 
-  <!-- Modal -->
-  <div class="modal fade" id="closeModal" tabindex="-1" role="dialog" aria-labelledby="closeModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="closeModalLabel">Califica la respuesta</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+        <!-- Modal -->
+        <div class="modal fade" id="closeModal" tabindex="-1" role="dialog" aria-labelledby="closeModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="closeModalLabel">Califica la respuesta</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body p-0 d-inline-flex">
+                <ul id="rates" class="rate-area p-0 m-auto">
+                  <input type="radio" id="5-star" name="rating" value="5" /><label for="5-star" title="Amazing">5 stars</label>
+                  <input type="radio" id="4-star" name="rating" value="4" /><label for="4-star" title="Good">4 stars</label>
+                  <input type="radio" id="3-star" name="rating" value="3" /><label for="3-star" title="Average">3 stars</label>
+                  <input type="radio" id="2-star" name="rating" value="2" /><label for="2-star" title="Not Good">2 stars</label>
+                  <input type="radio" id="1-star" name="rating" value="1" /><label for="1-star" title="Bad">1 star</label>
+                </ul>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn-close btn btn-success">Calificar y cerrar</button>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="modal-body p-0 d-inline-flex">
-          <ul id="rates" class="rate-area p-0 m-auto">
-            <input type="radio" id="5-star" name="rating" value="5" /><label for="5-star" title="Amazing">5 stars</label>
-            <input type="radio" id="4-star" name="rating" value="4" /><label for="4-star" title="Good">4 stars</label>
-            <input type="radio" id="3-star" name="rating" value="3" /><label for="3-star" title="Average">3 stars</label>
-            <input type="radio" id="2-star" name="rating" value="2" /><label for="2-star" title="Not Good">2 stars</label>
-            <input type="radio" id="1-star" name="rating" value="1" /><label for="1-star" title="Bad">1 star</label>
-          </ul>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-          <button type="button" class="btn-close btn btn-success">Calificar y cerrar</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  {% endblock %} 
-  {% block javascript%}
-  <script type="text/javascript">
-    $(function() {
+        {% endblock %} 
+        {% block javascript%}
+        <script type="text/javascript">
+          $(function() {
             // get iframe tags and search video tag
             // then mute the video
             $('iframe').each(function(index, el) {
