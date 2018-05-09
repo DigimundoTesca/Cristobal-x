@@ -105,11 +105,11 @@
                 {% endif %}
                 <div class="card card-message">
                   {% if message.handle == instance.user_response.username %}
-                  <div class="card-header text-left">
+                  <div class="card-header text-left" style="background: #B2EBF2;">
                     <p class="font-weight-bold m-0">Albéitar </p>
                   </div>
                   {% else %}  
-                  <div class="card-header text-right" style="background: #B2EBF2;">
+                  <div class="card-header text-right">
                     <p class="font-weight-bold m-0">{{message.handle}}</p>
                   </div>
                   {% endif %}
@@ -168,11 +168,11 @@
                   {% endif %}
                   <div class="card card-message">
                     {% if message.handle == instance.user_response.username %}
-                    <div class="card-header text-left">
+                    <div class="card-header text-left" style="background: #B2EBF2;">
                       <p class="font-weight-bold m-0">Albéitar </p>
                     </div>
                     {% else %}  
-                    <div class="card-header text-right" style="background: #B2EBF2;">
+                    <div class="card-header text-right">
                       <p class="font-weight-bold m-0">{{message.handle}}</p>
                     </div>
                     {% endif %}
@@ -217,11 +217,11 @@
                     {% endif %}
                     <div class="card card-message">
                       {% if message.handle == instance.user_response.username %}
-                      <div class="card-header text-left">
+                      <div class="card-header text-left" style="background: #B2EBF2;">
                         <p class="font-weight-bold m-0">Albéitar </p>
                       </div>
                       {% else %}  
-                      <div class="card-header text-right" style="background: #B2EBF2;">
+                      <div class="card-header text-right">
                         <p class="font-weight-bold m-0">{{message.handle}}</p>
                       </div>
                       {% endif %}
@@ -305,7 +305,7 @@
               var form2sent = $(this).attr('id');
               var subForm = "messageForm" + form2sent;
               swal({
-                title: 'Su mensaje será enviado',
+                title: 'Su mensaje ha sido enviado',
                 type: 'success',
                 showConfirmButton: false,
                 timer: 2000
