@@ -13,6 +13,7 @@ def time_on_emails(pk,user_speciality, html_content):
     time.sleep(64800)
     pregunta = Question.objects.get(pk=pk)
     if pregunta.status == 'OP'and pregunta.pk==pk:        
+        print("entra el bucle")
         sendmailform(user_speciality, html_content)
         time_on_emails.delay(pk,user_speciality,html_content)
 
